@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Sun (Sol) · Space Exploration</title>
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../planet-design/style.css" />
+</head>
+
+<body data-planet="sun">
+  <!-- Background Ambient Glow Layer -->
+  <div class="space-ambient-glow" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-----------------------
+     [ NAVIGATION SECTION ] |
+    ------------------------>
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='../../index.html'">
+      <img src="../../Assets/Rocket_Icon.png" onerror="this.src='/Space Exploration/Assets/Rocket_Icon.png'"
+        alt="Rocket Icon" />
+      <div class="logo-text">
+        <span class="brand-title">Space Exploration</span>
+      </div>
+    </div>
+
+    <!-- Quick Planet Route Selector Strip -->
+    <div class="nav-planet-strip">
+      <a href="./index_sun.html" class="nav-planet-pill active">00 SUN</a>
+      <a href="./index_mercury.html" class="nav-planet-pill">01 MER</a>
+      <a href="./index_venus.html" class="nav-planet-pill">02 VEN</a>
+      <a href="./index_earth.html" class="nav-planet-pill">03 EAR</a>
+      <a href="./index_mars.html" class="nav-planet-pill">04 MAR</a>
+      <a href="./index_jupiter.html" class="nav-planet-pill">05 JUP</a>
+      <a href="./index_saturn.html" class="nav-planet-pill">06 SAT</a>
+      <a href="./index_uranus.html" class="nav-planet-pill">07 URA</a>
+      <a href="./index_neptune.html" class="nav-planet-pill">08 NEP</a>
+    </div>
+
+    <div class="navmenu">
+      <a class="nav-solar-btn" href="./solar_system.html" title="View Whole Solar System Orrery">
+        <span class="nav-btn-text">Cosmos</span>
+      </a>
+      <a class="Explore_btn nav-btn nav-return-btn" href="../../index.html" title="Return to Space Hub">
+        <span class="nav-btn-text">Return</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-----------------
+     [ HERO SECTION ] |
+    ------------------>
+  <section class="planet-hero-section" id="heroSection">
+    <div class="hud-section">
+      <!-- Toggle Information Button -->
+      <button class="info-btn" aria-label="Toggle Telemetry HUD">
+        <span class="info-dot">↪</span>
+        <span class="info-label">Telemetry HUD</span>
+      </button>
+
+      <!-- Left Deep Scan Telemetry panel -->
+      <aside class="detail-panel" id="detailPanel" aria-hidden="true">
+        <div class="detail-header">
+          <div class="detail-badge-group">
+            <span class="detail-badge-tag">Deep-Scan Telemetry</span>
+            <h2 class="detail-title" id="detailTitle">Stellar Dimensions</h2>
+          </div>
+          <button class="close-detail-btn" id="closeDetailBtn" aria-label="Close Detail Panel">✕</button>
+        </div>
+
+        <div class="detail-body-narrative" id="detailBodyNarrative">
+        </div>
+      </aside>
+
+      <!-- Right Telemetry panel -->
+      <div class="content" id="mainHud">
+        <div class="hud-top-row">
+          <div class="planet-badge">
+            <span class="badge-tag">Star 00</span>
+            <span class="badge-line"></span>
+          </div>
+        </div>
+
+        <h1 class="planet-title">THE SUN</h1>
+
+        <div class="planet-subtitle-container">
+          <span class="planet-subtitle">The Heart of Sol</span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <p class="planet-poetry-description">
+          "A blinding furnace of hydrogen fusion, holding the cosmic dance together."<br />
+          The central yellow dwarf star that powers all light, heat, and life in the Solar System.
+        </p>
+
+        <div class="earth-info">
+          <!-- 1. Equatorial Diameter -->
+          <div class="info-card" data-metric="diameter" tabindex="0" role="button" aria-label="View Diameter Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9.5" />
+                <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Equatorial Diameter</span>
+              <span class="metric-value">1,392,700 KM</span>
+            </div>
+          </div>
+
+          <!-- 2. Galactic Distance -->
+          <div class="info-card" data-metric="distance" tabindex="0" role="button" aria-label="View Distance Details">
+            <div class="card-icon" id="distanceCardIcon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label" id="distanceMetricLabel">Galactic Core Dist.</span>
+              <span class="metric-value" id="distanceMetricValue">26,000 Light-Yrs</span>
+            </div>
+          </div>
+
+          <!-- 3. Surface Area -->
+          <div class="info-card" data-metric="surface" tabindex="0" role="button" aria-label="View Surface Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke-dasharray="2 3" />
+                <path d="M9 3.5v17M15 3.5v17M3.5 9h17M3.5 15h17" stroke-opacity="0.35" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Photosphere Area</span>
+              <span class="metric-value">6.09T KM²</span>
+            </div>
+          </div>
+
+          <!-- 4. Atmosphere / Corona -->
+          <div class="info-card" data-metric="atmosphere" tabindex="0" role="button"
+            aria-label="View Atmosphere Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 12c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 17c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 7c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Corona Atmosphere</span>
+              <span class="metric-value">73.5% H₂ · 24.9% He</span>
+            </div>
+          </div>
+
+          <!-- 5. Stellar Mass -->
+          <div class="info-card" data-metric="mass" tabindex="0" role="button" aria-label="View Mass Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M6 9h12l2 11H4L6 9z" />
+                <path d="M9 9V5.5a3 3 0 0 1 6 0V9" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Stellar Mass</span>
+              <span class="metric-value">1.989 × 10³⁰ KG</span>
+            </div>
+          </div>
+
+          <!-- 6. Equatorial Rotation -->
+          <div class="info-card" data-metric="orbit" tabindex="0" role="button"
+            aria-label="View Orbital Period Details">
+            <div class="card-icon card-icon-radar">
+              <div class="mini-hologram-radar" aria-hidden="true">
+                <div class="radar-ring-1"></div>
+                <div class="radar-ring-2"></div>
+                <div class="radar-pulse"></div>
+              </div>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Equatorial Rotation</span>
+              <span class="metric-value">25.05 Earth Days</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Destination Button -->
+        <div class="rocket">
+          <button class="next-mission-btn" onclick="window.location.href = './index_mercury.html'">
+            <img src="../../Assets/Icon_2.png" onerror="this.src = '/Space Exploration/Assets/Icon_2.png'"
+              class="rocket-icon" alt="" />
+            <span>Next Destination :</span>
+            <span class="mercury_color">Mercury</span>
+            <span class="btn-arrow_mercury">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Scroll Down interaction -->
+    <div class="guide" id="scrollDataBtn" role="button" tabindex="0" aria-label="Explore Stellar Knowledge">
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot"></div>
+      </div>
+      <div class="chevron-down">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <span class="guide-text">Drag to rotate · Scroll to explore</span>
+    </div>
+  </section>
+
+  <!---------------------------
+     [ STELLAR DATA SECTION ] |
+    ---------------------------->
+  <section class="planet-data-section" id="dataSection">
+    <header class="data-header-container">
+      <div class="data-header-content">
+        <span>Central Star</span>
+        <h1 class="data-planet-title">THE SUN</h1>
+
+        <p class="data-tagline">
+          Revered as <span class="data-tagline-highlight">"The Central Golden Star"</span> because it radiates 3.8 ×
+          10²⁶ Watts of golden solar energy that powers all planetary light, warmth, and life across Sol.
+          The G-type main-sequence yellow dwarf star at the gravitational center of the Solar System.
+          Accounting for 99.86% of the system's mass, its core converts 4 million tons of matter into pure radiant
+          energy every second.
+          Its turbulent differential rotation winds intense magnetic flux tubes that ignite explosive solar flares,
+          coronal mass ejections, and supersonic solar wind streams shaping the global heliosphere.
+        </p>
+      </div>
+    </header>
+
+    <!-- Global Key Facts Bar (Interactive Explainer) -->
+    <section class="data-metric-bar" aria-label="Global Stellar Key Facts">
+      <div class="data-metric-box" data-metric-type="distance" role="button" tabindex="0"
+        aria-label="Learn about Distance to Galactic Center">
+        <div class="d-metric-val">~26,000 LY</div>
+        <div class="d-metric-lbl">Distance to Galactic Core</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="orbit" role="button" tabindex="0"
+        aria-label="Learn about Galactic Year">
+        <div class="d-metric-val">230M Years</div>
+        <div class="d-metric-lbl">Galactic Cosmic Year</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="diameter" role="button" tabindex="0"
+        aria-label="Learn about Solar Diameter">
+        <div class="d-metric-val">1,392,700 km</div>
+        <div class="d-metric-lbl">Photospheric Diameter (109x)</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="gravity" role="button" tabindex="0"
+        aria-label="Learn about Surface Gravity">
+        <div class="d-metric-val">274.0 m/s²</div>
+        <div class="d-metric-lbl">Photosphere Gravity (27.9 g)</div>
+      </div>
+    </section>
+
+    <!-- Dynamic Metric Explainer Drawer ("Planetary Insight") -->
+    <div class="metric-explainer-drawer" id="metricExplainerDrawer" aria-live="polite" style="display: none;">
+      <div class="explainer-card">
+        <div class="explainer-top">
+          <div class="explainer-badge">
+            <span class="explainer-icon"></span>
+            <span class="explainer-tag" id="explainerTag">Stellar Insight</span>
+          </div>
+          <button class="explainer-close-btn" id="explainerCloseBtn" aria-label="Close Explainer">✕</button>
+        </div>
+        <h3 class="explainer-title" id="explainerTitle">Explore Stellar Secrets</h3>
+        <p class="explainer-content" id="explainerContent"></p>
+        <div class="explainer-calc-box" id="explainerCalcBox">
+          <div class="calc-header">
+            <span class="calc-icon"></span>
+            <span class="calc-label">MATHEMATICAL DETERMINATION</span>
+          </div>
+          <div class="calc-formula-tag" id="explainerCalcFormula"></div>
+          <p class="calc-text" id="explainerCalcText"></p>
+        </div>
+        <div class="explainer-funfact-box" id="explainerFunFactBox">
+          <div class="funfact-header">
+            <span class="funfact-icon"></span>
+            <span class="funfact-label">COSMIC FUN FACT</span>
+          </div>
+          <p class="funfact-text" id="explainerFunFactText"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+           [ SECTION 2: STELLAR GRAVITATIONAL DOMINION ]
+           ============================================= -->
+    <section class="moon-showcase-section" id="moonShowcase" aria-label="Solar Gravitational Dominion">
+      <header class="moon-showcase-header">
+        <span>Gravitational Anchor of Sol</span>
+        <h2 class="moon-section-title" id="moonSectionTitle">PLANETARY ORBITAL DOMINION</h2>
+        <p class="moon-section-description" id="moonSectionDesc">
+          Unlike planets which host natural satellites, the Sun commands the entire planetary hierarchy: 8 major
+          planets,
+          5 dwarf planets, hundreds of planetary moons, and millions of asteroids and comets spanning the Kuiper Belt
+          and Oort Cloud.
+        </p>
+        <p class="moon-section-description" id="moonSectionDesc2">
+          The Sun's immense gravitational well exerts continuous inward centripetal acceleration, binding bodies from
+          Mercury
+          (57.9 million km) to the outer Oort Cloud boundary exceeding <span class="highlight-val">100,000 AU (1.58
+            Light-Years)</span>.
+          Its supersonic solar wind plasma carves a vast heliosphere cavity against the interstellar medium.
+        </p>
+      </header>
+    </section>
+
+    <!-- Visual Section Divider -->
+    <hr class="section-divider" aria-hidden="true">
+
+    <!-- =============================================
+           [ SECTION 3: PLANETARY DOSSIER · DEEP TOPICS ]
+           ============================================= -->
+    <main class="dossier-narrative-container">
+      <!-- 01. Thermonuclear Fusion in the Core -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 01. Thermonuclear Fusion & the Core Engine</h2>
+        <p class="topic-paragraph">
+          At the Sun's core, crushing gravitational pressures exceeding <span class="highlight-val">250 Billion
+            Atmospheres</span>
+          and temperatures of <span class="highlight-val">15,000,000°C (15 Million Kelvin)</span> drive continuous
+          hydrogen fusion
+          via the proton-proton chain reaction. Every second, <span class="highlight-val">600 Million Tons</span> of
+          hydrogen are fused into helium.
+        </p>
+        <p class="topic-paragraph">
+          This reaction converts <span class="highlight-val">4.26 Million Tons of Mass per Second</span> directly into
+          pure electromagnetic radiation
+          via Einstein's equation <span class="accent-text">E = mc²</span>. Photons created in the core undergo a
+          'random walk' through the dense radiative zone,
+          taking between <span class="highlight-val">100,000 and 200,000 years</span> to reach the photosphere.
+        </p>
+      </article>
+
+      <!-- 02. The Superheated Corona Mystery -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 02. The Million-Degree Corona & Solar Wind</h2>
+        <p class="topic-paragraph">
+          While the visible photosphere has a temperature of <span class="highlight-val">5,500°C</span>, the Sun's outer
+          atmosphere—the
+          <span class="accent-text">Corona</span>—mysteriously surges to over <span class="highlight-val">1,000,000°C to
+            3,000,000°C</span>.
+          This coronal heating paradox is driven by magnetic reconnection micro-flares and magnetohydrodynamic Alfvén
+          waves.
+        </p>
+        <p class="topic-paragraph">
+          This ultra-hot plasma expands outward as the <span class="accent-text">Solar Wind</span>, streaming past Earth
+          at speeds of
+          <span class="highlight-val">400 to 800 km/s</span>. It interacts with planetary magnetospheres to create polar
+          auroras and inflates the
+          heliosphere bubble that shields our Solar System from lethal galactic cosmic rays.
+        </p>
+      </article>
+
+      <!-- 03. The 11-Year Magnetic Cycle & Flares -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 03. 11-Year Magnetic Cycle & Solar Storms</h2>
+        <p class="topic-paragraph">
+          Due to differential rotation—where the equator spins faster (25 days) than the poles (34 days)—the Sun's
+          internal magnetic dynamo
+          twists and tangles field lines over time. This generates dark, magnetized <span
+            class="accent-text">Sunspots</span> and triggers an
+          <span class="highlight-val">11-Year Solar Activity Cycle</span>.
+        </p>
+        <p class="topic-paragraph">
+          At solar maximum, snapped magnetic loops release colossal <span class="accent-text">Solar Flares</span> and
+          <span class="accent-text">Coronal Mass Ejections (CMEs)</span>, hurling billions of tons of magnetized plasma
+          into space.
+          At the cycle's climax, the Sun's global magnetic field completely reverses polarity before beginning a new
+          cycle.
+        </p>
+      </article>
+
+      <!-- 04. Stellar Life Cycle & Future Destiny -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 04. Stellar Evolution & 5-Billion-Year Destiny</h2>
+        <p class="topic-paragraph">
+          Formed <span class="highlight-val">4.6 Billion Years Ago</span> from a collapsing molecular cloud, the Sun is
+          currently at the prime
+          of its main-sequence lifespan with enough core hydrogen fuel to sustain stable fusion for another <span
+            class="highlight-val">5 Billion Years</span>.
+        </p>
+        <p class="topic-paragraph">
+          In approximately 5 billion years, core hydrogen exhaustion will cause the Sun to swell into a colossal <span
+            class="accent-text">Red Giant</span>,
+          engulfing Mercury, Venus, and possibly Earth. Eventually, it will shed its outer plasma layers into a
+          shimmering planetary nebula,
+          leaving behind a dense, cooling Earth-sized <span class="accent-text">White Dwarf</span> stellar remnant.
+        </p>
+      </article>
+    </main>
+
+    <!-- =============================================
+           [ SECTION 4: DEEP ARCHIVE & RESEARCH LINKS ]
+           ============================================= -->
+    <section class="planet-external-archives" aria-label="External Research Archives and References">
+      <div class="external-archives-header">
+        <span class="archives-icon">🌐</span>
+        <span class="archives-title">DEEP ARCHIVE & FURTHER READING</span>
+      </div>
+      <div class="external-links-grid" id="externalLinksGrid">
+        <a href="https://en.wikipedia.org/wiki/Sun" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: The Sun</h4>
+          <p class="archive-desc">Astrophysical structure, nuclear fusion, and evolutionary timeline</p>
+        </a>
+        <a href="https://science.nasa.gov/sun/" target="_blank" rel="noopener noreferrer" class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">NASA HELIOPHYSICS</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">NASA Science: The Sun</h4>
+          <p class="archive-desc">Parker Solar Probe, SDO imagery, and space weather tracking</p>
+        </a>
+        <a href="https://www.spaceweather.com/" target="_blank" rel="noopener noreferrer" class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">SPACEWEATHER</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Space Weather Archive</h4>
+          <p class="archive-desc">Live solar flare telemetry, sunspot counts, and coronal mass ejections</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Minimal Return to Orbit Indicator -->
+    <div class="guide-return" id="returnOrbitBtn" role="button" tabindex="0" aria-label="Return to 3D Orbit view">
+      <div class="chevron-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </div>
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot dot-up"></div>
+      </div>
+      <span class="guide-text">Return to 3D Orbit View</span>
+    </div>
+  </section>
+
+  <!-- =============================================
+         [ SECTION 4: MINIMAL FUTURISTIC FOOTER ]
+         ============================================= -->
+  <footer class="planet-footer" id="planetFooter">
+    <div class="footer-container">
+      <!-- 1. Left Branding Cluster -->
+      <div class="footer-branding">
+        <div class="footer-brand-header">
+          <span class="footer-brand-icon">✦</span>
+          <span class="footer-brand-title">SPACE EXPLORATION</span>
+        </div>
+        <p class="footer-brand-subtitle">Planetary Astrophysics & Celestial Ephemeris</p>
+      </div>
+
+      <!-- 2. Center Quick Celestial Route Navigator -->
+      <nav class="footer-nav-cluster" aria-label="Planetary System Navigation">
+        <div class="footer-current-pill">
+          <span class="current-dot"></span>
+          <span>00. The Sun</span>
+        </div>
+        <a href="./index_mercury.html" class="footer-nav-pill">
+          <span>01. Mercury</span>
+          <span class="pill-arrow">→</span>
+        </a>
+      </nav>
+
+      <!-- 3. Right Meta & Status Cluster -->
+      <div class="footer-meta-cluster">
+        <div class="footer-status-pill">
+          <span class="status-pulse-dot"></span>
+          <span>SYSTEMS NOMINAL</span>
+        </div>
+        <div class="footer-copyright">
+          © 2026 Space Exploration Archive · Sector 00
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js Canvas (Fixed 3D Stellar Scene) -->
+  <canvas id="Sun"></canvas>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "../node_modules/three/build/three.module.js",
+        "orbitalControls": "../node_modules/three/examples/jsm/controls/OrbitControls.js",
+        "webgl": "../node_modules/three/examples/jsm/capabilities/WebGL.js"
+      }
+    }
+  </script>
+  <script type="module" src="../src/sun.js"></script>
+  <script src="../command.js"></script>
+</body>
+
+</html>

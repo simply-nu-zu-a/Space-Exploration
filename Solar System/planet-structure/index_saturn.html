@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saturn · Space Exploration</title>
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../planet-design/style.css" />
+</head>
+
+<body data-planet="saturn">
+  <!-- Background Ambient Glow Layer -->
+  <div class="space-ambient-glow" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-----------------------
+     [ NAVIGATION SECTION ] |
+    ------------------------>
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='../../index.html'">
+      <img src="../../Assets/Rocket_Icon.png" onerror="this.src='/Space Exploration/Assets/Rocket_Icon.png'"
+        alt="Rocket Icon" />
+      <div class="logo-text">
+        <span class="brand-title">Space Exploration</span>
+      </div>
+    </div>
+
+    <!-- Quick Planet Route Selector Strip -->
+    <div class="nav-planet-strip">
+      <a href="./index_sun.html" class="nav-planet-pill">00 SUN</a>
+      <a href="./index_mercury.html" class="nav-planet-pill">01 MER</a>
+      <a href="./index_venus.html" class="nav-planet-pill">02 VEN</a>
+      <a href="./index_earth.html" class="nav-planet-pill">03 EAR</a>
+      <a href="./index_mars.html" class="nav-planet-pill">04 MAR</a>
+      <a href="./index_jupiter.html" class="nav-planet-pill">05 JUP</a>
+      <a href="./index_saturn.html" class="nav-planet-pill active">06 SAT</a>
+      <a href="./index_uranus.html" class="nav-planet-pill">07 URA</a>
+      <a href="./index_neptune.html" class="nav-planet-pill">08 NEP</a>
+    </div>
+
+    <div class="navmenu">
+      <a class="nav-solar-btn" href="./solar_system.html" title="View Whole Solar System Orrery">
+        <span class="nav-btn-text">Cosmos</span>
+      </a>
+      <a class="Explore_btn nav-btn nav-return-btn" href="../../index.html" title="Return to Space Hub">
+        <span class="nav-btn-text">Return</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-----------------
+     [ HERO SECTION ] |
+    ------------------>
+  <section class="planet-hero-section" id="heroSection">
+    <div class="hud-section">
+      <!-- Toggle Information Button -->
+      <button class="info-btn" aria-label="Toggle Telemetry HUD">
+        <span class="info-dot">↪</span>
+        <span class="info-label">Telemetry HUD</span>
+      </button>
+
+      <!-- Left Detailed Telemetry Panel (Opens when clicking any info card) -->
+      <aside class="detail-panel" id="detailPanel" aria-hidden="true">
+        <div class="detail-header">
+          <div class="detail-badge-group">
+            <span class="detail-badge-tag">Deep-Scan Telemetry</span>
+            <h2 class="detail-title" id="detailTitle">Planetary Dimensions</h2>
+          </div>
+          <button class="close-detail-btn" id="closeDetailBtn" aria-label="Close Detail Panel">✕</button>
+        </div>
+
+        <div class="detail-body-narrative" id="detailBodyNarrative">
+          <!-- Dynamically populated editorial narrative -->
+        </div>
+      </aside>
+
+      <!-- Right-Hand Side Planetary HUD Panel -->
+      <div class="content" id="mainHud">
+        <div class="hud-top-row">
+          <div class="planet-badge">
+            <span class="badge-tag">Planet 06</span>
+            <span class="badge-line"></span>
+          </div>
+
+          <!-- Moon Orbit Toggle Button -->
+          <button class="moon-toggle-pill" id="moonToggleBtn" aria-label="Toggle 3D Saturnian Moons in Hero View">
+            <span class="moon-pill-icon">☾</span>
+            <span class="moon-pill-text">Major Moons</span>
+            <span class="moon-pill-status"></span>
+          </button>
+        </div>
+
+        <!-- Planet Title -->
+        <h1 class="planet-title">SATURN</h1>
+
+        <!-- Planet Subtitle with Underline -->
+        <div class="planet-subtitle-container">
+          <span class="planet-subtitle">The Ringed Sovereign</span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <!-- Heartfelt Description -->
+        <p class="planet-poetry-description">
+          "Adorned with shimmering rings of ice, floating upon cosmic seas."<br />
+          The jewel of the solar system, presiding over 146 ocean satellites.
+        </p>
+
+        <!-- 2x3 Telemetry Metric Cards Grid -->
+        <div class="earth-info">
+          <!-- 1.Equatorial Diameter -->
+          <div class="info-card" data-metric="diameter" tabindex="0" role="button" aria-label="View Diameter Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9.5" />
+                <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Equatorial Diameter</span>
+              <span class="metric-value">120,536 KM</span>
+            </div>
+          </div>
+
+          <!-- 2. Distance from Sun / Moons -->
+          <div class="info-card" data-metric="distance" id="cardDistance" tabindex="0" role="button"
+            aria-label="View Distance Details">
+            <div class="card-icon" id="distanceCardIcon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label" id="distanceMetricLabel">Heliocentric Distance</span>
+              <span class="metric-value" id="distanceMetricValue">1.434B KM (9.58 AU)</span>
+            </div>
+          </div>
+
+          <!-- 3. Surface Area -->
+          <div class="info-card" data-metric="surface" tabindex="0" role="button" aria-label="View Surface Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke-dasharray="2 3" />
+                <path d="M9 3.5v17M15 3.5v17M3.5 9h17M3.5 15h17" stroke-opacity="0.35" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Cross Section</span>
+              <span class="metric-value">42.70B KM²</span>
+            </div>
+          </div>
+
+          <!-- 4. Atmosphere -->
+          <div class="info-card" data-metric="atmosphere" tabindex="0" role="button"
+            aria-label="View Atmosphere Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 12c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 17c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 7c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Atmosphere</span>
+              <span class="metric-value">96.3% H₂ · 3.25% He</span>
+            </div>
+          </div>
+
+          <!-- 5. Planetary Mass -->
+          <div class="info-card" data-metric="mass" tabindex="0" role="button" aria-label="View Mass Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M6 9h12l2 11H4L6 9z" />
+                <path d="M9 9V5.5a3 3 0 0 1 6 0V9" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Planetary Mass</span>
+              <span class="metric-value">5.683 × 10²⁶ KG</span>
+            </div>
+          </div>
+
+          <!-- 6. Orbital Period -->
+          <div class="info-card" data-metric="orbit" tabindex="0" role="button"
+            aria-label="View Orbital Period Details">
+            <div class="card-icon card-icon-radar">
+              <div class="mini-hologram-radar" aria-hidden="true">
+                <div class="radar-ring-1"></div>
+                <div class="radar-ring-2"></div>
+                <div class="radar-pulse"></div>
+              </div>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Orbital Period</span>
+              <span class="metric-value">29.45 Earth Years</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Destination Button -->
+        <div class="rocket">
+          <button class="next-mission-btn" onclick="window.location.href='./index_uranus.html'">
+            <img src="../../Assets/Icon_2.png" onerror="this.src='/Space Exploration/Assets/Icon_2.png'"
+              class="rocket-icon" alt="" />
+            <span>Next Destination :</span>
+            <span class="uranus_color">Uranus</span>
+            <span class="btn-arrow_uranus">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Minimal Mouse Interaction Indicator -->
+    <div class="guide" id="scrollDataBtn" role="button" tabindex="0" aria-label="Explore Planetary Knowledge">
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot"></div>
+      </div>
+      <div class="chevron-down">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <span class="guide-text">Drag to rotate · Scroll to explore</span>
+    </div>
+  </section>
+
+  <!---------------------------------------------
+     [ SECTION 2: PLANETARY KNOWLEDGE & DATA ]    |
+    ---------------------------------------------->
+  <section class="planet-data-section" id="dataSection">
+    <!-- Data Header -->
+    <header class="data-header-container">
+      <div class="data-header-content">
+        <span>Planet</span>
+        <h1 class="data-planet-title">SATURN</h1>
+        <p class="data-tagline">
+          Reverentially named <span class="data-tagline-highlight">"The Ringed Sovereign"</span> because it is encircled
+          by Sol's most magnificent, dazzling ring architecture of 99% pure water-ice particles spanning 282,000 km
+          across space.
+          Famous for its expansive icy ring architecture, lowest density in the Solar System, north polar hexagonal jet
+          stream, and rich satellite system.
+          Composed of 99% pure water-ice particles spanning 282,000 km across but averaging only 10 to 30 meters thick,
+          its razor-thin rings are guided by shepherd moons.
+          With a density lower than liquid water (0.687 g/cm³), it shelters 146 moons—including Titan with methane seas
+          and cryovolcanic Enceladus.
+        </p>
+      </div>
+    </header>
+
+    <!-- Global Key Facts Bar -->
+    <section class="data-metric-bar" aria-label="Global Planetary Key Facts">
+      <div class="data-metric-box" data-metric-type="distance" role="button" tabindex="0"
+        aria-label="Learn about Distance to Sun">
+        <div class="d-metric-val">1.434B km</div>
+        <div class="d-metric-lbl">Distance to Sun (9.58 AU)</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="orbit" role="button" tabindex="0"
+        aria-label="Learn about Orbital Year Length">
+        <div class="d-metric-val">29.45 Years</div>
+        <div class="d-metric-lbl">Orbital Year Length</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="diameter" role="button" tabindex="0"
+        aria-label="Learn about Equatorial Diameter">
+        <div class="d-metric-val">120,536 km</div>
+        <div class="d-metric-lbl">Equatorial Diameter</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="gravity" role="button" tabindex="0"
+        aria-label="Learn about Surface Gravity">
+        <div class="d-metric-val">10.44 m/s²</div>
+        <div class="d-metric-lbl">Surface Gravity (1.06 g)</div>
+      </div>
+    </section>
+
+    <!-- Dynamic Metric Explainer Drawer ("Planetary Insight") -->
+    <div class="metric-explainer-drawer" id="metricExplainerDrawer" aria-live="polite" style="display: none;">
+      <div class="explainer-card">
+        <div class="explainer-top">
+          <div class="explainer-badge">
+            <span class="explainer-icon"></span>
+            <span class="explainer-tag" id="explainerTag">Planetary Insight</span>
+          </div>
+          <button class="explainer-close-btn" id="explainerCloseBtn" aria-label="Close Explainer">✕</button>
+        </div>
+        <h3 class="explainer-title" id="explainerTitle">Explore Planetary Secrets</h3>
+        <p class="explainer-content" id="explainerContent"></p>
+        <div class="explainer-calc-box" id="explainerCalcBox">
+          <div class="calc-header">
+            <span class="calc-icon"></span>
+            <span class="calc-label">MATHEMATICAL DETERMINATION</span>
+          </div>
+          <div class="calc-formula-tag" id="explainerCalcFormula"></div>
+          <p class="calc-text" id="explainerCalcText"></p>
+        </div>
+        <div class="explainer-funfact-box" id="explainerFunFactBox">
+          <div class="funfact-header">
+            <span class="funfact-icon"></span>
+            <span class="funfact-label">COSMIC FUN FACT</span>
+          </div>
+          <p class="funfact-text" id="explainerFunFactText"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+           [ SECTION 2: MULTI-MOON 3D CAROUSEL SHOWCASE ]
+           ============================================= -->
+    <section class="moon-showcase-section" id="moonShowcase" aria-label="Saturnian Moons 3D Showcase">
+      <header class="moon-showcase-header">
+        <div class="data-tag-pill" id="moonSectionTag">SATURN'S SUPER MOON // METHANE SEAS</div>
+        <h2 class="moon-section-title" id="moonSectionTitle">TITAN</h2>
+        <p class="moon-section-description" id="moonSectionDesc">
+          Titan is the second-largest moon in the Solar System and the only celestial body other than Earth with stable
+          surface liquids. It is enveloped in a dense, opaque orange nitrogen atmosphere 1.5 times denser than Earth's
+          sea-level air.
+        </p>
+        <p class="moon-section-description" id="moonSectionDesc2">
+          On Titan, a full hydrological cycle exists—not with water, but with liquid methane and ethane. Rivers,
+          hydrocarbon lakes, and seas like Kraken Mare dot its polar regions, while vast dunes of organic soot stretch
+          across equatorial plains.
+        </p>
+      </header>
+
+      <!-- Dedicated Interactive 3D Moon Canvas Container with Left/Right Navigation Arrows -->
+      <div class="moon-canvas-wrapper" id="moonCanvasWrapper">
+        <!-- Multi-Moon Carousel Navigation Arrows -->
+        <button class="moon-nav-btn prev-btn" id="prevMoonBtn" aria-label="Previous Moon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <span class="moon-carousel-indicator" id="moonCarouselCounter">01 / 05 · TITAN</span>
+
+        <canvas id="MoonCanvas" aria-label="Interactive 3D Moon Model"></canvas>
+
+        <button class="moon-nav-btn next-btn" id="nextMoonBtn" aria-label="Next Moon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="moon-canvas-hint">
+          <span>Use arrows to switch Saturnian moons · Drag to rotate</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Section Divider -->
+    <hr class="section-divider" aria-hidden="true">
+
+    <!-- =============================================
+           [ SECTION 3: PLANETARY DOSSIER · DEEP TOPICS ]
+           ============================================= -->
+    <main class="dossier-narrative-container">
+      <!-- 01. The Dazzling Ring System -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 01. The Dazzling Ring System</h2>
+        <p class="topic-paragraph">
+          Saturn's crowning glory is its magnificent planetary ring system, spanning over <span
+            class="highlight-val">282,000 Kilometers</span> across (roughly three-quarters the distance from Earth to
+          the Moon). Despite their immense diameter, the main rings are extraordinarily paper-thin, averaging only <span
+            class="highlight-val">10 to 30 meters</span> in vertical thickness.
+        </p>
+        <p class="topic-paragraph">
+          Composed of <span class="highlight-val">99% pure water ice</span> with trace tholin impurities, the rings
+          consist of billions of individual particles ranging from microscopic dust specks to house-sized boulders,
+          gravitationally herded by embedded 'shepherd moons' like Prometheus and Pandora that carve clean gaps such as
+          the Cassini Division.
+        </p>
+      </article>
+
+      <!-- 02. The World That Floats on Water -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 02. The World That Floats on Water</h2>
+        <p class="topic-paragraph">
+          Saturn is the only planet in the Solar System with an average density lower than liquid water: just <span
+            class="highlight-val">0.687 g/cm³</span> (water is 1.00 g/cm³). If you could construct a cosmic bathtub
+          large enough to hold it, Saturn would effortlessly float on the surface!
+        </p>
+        <p class="topic-paragraph">
+          Despite this low density, Saturn's massive bulk (<span class="highlight-val">5.683 × 10²⁶ Kilograms</span> /
+          95 Earths) produces an equatorial surface gravity of <span class="highlight-val">10.44 m/s²
+            (1.06g)</span>—strikingly close to what we feel on Earth. Rapid 10.5-hour rotation creates the highest polar
+          oblateness in Sol, flattening the planet by almost 10%.
+        </p>
+      </article>
+
+      <!-- 03. The North Polar Hexagon Jet Stream -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 03. The North Polar Hexagon Jet Stream</h2>
+        <p class="topic-paragraph">
+          At Saturn's north pole spins one of the most enigmatic meteorological phenomena in the cosmos: the <span
+            class="accent-text">North Polar Hexagon</span>, a persistent six-sided geometric jet stream over <span
+            class="highlight-val">30,000 Kilometers</span> wide—large enough to fit two Earths comfortably side-by-side
+          inside.
+        </p>
+        <p class="topic-paragraph">
+          Winds within this atmospheric polygon blow at over <span class="highlight-val">320 km/h</span> around a
+          central polar hurricane eye 2,000 km across. Unlike circular storms on Earth and Jupiter, the Hexagon's
+          stationary wave pattern has remained unchanged since it was first photographed by Voyager 1 in 1980.
+        </p>
+      </article>
+
+      <!-- 04. Titan, Enceladus & 146 Ocean Moons -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 04. Titan, Enceladus & 146 Satellites</h2>
+        <p class="topic-paragraph">
+          Saturn leads the Solar System with <span class="highlight-val">146 confirmed moons</span>. Its largest
+          satellite, <span class="accent-text">Titan (5,150 km)</span>, is larger than Mercury and possesses a dense
+          nitrogen atmosphere supporting active rivers, lakes, and rainstorms of liquid methane and ethane.
+        </p>
+        <p class="topic-paragraph">
+          Meanwhile, active cryovolcanic moon <span class="accent-text">Enceladus (504 km)</span> blasts powerful
+          geysers of saltwater vapor and organic molecules directly into space from south polar fractures, feeding
+          Saturn's diffuse E-ring and confirming a warm, habitable global ocean beneath its frozen crust.
+        </p>
+      </article>
+    </main>
+
+    <!-- =============================================
+           [ SECTION 4: DEEP ARCHIVE & RESEARCH LINKS ]
+           ============================================= -->
+    <section class="planet-external-archives" aria-label="External Research Archives and References">
+      <div class="external-archives-header">
+        <span class="archives-icon">🌐</span>
+        <span class="archives-title">DEEP ARCHIVE & FURTHER READING</span>
+      </div>
+      <div class="external-links-grid" id="externalLinksGrid">
+        <a href="https://en.wikipedia.org/wiki/Saturn" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: Saturn</h4>
+          <p class="archive-desc">Ring system mechanics, North Polar Hexagon, and gas structure</p>
+        </a>
+        <a href="https://science.nasa.gov/saturn/" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">NASA SCIENCE</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">NASA Science: Saturn</h4>
+          <p class="archive-desc">Cassini-Huygens mission legacy and ring particle dynamics</p>
+        </a>
+        <a href="https://en.wikipedia.org/wiki/Rings_of_Saturn" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Rings of Saturn</h4>
+          <p class="archive-desc">Ring divisions, shepherd moons, and ring-rain erosion</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Minimal Return to Orbit Indicator -->
+    <div class="guide-return" id="returnOrbitBtn" role="button" tabindex="0" aria-label="Return to 3D Orbit view">
+      <div class="chevron-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </div>
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot dot-up"></div>
+      </div>
+      <span class="guide-text">Return to 3D Orbit View</span>
+    </div>
+  </section>
+
+  <!-- =============================================
+         [ SECTION 4: MINIMAL FUTURISTIC FOOTER ]
+         ============================================= -->
+  <footer class="planet-footer" id="planetFooter">
+    <div class="footer-container">
+      <!-- 1. Left Branding Cluster -->
+      <div class="footer-branding">
+        <div class="footer-brand-header">
+          <span class="footer-brand-icon">✦</span>
+          <span class="footer-brand-title">SPACE EXPLORATION</span>
+        </div>
+        <p class="footer-brand-subtitle">Planetary Astrophysics & Celestial Ephemeris</p>
+      </div>
+
+      <!-- 2. Center Quick Celestial Route Navigator -->
+      <nav class="footer-nav-cluster" aria-label="Planetary System Navigation">
+        <a href="./index_jupiter.html" class="footer-nav-pill">
+          <span class="pill-arrow">←</span>
+          <span>05. Jupiter</span>
+        </a>
+        <div class="footer-current-pill">
+          <span class="current-dot"></span>
+          <span>06. Saturn</span>
+        </div>
+        <a href="./index_uranus.html" class="footer-nav-pill">
+          <span>07. Uranus</span>
+          <span class="pill-arrow">→</span>
+        </a>
+      </nav>
+
+      <!-- 3. Right Meta & Status Cluster -->
+      <div class="footer-meta-cluster">
+        <div class="footer-status-pill">
+          <span class="status-pulse-dot"></span>
+          <span>SYSTEMS NOMINAL</span>
+        </div>
+        <div class="footer-copyright">
+          © 2026 Space Exploration Archive · Sector 06
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js Canvas (Fixed 3D Planetary Scene) -->
+  <canvas id="Saturn"></canvas>
+
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "../node_modules/three/build/three.module.js",
+          "orbitalControls": "../node_modules/three/examples/jsm/controls/OrbitControls.js",
+          "webgl": "../node_modules/three/examples/jsm/capabilities/WebGL.js"
+        }
+      }
+    </script>
+  <script type="module" src="../src/saturn.js"></script>
+  <script src="../command.js"></script>
+</body>
+
+</html>

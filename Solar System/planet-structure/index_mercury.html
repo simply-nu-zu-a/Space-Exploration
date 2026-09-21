@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercury · Space Exploration</title>
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../planet-design/style.css" />
+</head>
+
+<body data-planet="mercury">
+  <!-- Background Ambient Glow Layer -->
+  <div class="space-ambient-glow" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-----------------------
+     [ NAVIGATION SECTION ] |
+    ------------------------>
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='../../index.html'">
+      <img src="../../Assets/Rocket_Icon.png" onerror="this.src='/Space Exploration/Assets/Rocket_Icon.png'"
+        alt="Rocket Icon" />
+      <div class="logo-text">
+        <span class="brand-title">Space Exploration</span>
+      </div>
+    </div>
+
+    <!-- Quick Planet Route Selector Strip -->
+    <div class="nav-planet-strip">
+      <a href="./index_sun.html" class="nav-planet-pill">00 SUN</a>
+      <a href="./index_mercury.html" class="nav-planet-pill active">01 MER</a>
+      <a href="./index_venus.html" class="nav-planet-pill">02 VEN</a>
+      <a href="./index_earth.html" class="nav-planet-pill">03 EAR</a>
+      <a href="./index_mars.html" class="nav-planet-pill">04 MAR</a>
+      <a href="./index_jupiter.html" class="nav-planet-pill">05 JUP</a>
+      <a href="./index_saturn.html" class="nav-planet-pill">06 SAT</a>
+      <a href="./index_uranus.html" class="nav-planet-pill">07 URA</a>
+      <a href="./index_neptune.html" class="nav-planet-pill">08 NEP</a>
+    </div>
+
+    <div class="navmenu">
+      <a class="nav-solar-btn" href="./solar_system.html" title="View Whole Solar System Orrery">
+        <span class="nav-btn-text">Cosmos</span>
+      </a>
+      <a class="Explore_btn nav-btn nav-return-btn" href="../../index.html" title="Return to Space Hub">
+        <span class="nav-btn-text">Return</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-----------------
+     [ HERO SECTION ] |
+    ------------------>
+  <section class="planet-hero-section" id="heroSection">
+    <div class="hud-section">
+      <!-- Toggle Information Button -->
+      <button class="info-btn" aria-label="Toggle Telemetry HUD">
+        <span class="info-dot">↪</span>
+        <span class="info-label">Telemetry HUD</span>
+      </button>
+
+      <!-- Left Deep Scan Telemetary panel -->
+      <aside class="detail-panel" id="detailPanel" aria-hidden="true">
+        <div class="detail-header">
+          <div class="detail-badge-group">
+            <span class="detail-badge-tag">Deep-Scan Telemetry</span>
+            <h2 class="detail-title" id="detailTitle">Planetary Dimensions</h2>
+          </div>
+          <button class="close-detail-btn" id="closeDetailBtn" aria-label="Close Detail Panel">✕</button>
+        </div>
+
+        <div class="detail-body-narrative" id="detailBodyNarrative">
+        </div>
+      </aside>
+
+      <!-- Right Telemetary panel -->
+      <div class="content" id="mainHud">
+        <div class="hud-top-row">
+          <div class="planet-badge">
+            <span class="badge-tag">Planet 01</span>
+            <span class="badge-line"></span>
+          </div>
+        </div>
+
+        <h1 class="planet-title">MERCURY</h1>
+
+        <div class="planet-subtitle-container">
+          <span class="planet-subtitle">The Swift Sentinel</span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <p class="planet-poetry-description">
+          "A sun-scorched world of ancient craters and frozen polar ice."<br />
+          The smallest planet, racing along a dynamic 3:2 gravitational resonance.
+        </p>
+
+        <div class="earth-info">
+          <!-- 1. Equatorial Diameter -->
+          <div class="info-card" data-metric="diameter" tabindex="0" role="button" aria-label="View Diameter Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9.5" />
+                <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Equatorial Diameter</span>
+              <span class="metric-value">4,879 KM</span>
+            </div>
+          </div>
+
+          <!-- 2. Distance from Sun -->
+          <div class="info-card" data-metric="distance" tabindex="0" role="button" aria-label="View Distance Details">
+            <div class="card-icon" id="distanceCardIcon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label" id="distanceMetricLabel">Heliocentric Distance</span>
+              <span class="metric-value" id="distanceMetricValue">57.9M KM (0.387 AU)</span>
+            </div>
+          </div>
+
+          <!-- 3. Surface Area -->
+          <div class="info-card" data-metric="surface" tabindex="0" role="button" aria-label="View Surface Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke-dasharray="2 3" />
+                <path d="M9 3.5v17M15 3.5v17M3.5 9h17M3.5 15h17" stroke-opacity="0.35" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Surface Area</span>
+              <span class="metric-value">74.8M KM²</span>
+            </div>
+          </div>
+
+          <!-- 4. Atmosphere -->
+          <div class="info-card" data-metric="atmosphere" tabindex="0" role="button"
+            aria-label="View Atmosphere Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 12c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 17c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 7c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Exosphere</span>
+              <span class="metric-value">&lt; 10⁻¹⁴ Bar</span>
+            </div>
+          </div>
+
+          <!-- 5. Planetary Mass -->
+          <div class="info-card" data-metric="mass" tabindex="0" role="button" aria-label="View Mass Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M6 9h12l2 11H4L6 9z" />
+                <path d="M9 9V5.5a3 3 0 0 1 6 0V9" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Planetary Mass</span>
+              <span class="metric-value">3.301 × 10²³ KG</span>
+            </div>
+          </div>
+
+          <!-- 6. Orbital Period -->
+          <div class="info-card" data-metric="orbit" tabindex="0" role="button"
+            aria-label="View Orbital Period Details">
+            <div class="card-icon card-icon-radar">
+              <div class="mini-hologram-radar" aria-hidden="true">
+                <div class="radar-ring-1"></div>
+                <div class="radar-ring-2"></div>
+                <div class="radar-pulse"></div>
+              </div>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Orbital Period</span>
+              <span class="metric-value">87.97 Earth Days</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Destination Button -->
+        <div class="rocket">
+          <button class="next-mission-btn" onclick="window.location.href='./index_venus.html'">
+            <img src="../../Assets/Icon_2.png" onerror="this.src='/Space Exploration/Assets/Icon_2.png'"
+              class="rocket-icon" alt="" />
+            <span>Next Destination :</span>
+            <span class="venus_color">Venus</span>
+            <span class="btn-arrow_venus">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Minimal Mouse Interaction Indicator -->
+    <div class="guide" id="scrollDataBtn" role="button" tabindex="0" aria-label="Explore Planetary Knowledge">
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot"></div>
+      </div>
+      <div class="chevron-down">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <span class="guide-text">Drag to rotate · Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-------------------------------------------
+     [ SECTION 2: PLANETARY KNOWLEDGE & DATA ] |
+    ------------------------------------------->
+  <section class="planet-data-section" id="dataSection">
+    <header class="data-header-container">
+      <div class="data-header-content">
+        <span>Planet</span>
+        <h1 class="data-planet-title">MERCURY</h1>
+        <p class="data-tagline">
+          Known as <span class="data-tagline-highlight">"The Swift Iron Sentinel"</span> because it hurtles around the
+          Sun at a blistering 47.4 km/s—the fastest orbital velocity of any planet—while its oversized iron core stands
+          guard at Sol's doorstep.
+          The smallest planet and closest to the Sun, Mercury endures wild temperature swings, a massive iron interior,
+          and billions of years of cosmic bombardment.
+          Houses an oversized metallic core spanning 85% of its radius, causing the crust to shrink into 1,000-km lobate
+          scarps as it cooled.
+          Locked in a 3:2 spin-orbit resonance, it harbors pure water-ice deposits inside permanently shadowed polar
+          craters despite daytime temperatures reaching 430°C.
+        </p>
+      </div>
+    </header>
+
+    <!-- Global Key Facts Bar -->
+    <section class="data-metric-bar" aria-label="Global Planetary Key Facts">
+      <div class="data-metric-box" data-metric-type="distance" role="button" tabindex="0"
+        aria-label="Learn about Distance to Sun">
+        <div class="d-metric-val">57.9M km</div>
+        <div class="d-metric-lbl">Distance to Sun (0.387 AU)</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="orbit" role="button" tabindex="0"
+        aria-label="Learn about Orbital Year Length">
+        <div class="d-metric-val">87.97 Days</div>
+        <div class="d-metric-lbl">Orbital Year Length</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="diameter" role="button" tabindex="0"
+        aria-label="Learn about Equatorial Diameter">
+        <div class="d-metric-val">4,879 km</div>
+        <div class="d-metric-lbl">Equatorial Diameter</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="gravity" role="button" tabindex="0"
+        aria-label="Learn about Surface Gravity">
+        <div class="d-metric-val">3.70 m/s²</div>
+        <div class="d-metric-lbl">Surface Gravity (0.38 g)</div>
+      </div>
+    </section>
+
+    <!-- Dynamic Metric Explainer Drawer ("Planetary Insight") -->
+    <div class="metric-explainer-drawer" id="metricExplainerDrawer" aria-live="polite" style="display: none;">
+      <div class="explainer-card">
+        <div class="explainer-top">
+          <div class="explainer-badge">
+            <span class="explainer-icon"></span>
+            <span class="explainer-tag" id="explainerTag">Planetary Insight</span>
+          </div>
+          <button class="explainer-close-btn" id="explainerCloseBtn" aria-label="Close Explainer">✕</button>
+        </div>
+        <h3 class="explainer-title" id="explainerTitle">Explore Planetary Secrets</h3>
+        <p class="explainer-content" id="explainerContent"></p>
+        <div class="explainer-calc-box" id="explainerCalcBox">
+          <div class="calc-header">
+            <span class="calc-icon"></span>
+            <span class="calc-label">MATHEMATICAL DETERMINATION</span>
+          </div>
+          <div class="calc-formula-tag" id="explainerCalcFormula"></div>
+          <p class="calc-text" id="explainerCalcText"></p>
+        </div>
+        <div class="explainer-funfact-box" id="explainerFunFactBox">
+          <div class="funfact-header">
+            <span class="funfact-icon"></span>
+            <span class="funfact-label">COSMIC FUN FACT</span>
+          </div>
+          <p class="funfact-text" id="explainerFunFactText"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+           [ SECTION 2: NATURAL SATELLITE LIMIT SHOWCASE ]
+           ============================================= -->
+    <section class="moon-showcase-section" id="moonShowcase" aria-label="Mercury Satellite Limits Showcase">
+      <header class="moon-showcase-header">
+        <div class="data-tag-pill" id="moonSectionTag">NATURAL SATELLITE LIMIT // 0 MOONS</div>
+        <h2 class="moon-section-title" id="moonSectionTitle">SOLAR TIDAL DISRUPTION</h2>
+        <p class="moon-section-description" id="moonSectionDesc">
+          Mercury is one of only two planets in our Solar System with zero natural satellites. Orbiting just 57.9
+          million kilometers from the Sun, Mercury sits deep within the Sun's immense gravitational Hill sphere.
+        </p>
+        <p class="moon-section-description" id="moonSectionDesc2">
+          Any potential moon orbiting Mercury would experience massive solar tidal perturbations that would destabilize
+          its orbit, either ejecting it into heliocentric space or pulling it into a destructive collision with Mercury.
+        </p>
+      </header>
+    </section>
+
+    <!-- Visual Section Divider -->
+    <hr class="section-divider" aria-hidden="true">
+
+    <!-- ============================================
+      [ SECTION 3: PLANETARY DOSSIER · DEEP TOPICS ]
+    ============================================= -->
+    <main class="dossier-narrative-container">
+      <!-- 01. The Enormous Metallic Core -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 01. The Enormous Metallic Core</h2>
+        <p class="topic-paragraph">
+          Mercury contains a disproportionately colossal metallic iron-nickel core spanning approximately <span
+            class="highlight-val">4,100 Kilometers</span> in diameter—accounting for nearly <span
+            class="highlight-val">85% of the planet's radius</span>. This makes Mercury the second densest planet in the
+          Solar System at <span class="highlight-val">5.427 g/cm³</span>, second only to Earth.
+        </p>
+        <p class="topic-paragraph">
+          As its molten core slowly cooled and crystallized over billions of years, the entire planet contracted by
+          roughly <span class="highlight-val">7 kilometers</span> in diameter. This planetary shrinkage crumpled its
+          brittle silicate crust into towering compression cliffs known as <span class="accent-text">Lobate
+            Scarps</span>, some rising up to 3 kilometers high and stretching over 500 kilometers across the surface.
+        </p>
+      </article>
+
+      <!-- 02. Caloris Basin & Surface Craters -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 02. Caloris Basin & Frozen Polar Ice</h2>
+        <p class="topic-paragraph">
+          Mercury's terrain is dominated by the colossal <span class="accent-text">Caloris Basin</span>, a massive
+          multi-ring impact crater measuring <span class="highlight-val">1,550 Kilometers</span> across. The asteroid
+          impact that forged Caloris 3.8 billion years ago was so energetic that seismic shockwaves traveled straight
+          through the planet, shattering the crust on the exact opposite hemisphere into chaotic "weird terrain."
+        </p>
+        <p class="topic-paragraph">
+          Because Mercury has an axial tilt of virtually zero (<span class="highlight-val">0.034°</span>), deep craters
+          at its north and south poles never receive direct sunlight. Spacecraft radar observations by MESSENGER
+          confirmed that permanently shadowed polar craters harbor substantial reservoirs of clean water ice and organic
+          volatiles protected inside perpetual darkness at <span class="highlight-val">-180°C</span>.
+        </p>
+      </article>
+
+      <!-- 03. Extreme Thermal Cycles & Exosphere -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 03. Extreme Thermal Cycles & Exosphere</h2>
+        <p class="topic-paragraph">
+          Lacking a dense atmosphere to trap heat or distribute thermal energy, Mercury experiences the most extreme
+          temperature swings in the Solar System: surface temperatures soar to <span class="highlight-val">+430°C
+            (+800°F)</span> during the long daytime, then plummet to <span class="highlight-val">-180°C (-290°F)</span>
+          at night.
+        </p>
+        <p class="topic-paragraph">
+          Instead of a breathable sky, Mercury is enveloped in a gossamer-thin surface-bound <span
+            class="accent-text">Exosphere</span> with a pressure under <span class="highlight-val">10⁻¹⁴ Bar</span>.
+          Composed of sodium, potassium, oxygen, and helium stripped from surface rock by solar wind bombardment, this
+          exosphere trails behind Mercury like a faint glowing comet tail millions of kilometers long.
+        </p>
+      </article>
+
+      <!-- 04. 3:2 Spin-Orbit Resonance -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 04. 3:2 Spin-Orbit Gravitational Resonance</h2>
+        <p class="topic-paragraph">
+          For decades astronomers assumed Mercury was tidally locked to the Sun, but radar telemetry revealed a rare
+          <span class="accent-text">3:2 Spin-Orbit Resonance</span>. Mercury rotates exactly three times on its axis
+          (<span class="highlight-val">58.65 Earth Days</span> per rotation) for every two orbits it completes around
+          the Sun (<span class="highlight-val">87.97 Earth Days</span> per year).
+        </p>
+        <p class="topic-paragraph">
+          Due to its eccentric orbit, the Sun appears to stop, briefly reverse direction, and then resume its normal
+          trajectory in Mercury's sky. A single full solar day from sunrise to the next sunrise takes <span
+            class="highlight-val">176 Earth Days</span>—meaning one day on Mercury lasts two entire Mercury years!
+        </p>
+      </article>
+    </main>
+
+    <!-- =============================================
+           [ SECTION 4: DEEP ARCHIVE & RESEARCH LINKS ]
+           ============================================= -->
+    <section class="planet-external-archives" aria-label="External Research Archives and References">
+      <div class="external-archives-header">
+        <span class="archives-icon">🌐</span>
+        <span class="archives-title">DEEP ARCHIVE & FURTHER READING</span>
+      </div>
+      <div class="external-links-grid" id="externalLinksGrid">
+        <a href="https://en.wikipedia.org/wiki/Mercury_(planet)" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: Mercury</h4>
+          <p class="archive-desc">Smallest planet, colossal iron core, and extreme orbital resonance</p>
+        </a>
+        <a href="https://science.nasa.gov/mercury/" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">NASA SCIENCE</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">NASA Science: Mercury</h4>
+          <p class="archive-desc">MESSENGER & BepiColombo mission discoveries and magnetosphere</p>
+        </a>
+        <a href="https://en.wikipedia.org/wiki/Caloris_Planitia" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: Caloris Basin</h4>
+          <p class="archive-desc">Colossal multi-ring impact basin and antipodal weird terrain</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Minimal Return to Orbit Indicator -->
+    <div class="guide-return" id="returnOrbitBtn" role="button" tabindex="0" aria-label="Return to 3D Orbit view">
+      <div class="chevron-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </div>
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot dot-up"></div>
+      </div>
+      <span class="guide-text">Return to 3D Orbit View</span>
+    </div>
+  </section>
+
+  <!-- =============================================
+         [ SECTION 4: MINIMAL FUTURISTIC FOOTER ]
+         ============================================= -->
+  <footer class="planet-footer" id="planetFooter">
+    <div class="footer-container">
+      <!-- 1. Left Branding Cluster -->
+      <div class="footer-branding">
+        <div class="footer-brand-header">
+          <span class="footer-brand-icon">✦</span>
+          <span class="footer-brand-title">SPACE EXPLORATION</span>
+        </div>
+        <p class="footer-brand-subtitle">Planetary Astrophysics & Celestial Ephemeris</p>
+      </div>
+
+      <!-- 2. Center Quick Celestial Route Navigator -->
+      <nav class="footer-nav-cluster" aria-label="Planetary System Navigation">
+        <a href="./index_sun.html" class="footer-nav-pill">
+          <span class="pill-arrow">←</span>
+          <span>00. The Sun</span>
+        </a>
+        <div class="footer-current-pill">
+          <span class="current-dot"></span>
+          <span>01. Mercury</span>
+        </div>
+        <a href="./index_venus.html" class="footer-nav-pill">
+          <span>02. Venus</span>
+          <span class="pill-arrow">→</span>
+        </a>
+      </nav>
+
+      <!-- 3. Right Meta & Status Cluster -->
+      <div class="footer-meta-cluster">
+        <div class="footer-status-pill">
+          <span class="status-pulse-dot"></span>
+          <span>SYSTEMS NOMINAL</span>
+        </div>
+        <div class="footer-copyright">
+          © 2026 Space Exploration Archive · Sector 01
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js Canvas (Fixed 3D Planetary Scene) -->
+  <canvas id="Mercury"></canvas>
+
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "../node_modules/three/build/three.module.js",
+          "orbitalControls": "../node_modules/three/examples/jsm/controls/OrbitControls.js",
+          "webgl": "../node_modules/three/examples/jsm/capabilities/WebGL.js"
+        }
+      }
+    </script>
+  <script type="module" src="../src/mercury.js"></script>
+  <script src="../command.js"></script>
+</body>
+
+</html>

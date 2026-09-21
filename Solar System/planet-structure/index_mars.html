@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mars · Space Exploration</title>
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../planet-design/style.css" />
+</head>
+
+<body data-planet="mars">
+  <!-- Background Ambient Glow Layer -->
+  <div class="space-ambient-glow" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-----------------------
+     [ NAVIGATION SECTION ] |
+    ------------------------>
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='../../index.html'">
+      <img src="../../Assets/Rocket_Icon.png" onerror="this.src='/Space Exploration/Assets/Rocket_Icon.png'"
+        alt="Rocket Icon" />
+      <div class="logo-text">
+        <span class="brand-title">Space Exploration</span>
+      </div>
+    </div>
+
+    <!-- Quick Planet Route Selector Strip -->
+    <div class="nav-planet-strip">
+      <a href="./index_sun.html" class="nav-planet-pill">00 SUN</a>
+      <a href="./index_mercury.html" class="nav-planet-pill">01 MER</a>
+      <a href="./index_venus.html" class="nav-planet-pill">02 VEN</a>
+      <a href="./index_earth.html" class="nav-planet-pill">03 EAR</a>
+      <a href="./index_mars.html" class="nav-planet-pill active">04 MAR</a>
+      <a href="./index_jupiter.html" class="nav-planet-pill">05 JUP</a>
+      <a href="./index_saturn.html" class="nav-planet-pill">06 SAT</a>
+      <a href="./index_uranus.html" class="nav-planet-pill">07 URA</a>
+      <a href="./index_neptune.html" class="nav-planet-pill">08 NEP</a>
+    </div>
+
+    <div class="navmenu">
+      <a class="nav-solar-btn" href="./solar_system.html" title="View Whole Solar System Orrery">
+        <span class="nav-btn-text">Cosmos</span>
+      </a>
+      <a class="Explore_btn nav-btn nav-return-btn" href="../../index.html" title="Return to Space Hub">
+        <span class="nav-btn-text">Return</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-----------------
+     [ HERO SECTION ] |
+    ------------------>
+  <section class="planet-hero-section" id="heroSection">
+    <div class="hud-section">
+      <!-- Toggle Information Button -->
+      <button class="info-btn" aria-label="Toggle Telemetry HUD">
+        <span class="info-dot">↪</span>
+        <span class="info-label">Telemetry HUD</span>
+      </button>
+
+      <!-- Left Detailed Telemetry Panel (Opens when clicking any info card) -->
+      <aside class="detail-panel" id="detailPanel" aria-hidden="true">
+        <div class="detail-header">
+          <div class="detail-badge-group">
+            <span class="detail-badge-tag">Deep-Scan Telemetry</span>
+            <h2 class="detail-title" id="detailTitle">Planetary Dimensions</h2>
+          </div>
+          <button class="close-detail-btn" id="closeDetailBtn" aria-label="Close Detail Panel">✕</button>
+        </div>
+
+        <div class="detail-body-narrative" id="detailBodyNarrative">
+          <!-- Dynamically populated editorial narrative -->
+        </div>
+      </aside>
+
+      <!-- Right-Hand Side Planetary HUD Panel -->
+      <div class="content" id="mainHud">
+        <div class="hud-top-row">
+          <div class="planet-badge">
+            <span class="badge-tag">Planet 04</span>
+            <span class="badge-line"></span>
+          </div>
+
+          <!-- Moon Orbit Toggle Button -->
+          <button class="moon-toggle-pill" id="moonToggleBtn" aria-label="Toggle 3D Martian Moons in Hero View">
+            <span class="moon-pill-icon">☾</span>
+            <span class="moon-pill-text">2 Moons</span>
+            <span class="moon-pill-status"></span>
+          </button>
+        </div>
+
+        <!-- Planet Title -->
+        <h1 class="planet-title">MARS</h1>
+
+        <!-- Planet Subtitle with Underline -->
+        <div class="planet-subtitle-container">
+          <span class="planet-subtitle">The Red Planet</span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <!-- Heartfelt Description -->
+        <p class="planet-poetry-description">
+          "Across rusty dunes and towering shield volcanoes, the echoes of ancient water."<br />
+          A desert world flanked by twin captured asteroid companions.
+        </p>
+
+        <!-- 2x3 Telemetry Metric Cards Grid -->
+        <div class="earth-info">
+          <!-- 1. Diameter -->
+          <div class="info-card" data-metric="diameter" tabindex="0" role="button" aria-label="View Diameter Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9.5" />
+                <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Diameter</span>
+              <span class="metric-value">6,779 KM</span>
+            </div>
+          </div>
+
+          <!-- 2. Distance from Sun / Moons -->
+          <div class="info-card" data-metric="distance" id="cardDistance" tabindex="0" role="button"
+            aria-label="View Distance Details">
+            <div class="card-icon" id="distanceCardIcon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label" id="distanceMetricLabel">Heliocentric Distance</span>
+              <span class="metric-value" id="distanceMetricValue">227.9M KM (1.52 AU)</span>
+            </div>
+          </div>
+
+          <!-- 3. Surface Area -->
+          <div class="info-card" data-metric="surface" tabindex="0" role="button" aria-label="View Surface Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke-dasharray="2 3" />
+                <path d="M9 3.5v17M15 3.5v17M3.5 9h17M3.5 15h17" stroke-opacity="0.35" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Surface Area</span>
+              <span class="metric-value">144.8M KM²</span>
+            </div>
+          </div>
+
+          <!-- 4. Atmosphere -->
+          <div class="info-card" data-metric="atmosphere" tabindex="0" role="button"
+            aria-label="View Atmosphere Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 12c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 17c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 7c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Atmosphere</span>
+              <span class="metric-value">0.636 kPa (6 mbar)</span>
+            </div>
+          </div>
+
+          <!-- 5. Mass -->
+          <div class="info-card" data-metric="mass" tabindex="0" role="button" aria-label="View Mass Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M6 9h12l2 11H4L6 9z" />
+                <path d="M9 9V5.5a3 3 0 0 1 6 0V9" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Mass</span>
+              <span class="metric-value">6.417 × 10²³ KG</span>
+            </div>
+          </div>
+
+          <!-- 6. Orbital Period -->
+          <div class="info-card" data-metric="orbit" tabindex="0" role="button"
+            aria-label="View Orbital Period Details">
+            <div class="card-icon card-icon-radar">
+              <div class="mini-hologram-radar" aria-hidden="true">
+                <div class="radar-ring-1"></div>
+                <div class="radar-ring-2"></div>
+                <div class="radar-pulse"></div>
+              </div>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Orbital Period</span>
+              <span class="metric-value">686.98 Earth Days</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Destination Button -->
+        <div class="rocket">
+          <button class="next-mission-btn" onclick="window.location.href='./index_jupiter.html'">
+            <img src="../../Assets/Icon_2.png" onerror="this.src='/Space Exploration/Assets/Icon_2.png'"
+              class="rocket-icon" alt="" />
+            <span>Next Destination :</span>
+            <span class="jupiter_color">Jupiter</span>
+            <span class="btn-arrow_jupiter">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Minimal Mouse Interaction Indicator -->
+    <div class="guide" id="scrollDataBtn" role="button" tabindex="0" aria-label="Explore Planetary Knowledge">
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot"></div>
+      </div>
+      <div class="chevron-down">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <span class="guide-text">Drag to rotate · Scroll to explore</span>
+    </div>
+  </section>
+
+  <!---------------------------------------------
+     [ SECTION 2: PLANETARY KNOWLEDGE & DATA ]    |
+    ---------------------------------------------->
+  <section class="planet-data-section" id="dataSection">
+    <!-- Data Header -->
+    <header class="data-header-container">
+      <div class="data-header-content">
+        <span>Planet</span>
+        <h1 class="data-planet-title">MARS</h1>
+        <p class="data-tagline">
+          Hailed as <span class="data-tagline-highlight">"The Red Planet"</span> because its dusty surface regolith is
+          heavily saturated with iron oxide (rust) minerals, casting a striking crimson-amber glow across the night sky.
+          A dynamic, oxidized world of towering shield volcanoes, gargantuan canyon fault systems, seasonal polar dry
+          ice caps, and two orbiting captured asteroid moons.
+          Coated in iron oxide dust, it hosts Olympus Mons—the tallest volcano in the Solar System at 21.9 km—and Valles
+          Marineris, a canyon system 4,000 km long spanning across the continent.
+          Ancient river deltas and dry lake basins prove liquid water once flowed freely across its surface before the
+          solar wind stripped its primordial atmosphere.
+        </p>
+      </div>
+    </header>
+
+    <!-- Global Key Facts Bar -->
+    <section class="data-metric-bar" aria-label="Global Planetary Key Facts">
+      <div class="data-metric-box" data-metric-type="distance" role="button" tabindex="0"
+        aria-label="Learn about Distance to Sun">
+        <div class="d-metric-val">227.9M km</div>
+        <div class="d-metric-lbl">Distance to Sun (1.52 AU)</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="orbit" role="button" tabindex="0"
+        aria-label="Learn about Orbital Year Length">
+        <div class="d-metric-val">686.98 Days</div>
+        <div class="d-metric-lbl">Orbital Year Length</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="diameter" role="button" tabindex="0"
+        aria-label="Learn about Equatorial Diameter">
+        <div class="d-metric-val">6,779 km</div>
+        <div class="d-metric-lbl">Equatorial Diameter</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="gravity" role="button" tabindex="0"
+        aria-label="Learn about Surface Gravity">
+        <div class="d-metric-val">3.721 m/s²</div>
+        <div class="d-metric-lbl">Surface Gravity (0.38 g)</div>
+      </div>
+    </section>
+
+    <!-- Dynamic Metric Explainer Drawer ("Planetary Insight") -->
+    <div class="metric-explainer-drawer" id="metricExplainerDrawer" aria-live="polite" style="display: none;">
+      <div class="explainer-card">
+        <div class="explainer-top">
+          <div class="explainer-badge">
+            <span class="explainer-icon"></span>
+            <span class="explainer-tag" id="explainerTag">Planetary Insight</span>
+          </div>
+          <button class="explainer-close-btn" id="explainerCloseBtn" aria-label="Close Explainer">✕</button>
+        </div>
+        <h3 class="explainer-title" id="explainerTitle">Explore Planetary Secrets</h3>
+        <p class="explainer-content" id="explainerContent"></p>
+        <div class="explainer-calc-box" id="explainerCalcBox">
+          <div class="calc-header">
+            <span class="calc-icon"></span>
+            <span class="calc-label">MATHEMATICAL DETERMINATION</span>
+          </div>
+          <div class="calc-formula-tag" id="explainerCalcFormula"></div>
+          <p class="calc-text" id="explainerCalcText"></p>
+        </div>
+        <div class="explainer-funfact-box" id="explainerFunFactBox">
+          <div class="funfact-header">
+            <span class="funfact-icon"></span>
+            <span class="funfact-label">COSMIC FUN FACT</span>
+          </div>
+          <p class="funfact-text" id="explainerFunFactText"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+           [ SECTION 2: MULTI-MOON 3D CAROUSEL SHOWCASE ]
+           ============================================= -->
+    <section class="moon-showcase-section" id="moonShowcase" aria-label="Martian Moons 3D Showcase">
+      <header class="moon-showcase-header">
+        <div class="data-tag-pill" id="moonSectionTag">INNER MARTIAN MOON // FEAR</div>
+        <h2 class="moon-section-title" id="moonSectionTitle">PHOBOS</h2>
+        <p class="moon-section-description" id="moonSectionDesc">
+          Phobos is the larger and innermost of the two Martian satellites, orbiting just 6,000 km above the red sands
+          of Mars. It speeds along faster than Mars rotates, rising in the west and setting in the east twice each
+          Martian sol. Marked by the colossal Stickney impact crater and parallel stress grooves, Phobos is a
+          low-density porous rubble pile.
+        </p>
+        <p class="moon-section-description" id="moonSectionDesc2">
+          Tidal deceleration is inexorably dragging Phobos inward at about 1.8 meters per century. In 30 to 50 million
+          years, tidal gravitational stresses will either shatter Phobos into a shimmering planetary ring around Mars or
+          send it crashing into the Martian crust.
+        </p>
+      </header>
+
+      <!-- Dedicated Interactive 3D Moon Canvas Container with Left/Right Navigation Arrows -->
+      <div class="moon-canvas-wrapper" id="moonCanvasWrapper">
+        <!-- Multi-Moon Carousel Navigation Arrows -->
+        <button class="moon-nav-btn prev-btn" id="prevMoonBtn" aria-label="Previous Moon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <span class="moon-carousel-indicator" id="moonCarouselCounter">01 / 02 · PHOBOS</span>
+
+        <canvas id="MoonCanvas" aria-label="Interactive 3D Moon Model"></canvas>
+
+        <button class="moon-nav-btn next-btn" id="nextMoonBtn" aria-label="Next Moon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="moon-canvas-hint">
+          <span>Use arrows to switch moons · Drag to rotate</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Section Divider -->
+    <hr class="section-divider" aria-hidden="true">
+
+    <!-- =============================================
+           [ SECTION 3: PLANETARY DOSSIER · DEEP TOPICS ]
+           ============================================= -->
+    <main class="dossier-narrative-container">
+      <!-- 01. The Rusty Red Landscape & Volcanoes -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 01. Iron Oxide Regolith & Olympus Mons</h2>
+        <p class="topic-paragraph">
+          The distinctive crimson tint of Mars stems from pervasive fine iron(III) oxide (rust) dust coating its surface
+          rocks and whipped into atmospheric suspension by planetary dust devils. Because Mars has no open liquid
+          oceans, its total land area (<span class="highlight-val">144.8 Million km²</span>) is almost identical to the
+          total dry continental surface of Earth.
+        </p>
+        <p class="topic-paragraph">
+          Mars hosts the largest volcano in the Solar System: <span class="accent-text">Olympus Mons</span>, a colossal
+          basaltic shield volcano towering <span class="highlight-val">+21.9 Kilometers (72,000 ft)</span> high—nearly
+          three times the height of Mount Everest—spanning 600 kilometers across, large enough to cover the entire state
+          of Arizona or Poland.
+        </p>
+      </article>
+
+      <!-- 02. Valles Marineris Canyon System -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 02. Valles Marineris: The Grand Rift</h2>
+        <p class="topic-paragraph">
+          Stretching across the Martian equator lies <span class="accent-text">Valles Marineris</span>, a gigantic
+          tectonic chasm spanning over <span class="highlight-val">4,000 Kilometers</span> long, up to 200 km wide, and
+          plunging over <span class="highlight-val">7 Kilometers deep</span>.
+        </p>
+        <p class="topic-paragraph">
+          Formed as a massive tectonic crack when the neighboring volcanic Tharsis plateau swelled upward billions of
+          years ago, Valles Marineris is four times deeper and ten times longer than Earth's Grand Canyon, spanning a
+          distance equivalent to the entire width of the continental United States.
+        </p>
+      </article>
+
+      <!-- 03. Polar Ice & Subterranean Water -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 03. Polar Caps & Subsurface Glaciers</h2>
+        <p class="topic-paragraph">
+          Mars possesses permanent polar ice caps composed of layered water ice capped with seasonal sheets of frozen
+          solid carbon dioxide (dry ice). During the freezing Martian winter, approximately <span
+            class="highlight-val">25% to 30% of the entire atmosphere</span> freezes directly onto the polar caps,
+          causing significant global atmospheric pressure variations.
+        </p>
+        <p class="topic-paragraph">
+          Radar telemetry from the Mars Reconnaissance Orbiter (SHARAD) confirmed that massive glaciers of relatively
+          pure water ice lie buried beneath protective insulating blankets of rocky debris across mid-latitude valleys,
+          providing vital water resources for future human exploration.
+        </p>
+      </article>
+
+      <!-- 04. Martian Sols & Seasonal Cycles -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 04. Earth-Like Sols & Seasonal Cycles</h2>
+        <p class="topic-paragraph">
+          A single day on Mars—known as a <span class="accent-text">Sol</span>—lasts <span class="highlight-val">24
+            Hours, 37 Minutes, 22 Seconds</span>, only 39 minutes longer than an Earth day. With an axial tilt of <span
+            class="highlight-val">25.19°</span> (nearly identical to Earth's 23.44°), Mars experiences four distinct
+          seasons, though each season lasts almost twice as long due to its 687-day orbital year.
+        </p>
+        <p class="topic-paragraph">
+          Because Mars has an eccentric orbit, southern summers occur near perihelion when Mars is closest to the Sun,
+          generating intense thermal convection that regularly triggers planet-wide dust storms engulfing the entire
+          globe for months.
+        </p>
+      </article>
+    </main>
+
+    <!-- =============================================
+           [ SECTION 4: DEEP ARCHIVE & RESEARCH LINKS ]
+           ============================================= -->
+    <section class="planet-external-archives" aria-label="External Research Archives and References">
+      <div class="external-archives-header">
+        <span class="archives-icon">🌐</span>
+        <span class="archives-title">DEEP ARCHIVE & FURTHER READING</span>
+      </div>
+      <div class="external-links-grid" id="externalLinksGrid">
+        <a href="https://en.wikipedia.org/wiki/Mars" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: Mars</h4>
+          <p class="archive-desc">Geological history, Olympus Mons, and robotic exploration</p>
+        </a>
+        <a href="https://science.nasa.gov/mars/" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">NASA SCIENCE</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">NASA Science: Mars</h4>
+          <p class="archive-desc">Perseverance & Curiosity rover discoveries and sample returns</p>
+        </a>
+        <a href="https://en.wikipedia.org/wiki/Moons_of_Mars" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: Moons of Mars</h4>
+          <p class="archive-desc">Captured asteroids Phobos and Deimos orbit dynamics</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Minimal Return to Orbit Indicator -->
+    <div class="guide-return" id="returnOrbitBtn" role="button" tabindex="0" aria-label="Return to 3D Orbit view">
+      <div class="chevron-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </div>
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot dot-up"></div>
+      </div>
+      <span class="guide-text">Return to 3D Orbit View</span>
+    </div>
+  </section>
+
+  <!-- =============================================
+         [ SECTION 4: MINIMAL FUTURISTIC FOOTER ]
+         ============================================= -->
+  <footer class="planet-footer" id="planetFooter">
+    <div class="footer-container">
+      <!-- 1. Left Branding Cluster -->
+      <div class="footer-branding">
+        <div class="footer-brand-header">
+          <span class="footer-brand-icon">✦</span>
+          <span class="footer-brand-title">SPACE EXPLORATION</span>
+        </div>
+        <p class="footer-brand-subtitle">Planetary Astrophysics & Celestial Ephemeris</p>
+      </div>
+
+      <!-- 2. Center Quick Celestial Route Navigator -->
+      <nav class="footer-nav-cluster" aria-label="Planetary System Navigation">
+        <a href="./index_earth.html" class="footer-nav-pill">
+          <span class="pill-arrow">←</span>
+          <span>03. Earth</span>
+        </a>
+        <div class="footer-current-pill">
+          <span class="current-dot"></span>
+          <span>04. Mars</span>
+        </div>
+        <a href="./index_jupiter.html" class="footer-nav-pill">
+          <span>05. Jupiter</span>
+          <span class="pill-arrow">→</span>
+        </a>
+      </nav>
+
+      <!-- 3. Right Meta & Status Cluster -->
+      <div class="footer-meta-cluster">
+        <div class="footer-status-pill">
+          <span class="status-pulse-dot"></span>
+          <span>SYSTEMS NOMINAL</span>
+        </div>
+        <div class="footer-copyright">
+          © 2026 Space Exploration Archive · Sector 04
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js Canvas (Fixed 3D Planetary Scene) -->
+  <canvas id="Mars"></canvas>
+
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "../node_modules/three/build/three.module.js",
+          "orbitalControls": "../node_modules/three/examples/jsm/controls/OrbitControls.js",
+          "webgl": "../node_modules/three/examples/jsm/capabilities/WebGL.js"
+        }
+      }
+    </script>
+  <script type="module" src="../src/mars.js"></script>
+  <script src="../command.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venus · Space Exploration</title>
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../planet-design/style.css" />
+</head>
+
+<body data-planet="venus">
+  <!-- Background Ambient Glow Layer -->
+  <div class="space-ambient-glow" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-----------------------
+     [ NAVIGATION SECTION ] |
+    ------------------------>
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='../../index.html'">
+      <img src="../../Assets/Rocket_Icon.png" onerror="this.src='/Space Exploration/Assets/Rocket_Icon.png'"
+        alt="Rocket Icon" />
+      <div class="logo-text">
+        <span class="brand-title">Space Exploration</span>
+      </div>
+    </div>
+
+    <!-- Quick Planet Route Selector Strip -->
+    <div class="nav-planet-strip">
+      <a href="./index_sun.html" class="nav-planet-pill">00 SUN</a>
+      <a href="./index_mercury.html" class="nav-planet-pill">01 MER</a>
+      <a href="./index_venus.html" class="nav-planet-pill active">02 VEN</a>
+      <a href="./index_earth.html" class="nav-planet-pill">03 EAR</a>
+      <a href="./index_mars.html" class="nav-planet-pill">04 MAR</a>
+      <a href="./index_jupiter.html" class="nav-planet-pill">05 JUP</a>
+      <a href="./index_saturn.html" class="nav-planet-pill">06 SAT</a>
+      <a href="./index_uranus.html" class="nav-planet-pill">07 URA</a>
+      <a href="./index_neptune.html" class="nav-planet-pill">08 NEP</a>
+    </div>
+
+    <div class="navmenu">
+      <a class="nav-solar-btn" href="./solar_system.html" title="View Whole Solar System Orrery">
+        <span class="nav-btn-text">Cosmos</span>
+      </a>
+      <a class="Explore_btn nav-btn nav-return-btn" href="../../index.html" title="Return to Space Hub">
+        <span class="nav-btn-text">Return</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-----------------
+     [ HERO SECTION ] |
+    ------------------>
+  <section class="planet-hero-section" id="heroSection">
+    <div class="hud-section">
+      <!-- Toggle Information Button -->
+      <button class="info-btn" aria-label="Toggle Telemetry HUD">
+        <span class="info-dot">↪</span>
+        <span class="info-label">Telemetry HUD</span>
+      </button>
+
+      <!-- Left Detailed Telemetry Panel (Opens when clicking any info card) -->
+      <aside class="detail-panel" id="detailPanel" aria-hidden="true">
+        <div class="detail-header">
+          <div class="detail-badge-group">
+            <span class="detail-badge-tag">Deep-Scan Telemetry</span>
+            <h2 class="detail-title" id="detailTitle">Planetary Dimensions</h2>
+          </div>
+          <button class="close-detail-btn" id="closeDetailBtn" aria-label="Close Detail Panel">✕</button>
+        </div>
+
+        <div class="detail-body-narrative" id="detailBodyNarrative">
+          <!-- Dynamically populated editorial narrative -->
+        </div>
+      </aside>
+
+      <!-- Right-Hand Side Planetary HUD Panel -->
+      <div class="content" id="mainHud">
+        <div class="hud-top-row">
+          <div class="planet-badge">
+            <span class="badge-tag">Planet 02</span>
+            <span class="badge-line"></span>
+          </div>
+        </div>
+
+        <!-- Planet Title -->
+        <h1 class="planet-title">VENUS</h1>
+
+        <!-- Planet Subtitle with Underline -->
+        <div class="planet-subtitle-container">
+          <span class="planet-subtitle">Earth's Veiled Sister</span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <!-- Heartfelt Description -->
+        <p class="planet-poetry-description">
+          "Shrouded beneath brilliant sulfuric clouds, an apocalyptic inferno."<br />
+          A runaway greenhouse furnace rotating backwards in cosmic silence.
+        </p>
+
+        <!-- 2x3 Telemetry Metric Cards Grid -->
+        <div class="earth-info">
+          <!-- 1. Equatorial Diameter -->
+          <div class="info-card" data-metric="diameter" tabindex="0" role="button" aria-label="View Diameter Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9.5" />
+                <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Equatorial Diameter</span>
+              <span class="metric-value">12,104 KM</span>
+            </div>
+          </div>
+
+          <!-- 2. Distance from Sun -->
+          <div class="info-card" data-metric="distance" tabindex="0" role="button" aria-label="View Distance Details">
+            <div class="card-icon" id="distanceCardIcon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label" id="distanceMetricLabel">Heliocentric Distance</span>
+              <span class="metric-value" id="distanceMetricValue">108.2M KM (0.723 AU)</span>
+            </div>
+          </div>
+
+          <!-- 3. Surface Area -->
+          <div class="info-card" data-metric="surface" tabindex="0" role="button" aria-label="View Surface Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke-dasharray="2 3" />
+                <path d="M9 3.5v17M15 3.5v17M3.5 9h17M3.5 15h17" stroke-opacity="0.35" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Surface Area</span>
+              <span class="metric-value">460.2M KM²</span>
+            </div>
+          </div>
+
+          <!-- 4. Atmosphere -->
+          <div class="info-card" data-metric="atmosphere" tabindex="0" role="button"
+            aria-label="View Atmosphere Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 12c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 17c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 7c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Atmosphere</span>
+              <span class="metric-value">92 Bar (9.2 MPa)</span>
+            </div>
+          </div>
+
+          <!-- 5. Planetary Mass -->
+          <div class="info-card" data-metric="mass" tabindex="0" role="button" aria-label="View Mass Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M6 9h12l2 11H4L6 9z" />
+                <path d="M9 9V5.5a3 3 0 0 1 6 0V9" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Planetary Mass</span>
+              <span class="metric-value">4.867 × 10²⁴ KG</span>
+            </div>
+          </div>
+
+          <!-- 6. Orbital Period -->
+          <div class="info-card" data-metric="orbit" tabindex="0" role="button"
+            aria-label="View Orbital Period Details">
+            <div class="card-icon card-icon-radar">
+              <div class="mini-hologram-radar" aria-hidden="true">
+                <div class="radar-ring-1"></div>
+                <div class="radar-ring-2"></div>
+                <div class="radar-pulse"></div>
+              </div>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Orbital Period</span>
+              <span class="metric-value">224.70 Earth Days</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Destination Button -->
+        <div class="rocket">
+          <button class="next-mission-btn" onclick="window.location.href='./index_earth.html'">
+            <img src="../../Assets/Icon_2.png" onerror="this.src='/Space Exploration/Assets/Icon_2.png'"
+              class="rocket-icon" alt="" />
+            <span>Next Destination :</span>
+            <span class="earth_color">Earth</span>
+            <span class="btn-arrow_earth">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Minimal Mouse Interaction Indicator -->
+    <div class="guide" id="scrollDataBtn" role="button" tabindex="0" aria-label="Explore Planetary Knowledge">
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot"></div>
+      </div>
+      <div class="chevron-down">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <span class="guide-text">Drag to rotate · Scroll to explore</span>
+    </div>
+  </section>
+
+  <!---------------------------------------------
+     [ SECTION 2: PLANETARY KNOWLEDGE & DATA ]    |
+    ---------------------------------------------->
+  <section class="planet-data-section" id="dataSection">
+    <!-- Data Header -->
+    <header class="data-header-container">
+      <div class="data-header-content">
+        <span>Planet</span>
+        <h1 class="data-planet-title">VENUS</h1>
+        <p class="data-tagline">
+          Nicknamed <span class="data-tagline-highlight">"The Veiled Golden Inferno"</span> because its brilliant pale-yellow sulfuric clouds conceal a crushing atmosphere where runaway greenhouse forces trap heat up to 465°C, making it the brightest yet most apocalyptic world in Sol. 
+          Earth's twin in size and composition, transformed into an apocalyptic furnace by an unchecked runaway greenhouse effect and retrograde rotation. 
+          Enveloped in dense clouds of sulfuric acid with surface atmospheric pressures 92 times Earth's (equivalent to 900 meters underwater). 
+          Supercritical carbon dioxide fluid covers vast basaltic lava plains, where temperatures soar to 465°C—hotter than Mercury—with a day longer than its orbital year.
+        </p>
+      </div>
+    </header>
+
+    <!-- Global Key Facts Bar -->
+    <section class="data-metric-bar" aria-label="Global Planetary Key Facts">
+      <div class="data-metric-box" data-metric-type="distance" role="button" tabindex="0"
+        aria-label="Learn about Distance to Sun">
+        <div class="d-metric-val">108.2M km</div>
+        <div class="d-metric-lbl">Distance to Sun (0.723 AU)</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="orbit" role="button" tabindex="0"
+        aria-label="Learn about Orbital Year Length">
+        <div class="d-metric-val">224.70 Days</div>
+        <div class="d-metric-lbl">Orbital Year Length</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="diameter" role="button" tabindex="0"
+        aria-label="Learn about Equatorial Diameter">
+        <div class="d-metric-val">12,104 km</div>
+        <div class="d-metric-lbl">Equatorial Diameter</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="gravity" role="button" tabindex="0"
+        aria-label="Learn about Surface Gravity">
+        <div class="d-metric-val">8.87 m/s²</div>
+        <div class="d-metric-lbl">Surface Gravity (0.90 g)</div>
+      </div>
+    </section>
+
+    <!-- Dynamic Metric Explainer Drawer ("Planetary Insight") -->
+    <div class="metric-explainer-drawer" id="metricExplainerDrawer" aria-live="polite" style="display: none;">
+      <div class="explainer-card">
+        <div class="explainer-top">
+          <div class="explainer-badge">
+            <span class="explainer-icon"></span>
+            <span class="explainer-tag" id="explainerTag">Planetary Insight</span>
+          </div>
+          <button class="explainer-close-btn" id="explainerCloseBtn" aria-label="Close Explainer">✕</button>
+        </div>
+        <h3 class="explainer-title" id="explainerTitle">Explore Planetary Secrets</h3>
+        <p class="explainer-content" id="explainerContent"></p>
+        <div class="explainer-calc-box" id="explainerCalcBox">
+          <div class="calc-header">
+            <span class="calc-icon"></span>
+            <span class="calc-label">MATHEMATICAL DETERMINATION</span>
+          </div>
+          <div class="calc-formula-tag" id="explainerCalcFormula"></div>
+          <p class="calc-text" id="explainerCalcText"></p>
+        </div>
+        <div class="explainer-funfact-box" id="explainerFunFactBox">
+          <div class="funfact-header">
+            <span class="funfact-icon"></span>
+            <span class="funfact-label">COSMIC FUN FACT</span>
+          </div>
+          <p class="funfact-text" id="explainerFunFactText"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+           [ SECTION 2: SATELLITE LIMIT SHOWCASE ]
+           ============================================= -->
+    <section class="moon-showcase-section" id="moonShowcase" aria-label="Venus Satellite Limits Showcase">
+      <header class="moon-showcase-header">
+        <div class="data-tag-pill" id="moonSectionTag">NATURAL SATELLITE LIMIT // 0 MOONS</div>
+        <h2 class="moon-section-title" id="moonSectionTitle">SOLAR TIDAL DISRUPTION</h2>
+        <p class="moon-section-description" id="moonSectionDesc">
+          Venus possesses zero moons. Like Mercury, its proximity to the Sun and strong solar gravitational tides make
+          it nearly impossible for satellites to maintain long-term orbital stability.
+        </p>
+        <p class="moon-section-description" id="moonSectionDesc2">
+          Additionally, Venus's slow retrograde rotation means that any moon orbiting within its sphere of influence
+          would experience tidal deceleration, causing it to spiral inward and crash into the crushing Venusian
+          atmosphere.
+        </p>
+      </header>
+    </section>
+
+    <!-- Visual Section Divider -->
+    <hr class="section-divider" aria-hidden="true">
+
+    <!-- =============================================
+           [ SECTION 3: PLANETARY DOSSIER · DEEP TOPICS ]
+           ============================================= -->
+    <main class="dossier-narrative-container">
+      <!-- 01. The Runaway Greenhouse Furnace -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 01. The Runaway Greenhouse Furnace</h2>
+        <p class="topic-paragraph">
+          Venus is the hottest planet in the Solar System despite orbiting twice as far from the Sun as Mercury. Its
+          thick atmosphere of <span class="highlight-val">96.5% Carbon Dioxide</span> acts as an impenetrable thermal
+          blanket, trapping solar infrared radiation and driving global surface temperatures to a relentless <span
+            class="highlight-val">+465°C (+869°F)</span> across the entire planet day and night.
+        </p>
+        <p class="topic-paragraph">
+          At the surface, atmospheric pressure reaches <span class="highlight-val">92 Bar (9.2 MPa)</span>—equivalent to
+          the crushing hydrostatic force found 900 meters deep in Earth's oceans. Under these extreme conditions, carbon
+          dioxide behaves as a supercritical fluid, flowing over rocks with liquid-like density.
+        </p>
+      </article>
+
+      <!-- 02. Volcanic Continents & Basalt Plains -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 02. Volcanic Continents & Lava Channels</h2>
+        <p class="topic-paragraph">
+          Over <span class="highlight-val">80% of Venus's surface</span> is paved in vast volcanic basalt plains and
+          fractured tectonic highlands like Ishtar Terra and Aphrodite Terra. Radar mapping by the Magellan orbiter
+          revealed over <span class="highlight-val">1,600 major volcanoes</span>, pancake domes, and circular tectonic
+          crowns known as <span class="accent-text">Coronae</span>.
+        </p>
+        <p class="topic-paragraph">
+          Its highest mountain range, <span class="accent-text">Maxwell Montes</span>, rises over <span
+            class="highlight-val">+11 Kilometers</span> above the average surface radius. In this high-altitude mountain
+          air, radar scans discovered mysterious metallic 'snow' deposits believed to be bismuth or telluride
+          condensates coating the volcanic peaks.
+        </p>
+      </article>
+
+      <!-- 03. Acid Cloud Decks & Super-Rotation -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 03. Acid Cloud Decks & Super-Rotation</h2>
+        <p class="topic-paragraph">
+          Venus is perpetually hidden beneath a 20-kilometer-thick shroud of highly reflective clouds composed of
+          concentrated droplets of <span class="accent-text">Sulfuric Acid (H₂SO₄)</span>. These clouds reflect 70% of
+          sunlight into space, making Venus the third brightest object in Earth's sky after the Sun and Moon.
+        </p>
+        <p class="topic-paragraph">
+          While the solid planet spins sluggishly, its upper atmosphere is locked in <span
+            class="accent-text">Super-Rotation</span>: high-altitude jet streams whip around the entire globe in just
+          four Earth days at speeds exceeding <span class="highlight-val">360 km/h (224 mph)</span>, transferring heat
+          from the equator to the poles.
+        </p>
+      </article>
+
+      <!-- 04. Retrograde Rotation & Upside-Down Tilt -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 04. Retrograde Clockwise Rotation</h2>
+        <p class="topic-paragraph">
+          Venus is one of only two planets in Sol that exhibits <span class="accent-text">Retrograde Rotation</span>:
+          looking down from the North Pole, Venus rotates clockwise on its axis with an axial tilt of <span
+            class="highlight-val">177.36°</span> (effectively upside down). On Venus, the Sun rises in the west and sets
+          in the east.
+        </p>
+        <p class="topic-paragraph">
+          It takes <span class="highlight-val">243.02 Earth Days</span> for Venus to complete a single sidereal
+          rotation—meaning a single Venusian sidereal day is longer than its entire orbital year (<span
+            class="highlight-val">224.70 Earth Days</span>). A solar day from one sunrise to the next lasts 116.75 Earth
+          days.
+        </p>
+      </article>
+    </main>
+
+    <!-- =============================================
+           [ SECTION 4: DEEP ARCHIVE & RESEARCH LINKS ]
+           ============================================= -->
+    <section class="planet-external-archives" aria-label="External Research Archives and References">
+      <div class="external-archives-header">
+        <span class="archives-icon">🌐</span>
+        <span class="archives-title">DEEP ARCHIVE & FURTHER READING</span>
+      </div>
+      <div class="external-links-grid" id="externalLinksGrid">
+        <a href="https://en.wikipedia.org/wiki/Venus" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: Venus</h4>
+          <p class="archive-desc">Atmospheric greenhouse effect, volcanism, and retrograde rotation</p>
+        </a>
+        <a href="https://science.nasa.gov/venus/" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">NASA SCIENCE</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">NASA Science: Venus</h4>
+          <p class="archive-desc">DAVINCI & VERITAS mission targets and cloud chemistry</p>
+        </a>
+        <a href="https://en.wikipedia.org/wiki/Atmosphere_of_Venus" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Atmosphere of Venus</h4>
+          <p class="archive-desc">Supercritical CO₂ atmosphere and sulfuric acid cloud decks</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Minimal Return to Orbit Indicator -->
+    <div class="guide-return" id="returnOrbitBtn" role="button" tabindex="0" aria-label="Return to 3D Orbit view">
+      <div class="chevron-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </div>
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot dot-up"></div>
+      </div>
+      <span class="guide-text">Return to 3D Orbit View</span>
+    </div>
+  </section>
+
+  <!-- =============================================
+         [ SECTION 4: MINIMAL FUTURISTIC FOOTER ]
+         ============================================= -->
+  <footer class="planet-footer" id="planetFooter">
+    <div class="footer-container">
+      <!-- 1. Left Branding Cluster -->
+      <div class="footer-branding">
+        <div class="footer-brand-header">
+          <span class="footer-brand-icon">✦</span>
+          <span class="footer-brand-title">SPACE EXPLORATION</span>
+        </div>
+        <p class="footer-brand-subtitle">Planetary Astrophysics & Celestial Ephemeris</p>
+      </div>
+
+      <!-- 2. Center Quick Celestial Route Navigator -->
+      <nav class="footer-nav-cluster" aria-label="Planetary System Navigation">
+        <a href="./index_mercury.html" class="footer-nav-pill">
+          <span class="pill-arrow">←</span>
+          <span>01. Mercury</span>
+        </a>
+        <div class="footer-current-pill">
+          <span class="current-dot"></span>
+          <span>02. Venus</span>
+        </div>
+        <a href="./index_earth.html" class="footer-nav-pill">
+          <span>03. Earth</span>
+          <span class="pill-arrow">→</span>
+        </a>
+      </nav>
+
+      <!-- 3. Right Meta & Status Cluster -->
+      <div class="footer-meta-cluster">
+        <div class="footer-status-pill">
+          <span class="status-pulse-dot"></span>
+          <span>SYSTEMS NOMINAL</span>
+        </div>
+        <div class="footer-copyright">
+          © 2026 Space Exploration Archive · Sector 02
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js Canvas (Fixed 3D Planetary Scene) -->
+  <canvas id="Venus"></canvas>
+
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "../node_modules/three/build/three.module.js",
+          "orbitalControls": "../node_modules/three/examples/jsm/controls/OrbitControls.js",
+          "webgl": "../node_modules/three/examples/jsm/capabilities/WebGL.js"
+        }
+      }
+    </script>
+  <script type="module" src="../src/venus.js"></script>
+  <script src="../command.js"></script>
+</body>
+
+</html>

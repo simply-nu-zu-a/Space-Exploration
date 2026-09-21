@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Whole Solar System Overview & Planetary Orrery - 3D Celestial Map of the Central Star and All Planetary Orbits."
+    />
+    <title>The Solar System · Complete Planetary Overview</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../planet-design/solar_system.css" />
+  </head>
+
+  <body>
+    <div
+      class="solar-loading-overlay"
+      id="solarLoadingOverlay"
+      role="status"
+      aria-live="polite"
+    >
+      <div class="solar-loading-card">
+        <div class="solar-loading-spinner" aria-hidden="true"></div>
+        <div class="solar-loading-kicker">
+          SPACE EXPLORATION - ORRERY SYSTEM
+        </div>
+        <div class="solar-loading-title">INITIALIZING SOLAR SYSTEM</div>
+        <div class="solar-loading-subtitle">
+          Mapping planetary orbits and celestial textures... Be Patient!
+        </div>
+        <div class="solar-loading-track" aria-hidden="true">
+          <div class="solar-loading-progress"></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="solar-system-nav">
+      <div class="logo" onclick="window.location.href = '../../index.html'">
+        <img
+          src="../../Assets/Rocket_Icon.png"
+          onerror="this.src = '/Space Exploration/Assets/Rocket_Icon.png'"
+          alt="Rocket Icon"
+        />
+        <div class="logo-text">
+          <span class="brand-title">Space Exploration</span>
+          <span class="brand-subtitle">SOLAR SYSTEM · ORBITAL EXPLORATION</span>
+        </div>
+      </div>
+
+      <div class="navmenu">
+        <a
+          class="Explore_btn nav-btn nav-return-btn"
+          href="../../index.html"
+          title="Return to Space Hub"
+        >
+          <span class="nav-btn-text">Return</span>
+        </a>
+        <a
+          class="Explore_btn nav-btn nav-return-btn"
+          href="../../next.html"
+          title="Future Missions: Beyond the Solar System"
+        >
+          <span class="nav-btn-text">Future Missions</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Bottom User Controls Guidance -->
+    <div class="solar-gateway-guidance">
+      <span>DRAG TO ROTATE · SCROLL TO ZOOM · SELECT A PLANET</span>
+    </div>
+
+    <!-- 3D Three.js Whole Solar System Canvas -->
+    <canvas id="solarSystemCanvas"></canvas>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "../node_modules/three/build/three.module.js",
+          "orbitalControls": "../node_modules/three/examples/jsm/controls/OrbitControls.js",
+          "webgl": "../node_modules/three/examples/jsm/capabilities/WebGL.js"
+        }
+      }
+    </script>
+
+    <script type="module" src="../src/solar_system.js"></script>
+  </body>
+</html>

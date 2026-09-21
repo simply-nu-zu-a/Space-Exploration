@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uranus · Space Exploration</title>
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../planet-design/style.css" />
+</head>
+
+<body data-planet="uranus">
+  <!-- Background Ambient Glow Layer -->
+  <div class="space-ambient-glow" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-----------------------
+     [ NAVIGATION SECTION ] |
+    ------------------------>
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='../../index.html'">
+      <img src="../../Assets/Rocket_Icon.png" onerror="this.src='/Space Exploration/Assets/Rocket_Icon.png'"
+        alt="Rocket Icon" />
+      <div class="logo-text">
+        <span class="brand-title">Space Exploration</span>
+      </div>
+    </div>
+
+    <!-- Quick Planet Route Selector Strip -->
+    <div class="nav-planet-strip">
+      <a href="./index_sun.html" class="nav-planet-pill">00 SUN</a>
+      <a href="./index_mercury.html" class="nav-planet-pill">01 MER</a>
+      <a href="./index_venus.html" class="nav-planet-pill">02 VEN</a>
+      <a href="./index_earth.html" class="nav-planet-pill">03 EAR</a>
+      <a href="./index_mars.html" class="nav-planet-pill">04 MAR</a>
+      <a href="./index_jupiter.html" class="nav-planet-pill">05 JUP</a>
+      <a href="./index_saturn.html" class="nav-planet-pill">06 SAT</a>
+      <a href="./index_uranus.html" class="nav-planet-pill active">07 URA</a>
+      <a href="./index_neptune.html" class="nav-planet-pill">08 NEP</a>
+    </div>
+
+    <div class="navmenu">
+      <a class="nav-solar-btn" href="./solar_system.html" title="View Whole Solar System Orrery">
+        <span class="nav-btn-text">Cosmos</span>
+      </a>
+      <a class="Explore_btn nav-btn nav-return-btn" href="../../index.html" title="Return to Space Hub">
+        <span class="nav-btn-text">Return</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-----------------
+     [ HERO SECTION ] |
+    ------------------>
+  <section class="planet-hero-section" id="heroSection">
+    <div class="hud-section">
+      <!-- Toggle Information Button -->
+      <button class="info-btn" aria-label="Toggle Telemetry HUD">
+        <span class="info-dot">↪</span>
+        <span class="info-label">Telemetry HUD</span>
+      </button>
+
+      <!-- Left Detailed Telemetry Panel (Opens when clicking any info card) -->
+      <aside class="detail-panel" id="detailPanel" aria-hidden="true">
+        <div class="detail-header">
+          <div class="detail-badge-group">
+            <span class="detail-badge-tag">Deep-Scan Telemetry</span>
+            <h2 class="detail-title" id="detailTitle">Planetary Dimensions</h2>
+          </div>
+          <button class="close-detail-btn" id="closeDetailBtn" aria-label="Close Detail Panel">✕</button>
+        </div>
+
+        <div class="detail-body-narrative" id="detailBodyNarrative">
+          <!-- Dynamically populated editorial narrative -->
+        </div>
+      </aside>
+
+      <!-- Right-Hand Side Planetary HUD Panel -->
+      <div class="content" id="mainHud">
+        <div class="hud-top-row">
+          <div class="planet-badge">
+            <span class="badge-tag">Planet 07</span>
+            <span class="badge-line"></span>
+          </div>
+
+          <!-- Moon Orbit Toggle Button -->
+          <button class="moon-toggle-pill" id="moonToggleBtn" aria-label="Toggle 3D Uranian Moons in Hero View">
+            <span class="moon-pill-icon">☾</span>
+            <span class="moon-pill-text">Major Moons</span>
+            <span class="moon-pill-status"></span>
+          </button>
+        </div>
+
+        <!-- Planet Title -->
+        <h1 class="planet-title">URANUS</h1>
+
+        <!-- Planet Subtitle with Underline -->
+        <div class="planet-subtitle-container">
+          <span class="planet-subtitle">The Sideways Ice Giant</span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <!-- Heartfelt Description -->
+        <p class="planet-poetry-description">
+          "Rolling peacefully on its side through the frigid aquamarine void."<br />
+          The coldest planetary atmosphere in Sol, veiled in dark narrow rings.
+        </p>
+
+        <!-- 2x3 Telemetry Metric Cards Grid -->
+        <div class="earth-info">
+          <!-- 1.Equatorial Diameter -->
+          <div class="info-card" data-metric="diameter" tabindex="0" role="button" aria-label="View Diameter Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9.5" />
+                <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Equatorial Diameter</span>
+              <span class="metric-value">51,118 KM</span>
+            </div>
+          </div>
+
+          <!-- 2. Distance from Sun / Moons -->
+          <div class="info-card" data-metric="distance" id="cardDistance" tabindex="0" role="button"
+            aria-label="View Distance Details">
+            <div class="card-icon" id="distanceCardIcon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label" id="distanceMetricLabel">Heliocentric Distance</span>
+              <span class="metric-value" id="distanceMetricValue">2.871B KM (19.19 AU)</span>
+            </div>
+          </div>
+
+          <!-- 3. Surface Area -->
+          <div class="info-card" data-metric="surface" tabindex="0" role="button" aria-label="View Surface Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke-dasharray="2 3" />
+                <path d="M9 3.5v17M15 3.5v17M3.5 9h17M3.5 15h17" stroke-opacity="0.35" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Cross Section</span>
+              <span class="metric-value">8.083B KM²</span>
+            </div>
+          </div>
+
+          <!-- 4. Atmosphere -->
+          <div class="info-card" data-metric="atmosphere" tabindex="0" role="button"
+            aria-label="View Atmosphere Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 12c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 17c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 7c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Atmosphere</span>
+              <span class="metric-value">-224°C / 49 K</span>
+            </div>
+          </div>
+
+          <!-- 5. Planetary Mass -->
+          <div class="info-card" data-metric="mass" tabindex="0" role="button" aria-label="View Mass Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M6 9h12l2 11H4L6 9z" />
+                <path d="M9 9V5.5a3 3 0 0 1 6 0V9" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Planetary Mass</span>
+              <span class="metric-value">8.681 × 10²⁵ KG</span>
+            </div>
+          </div>
+
+          <!-- 6. Orbital Period -->
+          <div class="info-card" data-metric="orbit" tabindex="0" role="button"
+            aria-label="View Orbital Period Details">
+            <div class="card-icon card-icon-radar">
+              <div class="mini-hologram-radar" aria-hidden="true">
+                <div class="radar-ring-1"></div>
+                <div class="radar-ring-2"></div>
+                <div class="radar-pulse"></div>
+              </div>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Orbital Period</span>
+              <span class="metric-value">84.02 Earth Years</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Destination Button -->
+        <div class="rocket">
+          <button class="next-mission-btn" onclick="window.location.href='./index_neptune.html'">
+            <img src="../../Assets/Icon_2.png" onerror="this.src='/Space Exploration/Assets/Icon_2.png'"
+              class="rocket-icon" alt="" />
+            <span>Next Destination :</span>
+            <span class="neptune_color">Neptune</span>
+            <span class="btn-arrow_neptune">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Minimal Mouse Interaction Indicator -->
+    <div class="guide" id="scrollDataBtn" role="button" tabindex="0" aria-label="Explore Planetary Knowledge">
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot"></div>
+      </div>
+      <div class="chevron-down">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <span class="guide-text">Drag to rotate · Scroll to explore</span>
+    </div>
+  </section>
+
+  <!---------------------------------------------
+     [ SECTION 2: PLANETARY KNOWLEDGE & DATA ]    |
+    ---------------------------------------------->
+  <section class="planet-data-section" id="dataSection">
+    <!-- Data Header -->
+    <header class="data-header-container">
+      <div class="data-header-content">
+        <span>Planet</span>
+        <h1 class="data-planet-title">URANUS</h1>
+        <p class="data-tagline">
+          Known as <span class="data-tagline-highlight">"The Cyan Ice Giant"</span> because atmospheric methane gas
+          selectively absorbs red light wavelengths, scattering a serene, ethereal aquamarine-cyan glow across its icy
+          mantle.
+          An extraordinary ice giant rolling on its side along its orbital plane, featuring a cyan methane atmosphere,
+          chaotic magnetic tumble, and 13 narrow dark rings.
+          Knocked onto an extreme 97.77° axial tilt by an ancient protoplanetary impact, each pole experiences 42 years
+          of continuous sunlight followed by 42 years of darkness.
+          Plunging to -224°C—the coldest recorded planetary atmosphere in Sol—it conceals a supercritical water-ammonia
+          ice mantle surrounding a small rocky core.
+        </p>
+      </div>
+    </header>
+
+    <!-- Global Key Facts Bar -->
+    <section class="data-metric-bar" aria-label="Global Planetary Key Facts">
+      <div class="data-metric-box" data-metric-type="distance" role="button" tabindex="0"
+        aria-label="Learn about Distance to Sun">
+        <div class="d-metric-val">2.871B km</div>
+        <div class="d-metric-lbl">Distance to Sun (19.19 AU)</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="orbit" role="button" tabindex="0"
+        aria-label="Learn about Orbital Year Length">
+        <div class="d-metric-val">84.02 Years</div>
+        <div class="d-metric-lbl">Orbital Year Length</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="diameter" role="button" tabindex="0"
+        aria-label="Learn about Equatorial Diameter">
+        <div class="d-metric-val">51,118 km</div>
+        <div class="d-metric-lbl">Equatorial Diameter</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="gravity" role="button" tabindex="0"
+        aria-label="Learn about Surface Gravity">
+        <div class="d-metric-val">8.69 m/s²</div>
+        <div class="d-metric-lbl">Surface Gravity (0.89 g)</div>
+      </div>
+    </section>
+
+    <!-- Dynamic Metric Explainer Drawer ("Planetary Insight") -->
+    <div class="metric-explainer-drawer" id="metricExplainerDrawer" aria-live="polite" style="display: none;">
+      <div class="explainer-card">
+        <div class="explainer-top">
+          <div class="explainer-badge">
+            <span class="explainer-icon"></span>
+            <span class="explainer-tag" id="explainerTag">Planetary Insight</span>
+          </div>
+          <button class="explainer-close-btn" id="explainerCloseBtn" aria-label="Close Explainer">✕</button>
+        </div>
+        <h3 class="explainer-title" id="explainerTitle">Explore Planetary Secrets</h3>
+        <p class="explainer-content" id="explainerContent"></p>
+        <div class="explainer-calc-box" id="explainerCalcBox">
+          <div class="calc-header">
+            <span class="calc-icon"></span>
+            <span class="calc-label">MATHEMATICAL DETERMINATION</span>
+          </div>
+          <div class="calc-formula-tag" id="explainerCalcFormula"></div>
+          <p class="calc-text" id="explainerCalcText"></p>
+        </div>
+        <div class="explainer-funfact-box" id="explainerFunFactBox">
+          <div class="funfact-header">
+            <span class="funfact-icon"></span>
+            <span class="funfact-label">COSMIC FUN FACT</span>
+          </div>
+          <p class="funfact-text" id="explainerFunFactText"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+           [ SECTION 2: MULTI-MOON 3D CAROUSEL SHOWCASE ]
+           ============================================= -->
+    <section class="moon-showcase-section" id="moonShowcase" aria-label="Uranian Moons 3D Showcase">
+      <header class="moon-showcase-header">
+        <div class="data-tag-pill" id="moonSectionTag">URANUS V // CHAOTIC CANYON REALM</div>
+        <h2 class="moon-section-title" id="moonSectionTitle">MIRANDA</h2>
+        <p class="moon-section-description" id="moonSectionDesc">
+          Miranda boasts the most bizarre, extreme geological topography in the Solar System. It features colossal
+          patchwork coronae and Verona Rupes—the tallest cliff face known, dropping vertically over 20 kilometers into
+          jagged icy canyons.
+        </p>
+        <p class="moon-section-description" id="moonSectionDesc2">
+          Scientists hypothesize Miranda was repeatedly shattered by giant impacts during its early formation and
+          gravitationally reassembled into a chaotic patchwork of silicate rock and water ice.
+        </p>
+      </header>
+
+      <!-- Dedicated Interactive 3D Moon Canvas Container with Left/Right Navigation Arrows -->
+      <div class="moon-canvas-wrapper" id="moonCanvasWrapper">
+        <!-- Multi-Moon Carousel Navigation Arrows -->
+        <button class="moon-nav-btn prev-btn" id="prevMoonBtn" aria-label="Previous Moon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <span class="moon-carousel-indicator" id="moonCarouselCounter">01 / 05 · MIRANDA</span>
+
+        <canvas id="MoonCanvas" aria-label="Interactive 3D Moon Model"></canvas>
+
+        <button class="moon-nav-btn next-btn" id="nextMoonBtn" aria-label="Next Moon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="moon-canvas-hint">
+          <span>Use arrows to switch Uranian moons · Drag to rotate</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Section Divider -->
+    <hr class="section-divider" aria-hidden="true">
+
+    <!-- =============================================
+           [ SECTION 3: PLANETARY DOSSIER · DEEP TOPICS ]
+           ============================================= -->
+    <main class="dossier-narrative-container">
+      <!-- 01. The Extreme 98° Sideways Tilt -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 01. The Extreme 98° Sideways Tilt</h2>
+        <p class="topic-paragraph">
+          Uranus is unique among all planets in having an axial obliquity of <span
+            class="highlight-val">97.77°</span>—its rotational axis is tilted almost completely parallel to the plane of
+          the Solar System. Rather than spinning upright like a top, Uranus literally rolls like a ball along its
+          84-year orbital path around the Sun.
+        </p>
+        <p class="topic-paragraph">
+          This extreme sideways orientation—likely caused by a cataclysmic collision with an Earth-sized protoplanet
+          during early Solar System formation—causes bizarre seasonal extremes: each pole endures <span
+            class="highlight-val">42 continuous Earth years of unbroken daylight</span> followed by <span
+            class="highlight-val">42 years of freezing polar darkness</span>.
+        </p>
+      </article>
+
+      <!-- 02. The Frigid Cyan Methane Sky -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 02. The Coldest Atmosphere & Cyan Sky</h2>
+        <p class="topic-paragraph">
+          Uranus holds the undisputed record for the coldest atmosphere recorded on any major Solar System planet,
+          dipping to a frigid <span class="highlight-val">-224°C (49 K)</span>. Unlike gas giant cousins Jupiter and
+          Saturn, Uranus possesses very little internal convective core heat, radiating almost zero excess geothermal
+          energy into space.
+        </p>
+        <p class="topic-paragraph">
+          Composed of <span class="highlight-val">82.5% Hydrogen</span>, <span class="highlight-val">15.2%
+            Helium</span>, and <span class="highlight-val">2.3% Methane</span>, methane gas in the upper atmosphere
+          absorbs red wavelengths from incoming sunlight, scattering pristine cyan, aquamarine, and turquoise hues back
+          into the cosmic vacuum.
+        </p>
+      </article>
+
+      <!-- 03. Supercritical Ice Mantle & Tilted Magnetosphere -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 03. Supercritical Ice Mantle & Tilted Core</h2>
+        <p class="topic-paragraph">
+          Beneath its cloud deck lies a vast mantle comprising <span class="highlight-val">80% or more of the planet's
+            mass</span>, composed of a hot, dense supercritical fluid of water, ammonia, and methane ices under
+          thousands of atmospheres of pressure.
+        </p>
+        <p class="topic-paragraph">
+          Uranus's magnetic field is extraordinary: it is tilted <span class="highlight-val">59° away from the planet's
+            rotational axis</span> and offset from the center of the planet by a third of its radius. As Uranus spins
+          sideways, its magnetic dipole corkscrews and tumbles wildly through interplanetary space, periodically opening
+          and closing its magnetosphere to solar wind particles every 17 hours.
+        </p>
+      </article>
+
+      <!-- 04. 13 Dark Rings & Shakespearean Moons -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 04. 13 Dark Rings & Shakespearean Moons</h2>
+        <p class="topic-paragraph">
+          Uranus is encircled by <span class="highlight-val">13 distinct narrow dark rings</span>. Unlike the bright,
+          reflective water-ice rings of Saturn, Uranian rings are composed of extremely dark boulders coated in
+          carbonaceous radiation-processed organics with an albedo of just 2%.
+        </p>
+        <p class="topic-paragraph">
+          The planet hosts <span class="highlight-val">28 known moons</span> named after characters from the works of
+          William Shakespeare and Alexander Pope. Its major satellites include extreme canyon world <span
+            class="accent-text">Miranda</span> (featuring 20-km-tall Verona Rupes cliffs), bright <span
+            class="accent-text">Ariel</span>, dark <span class="accent-text">Umbriel</span>, and giant <span
+            class="accent-text">Titania</span>.
+        </p>
+      </article>
+    </main>
+
+    <!-- =============================================
+           [ SECTION 4: DEEP ARCHIVE & RESEARCH LINKS ]
+           ============================================= -->
+    <section class="planet-external-archives" aria-label="External Research Archives and References">
+      <div class="external-archives-header">
+        <span class="archives-icon">🌐</span>
+        <span class="archives-title">DEEP ARCHIVE & FURTHER READING</span>
+      </div>
+      <div class="external-links-grid" id="externalLinksGrid">
+        <a href="https://en.wikipedia.org/wiki/Uranus" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: Uranus</h4>
+          <p class="archive-desc">Sideways axial tilt, coldest atmosphere, and internal icy mantle</p>
+        </a>
+        <a href="https://science.nasa.gov/uranus/" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">NASA SCIENCE</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">NASA Science: Uranus</h4>
+          <p class="archive-desc">Voyager 2 telemetry and flagship Uranus Orbiter mission plans</p>
+        </a>
+        <a href="https://en.wikipedia.org/wiki/Moons_of_Uranus" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Moons of Uranus</h4>
+          <p class="archive-desc">Miranda, Ariel, Umbriel, Titania, and Oberon geology</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Minimal Return to Orbit Indicator -->
+    <div class="guide-return" id="returnOrbitBtn" role="button" tabindex="0" aria-label="Return to 3D Orbit view">
+      <div class="chevron-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </div>
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot dot-up"></div>
+      </div>
+      <span class="guide-text">Return to 3D Orbit View</span>
+    </div>
+  </section>
+
+  <!-- =============================================
+         [ SECTION 4: MINIMAL FUTURISTIC FOOTER ]
+         ============================================= -->
+  <footer class="planet-footer" id="planetFooter">
+    <div class="footer-container">
+      <!-- 1. Left Branding Cluster -->
+      <div class="footer-branding">
+        <div class="footer-brand-header">
+          <span class="footer-brand-icon">✦</span>
+          <span class="footer-brand-title">SPACE EXPLORATION</span>
+        </div>
+        <p class="footer-brand-subtitle">Planetary Astrophysics & Celestial Ephemeris</p>
+      </div>
+
+      <!-- 2. Center Quick Celestial Route Navigator -->
+      <nav class="footer-nav-cluster" aria-label="Planetary System Navigation">
+        <a href="./index_saturn.html" class="footer-nav-pill">
+          <span class="pill-arrow">←</span>
+          <span>06. Saturn</span>
+        </a>
+        <div class="footer-current-pill">
+          <span class="current-dot"></span>
+          <span>07. Uranus</span>
+        </div>
+        <a href="./index_neptune.html" class="footer-nav-pill">
+          <span>08. Neptune</span>
+          <span class="pill-arrow">→</span>
+        </a>
+      </nav>
+
+      <!-- 3. Right Meta & Status Cluster -->
+      <div class="footer-meta-cluster">
+        <div class="footer-status-pill">
+          <span class="status-pulse-dot"></span>
+          <span>SYSTEMS NOMINAL</span>
+        </div>
+        <div class="footer-copyright">
+          © 2026 Space Exploration Archive · Sector 07
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js Canvas (Fixed 3D Planetary Scene) -->
+  <canvas id="Uranus"></canvas>
+
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "../node_modules/three/build/three.module.js",
+          "orbitalControls": "../node_modules/three/examples/jsm/controls/OrbitControls.js",
+          "webgl": "../node_modules/three/examples/jsm/capabilities/WebGL.js"
+        }
+      }
+    </script>
+  <script type="module" src="../src/uranus.js"></script>
+  <script src="../command.js"></script>
+</body>
+
+</html>

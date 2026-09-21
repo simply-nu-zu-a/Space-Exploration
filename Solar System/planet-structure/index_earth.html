@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Earth 3D Telemetry HUD and Scientific Planetary Data Dossier - Space Exploration." />
+  <title>Earth · Space Exploration</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../planet-design/style.css" />
+  <style>
+    /* 1-Second Page Entry Loading Fade-out Transition */
+    #pageLoadingTransition {
+      position: fixed;
+      inset: 0;
+      background: #000000;
+      z-index: 999999;
+      pointer-events: none;
+      opacity: 1;
+      animation: pageFadeOut 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: 0.1s;
+    }
+
+    @keyframes pageFadeOut {
+      0% {
+        opacity: 1;
+        visibility: visible;
+      }
+      99% {
+        opacity: 0;
+        visibility: visible;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  </style>
+</head>
+
+<body data-planet="earth">
+  <!-- Page Entry Fade-out Transition Overlay -->
+  <div id="pageLoadingTransition" aria-hidden="true"></div>
+  <!-------------------
+     [ CANVAS : SPACE ] |
+    -------------------->
+  <div class="space-ambient-glow" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <canvas id="Earth"></canvas>
+  <!-----------------------
+     [ NAVIGATION SECTION ] |
+    ------------------------>
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href = '../../index.html'">
+      <img src="../../Assets/Rocket_Icon.png" onerror="this.src = '/Space Exploration/Assets/Rocket_Icon.png'"
+        alt="Rocket Icon" />
+      <div class="logo-text">
+        <span class="brand-title">Space Exploration</span>
+      </div>
+    </div>
+
+    <!-- Quick Planet Route Selector Strip -->
+    <div class="nav-planet-strip">
+      <a href="./index_sun.html" class="nav-planet-pill">00 SUN</a>
+      <a href="./index_mercury.html" class="nav-planet-pill">01 MER</a>
+      <a href="./index_venus.html" class="nav-planet-pill">02 VEN</a>
+      <a href="./index_earth.html" class="nav-planet-pill active">03 EAR</a>
+      <a href="./index_mars.html" class="nav-planet-pill">04 MAR</a>
+      <a href="./index_jupiter.html" class="nav-planet-pill">05 JUP</a>
+      <a href="./index_saturn.html" class="nav-planet-pill">06 SAT</a>
+      <a href="./index_uranus.html" class="nav-planet-pill">07 URA</a>
+      <a href="./index_neptune.html" class="nav-planet-pill">08 NEP</a>
+    </div>
+
+    <div class="navmenu">
+      <a class="nav-solar-btn" href="./solar_system.html" title="View Whole Solar System Orrery">
+        <span class="nav-btn-text">Cosmos</span>
+      </a>
+      <a class="Explore_btn nav-btn nav-return-btn" href="../../index.html" title="Return to Space Hub">
+        <span class="nav-btn-text">Return</span>
+      </a>
+    </div>
+  </nav>
+  <!-----------------
+     [ HERO SECTION ] |
+    ------------------>
+  <section class="planet-hero-section" id="heroSection">
+    <div class="hud-section">
+      <!-- Toggle Information Button -->
+      <button class="info-btn" aria-label="Toggle Telemetry HUD">
+        <span class="info-dot">↪</span>
+        <span class="info-label">Telemetry HUD</span>
+      </button>
+
+      <!-- Left Detailed Telemetry Panel (Opens when clicking any info card) -->
+      <aside class="detail-panel" id="detailPanel" aria-hidden="true">
+        <div class="detail-header">
+          <div class="detail-badge-group">
+            <span class="detail-badge-tag">Deep-Scan Telemetry</span>
+            <h2 class="detail-title" id="detailTitle">
+              Planetary Dimensions
+            </h2>
+          </div>
+          <button class="close-detail-btn" id="closeDetailBtn" aria-label="Close Detail Panel">
+            ✕
+          </button>
+        </div>
+
+        <!-- Pure Narrative Telemetry Story & Formulas (No Nested Boxes) -->
+        <div class="detail-body-narrative" id="detailBodyNarrative">
+          <p class="telemetry-narrative-para">
+            Earth is mathematically modeled as an
+            <strong>oblate spheroid</strong> due to its centrifugal rotation,
+            producing an equatorial bulge. The
+            <span class="accent-text">Mean Volumetric Diameter</span> is
+            calculated as:
+          </p>
+          <div class="telemetry-formula-box">
+            <code>D_{mean} = 2 \times \sqrt[3]{a^2 b} \approx 12,742.0\text{
+                km}</code>
+          </div>
+          <p class="telemetry-narrative-para">
+            where equatorial radius
+            <span class="highlight-val">a = 6,378.14 km</span> and polar
+            radius <span class="highlight-val">b = 6,356.75 km</span>. This
+            yields an equatorial diameter of
+            <span class="highlight-val">12,756.2 km</span> and polar diameter
+            of <span class="highlight-val">12,713.6 km</span> with a polar
+            flattening ratio of
+            <code>f = (a - b)/a \approx 1/298.257</code> (0.335%). The total
+            equatorial circumference measures
+            <span class="highlight-val">40,075.0 km</span>, measured to
+            millimetric precision using modern Satellite Laser Ranging (SLR)
+            and Global Geodetic Observing Systems.
+          </p>
+        </div>
+      </aside>
+
+      <!-- Right-Hand Side Planetary HUD Panel -->
+      <div class="content" id="mainHud">
+        <div class="hud-top-row">
+          <div class="planet-badge">
+            <span class="badge-tag">Planet 03</span>
+            <span class="badge-line"></span>
+          </div>
+
+          <!-- Moon Orbit Toggle Button -->
+          <button class="moon-toggle-pill" id="moonToggleBtn" aria-label="Toggle Moon 3D Orbit">
+            <span class="moon-pill-icon">☾</span>
+            <span class="moon-pill-text">Moon</span>
+            <span class="moon-pill-status"></span>
+          </button>
+        </div>
+
+        <!-- Planet Title -->
+        <h1 class="planet-title">EARTH</h1>
+
+        <!-- Planet Subtitle with Underline -->
+        <div class="planet-subtitle-container">
+          <span class="planet-subtitle">The Blue Planet</span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <!-- Heartfelt Poetry Description (Directly under Subtitle, No Box Container) -->
+        <p class="planet-poetry-description">
+          "From the vastness of space, we call it home."<br />
+          Also the only astronomical object known to harbor Life, sustained by
+          ocean and atmosphere.
+        </p>
+
+        <!-- 2x3 Telemetry Metric Cards Grid -->
+        <div class="earth-info">
+          <!-- 1. Diameter -->
+          <div class="info-card" data-metric="diameter" tabindex="0" role="button" aria-label="View Diameter Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9.5" />
+                <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Equatorial Diameter</span>
+              <span class="metric-value">12,742 KM</span>
+            </div>
+          </div>
+
+          <!-- 2. Distance (Dynamic: Sun / Moon) -->
+          <div class="info-card" data-metric="distance" id="cardDistance" tabindex="0" role="button"
+            aria-label="View Distance Details">
+            <div class="card-icon" id="distanceCardIcon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label" id="distanceMetricLabel">Heliocentric Distance</span>
+              <span class="metric-value" id="distanceMetricValue">149.6M KM (1.0 AU)</span>
+            </div>
+          </div>
+
+          <!-- 3. Surface Area -->
+          <div class="info-card" data-metric="surface" tabindex="0" role="button"
+            aria-label="View Surface Area Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke-dasharray="2 3" />
+                <path d="M9 3.5v17M15 3.5v17M3.5 9h17M3.5 15h17" stroke-opacity="0.35" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Surface Area</span>
+              <span class="metric-value">510.0M KM²</span>
+            </div>
+          </div>
+
+          <!-- 4. Atmosphere composition -->
+          <div class="info-card" data-metric="atmosphere" tabindex="0" role="button"
+            aria-label="View Atmosphere Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 12c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 17c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 7c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Atmosphere</span>
+              <span class="metric-value">78% N₂ · 21% O₂</span>
+            </div>
+          </div>
+
+          <!-- 5. Planetary Mass -->
+          <div class="info-card" data-metric="mass" tabindex="0" role="button" aria-label="View Mass Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M6 9h12l2 11H4L6 9z" />
+                <path d="M9 9V5.5a3 3 0 0 1 6 0V9" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Planetary Mass</span>
+              <span class="metric-value">5.972 × 10²⁴ KG</span>
+            </div>
+          </div>
+
+          <!-- 6. Orbital Period -->
+          <div class="info-card" data-metric="orbit" tabindex="0" role="button"
+            aria-label="View Orbital Period Details">
+            <div class="card-icon card-icon-radar">
+              <div class="mini-hologram-radar" aria-hidden="true">
+                <div class="radar-ring-1"></div>
+                <div class="radar-ring-2"></div>
+                <div class="radar-pulse"></div>
+              </div>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Orbital Period</span>
+              <span class="metric-value">365.25 Days</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Destination Button -->
+        <div class="rocket">
+          <button class="next-mission-btn" onclick="window.location.href = './index_mars.html'">
+            <img src="../../Assets/Icon_2.png" onerror="this.src = '/Space Exploration/Assets/Icon_2.png'"
+              class="rocket-icon" alt="" />
+            <span>Next Destination :</span>
+            <span class="mars_color">Mars</span>
+            <span class="btn-arrow_mars">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Scroll Down interaction -->
+    <div class="guide" id="scrollDataBtn" role="button" tabindex="0" aria-label="Explore Planetary Knowledge">
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot"></div>
+      </div>
+      <div class="chevron-down">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <span class="guide-text">Drag to rotate · Scroll to explore</span>
+    </div>
+  </section>
+
+  <!---------------------------
+     [ PLANETARY DATA SECTION ] |
+    ---------------------------->
+  <section class="planet-data-section" id="dataSection">
+    <header class="data-header-container">
+      <div class="data-header-content">
+        <span>Planet</span>
+        <h1 class="data-planet-title">EARTH</h1>
+
+        <p class="data-tagline">
+          Dubbed <span class="data-tagline-highlight">"The Blue Planet"</span> because liquid water oceans cover 70.8%
+          of its surface, scattering short blue light wavelengths into space to give Earth its iconic blue marble glow.
+          The third planet from the Sun and the only known celestial home to living biology. Earth is sustained by
+          global liquid water oceans, a dynamic atmosphere, protective magnetosphere, and moderate climate.
+          Driven by internal geodynamo convection in a molten iron outer core, active plate tectonics continuously
+          recycle continental crust and regulate global carbon cycles.
+          Gravitationally stabilized by its singular companion moon, Luna, Earth maintains a stable 23.44° axial tilt
+          supporting self-regulating biospheric biomes.
+        </p>
+      </div>
+    </header>
+
+    <!-- Global Key Facts Bar (Interactive Explainer) -->
+    <section class="data-metric-bar" aria-label="Global Planetary Key Facts">
+      <div class="data-metric-box" data-metric-type="distance" role="button" tabindex="0"
+        aria-label="Learn about Distance to Sun">
+        <div class="d-metric-val">149.6M km</div>
+        <div class="d-metric-lbl">Distance to Sun (1.0 AU)</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="orbit" role="button" tabindex="0"
+        aria-label="Learn about Orbital Year Length">
+        <div class="d-metric-val">365.25 Days</div>
+        <div class="d-metric-lbl">Orbital Year Length</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="diameter" role="button" tabindex="0"
+        aria-label="Learn about Equatorial Diameter">
+        <div class="d-metric-val">12,742 km</div>
+        <div class="d-metric-lbl">Equatorial Diameter</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="gravity" role="button" tabindex="0"
+        aria-label="Learn about Surface Gravity">
+        <div class="d-metric-val">9.807 m/s²</div>
+        <div class="d-metric-lbl">Surface Gravity (1.0 g)</div>
+      </div>
+    </section>
+
+    <!-- Dynamic Metric Explainer Drawer ("Planetary Insight") -->
+    <div class="metric-explainer-drawer" id="metricExplainerDrawer" aria-live="polite" style="display: none;">
+      <div class="explainer-card">
+        <div class="explainer-top">
+          <div class="explainer-badge">
+            <span class="explainer-icon"></span>
+            <span class="explainer-tag" id="explainerTag">Planetary Insight</span>
+          </div>
+          <button class="explainer-close-btn" id="explainerCloseBtn" aria-label="Close Explainer">✕</button>
+        </div>
+        <h3 class="explainer-title" id="explainerTitle">Explore Planetary Secrets</h3>
+        <p class="explainer-content" id="explainerContent"></p>
+        <div class="explainer-calc-box" id="explainerCalcBox">
+          <div class="calc-header">
+            <span class="calc-icon"></span>
+            <span class="calc-label">MATHEMATICAL DETERMINATION</span>
+          </div>
+          <div class="calc-formula-tag" id="explainerCalcFormula"></div>
+          <p class="calc-text" id="explainerCalcText"></p>
+        </div>
+        <div class="explainer-funfact-box" id="explainerFunFactBox">
+          <div class="funfact-header">
+            <span class="funfact-icon"></span>
+            <span class="funfact-label">COSMIC FUN FACT</span>
+          </div>
+          <p class="funfact-text" id="explainerFunFactText"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-----------------------------------------
+     [ SECTION 2: MOON 3D CAROUSEL SHOWCASE ] |
+    ----------------------------------------->
+    <section class="moon-showcase-section" id="moonShowcase" aria-label="Earth's Natural Satellite Moon Showcase">
+      <header class="moon-showcase-header">
+        <div class="data-tag-pill" id="moonSectionTag">Earth's Natural Satellite</div>
+        <h2 class="moon-section-title" id="moonSectionTitle">THE MOON</h2>
+        <p class="moon-section-description" id="moonSectionDesc">
+          Earth's sole natural companion is the fifth-largest satellite in the
+          Solar System, orbiting at a mean distance of
+          <span class="highlight-val">384,400 km</span>. Formed approximately
+          4.51 billion years ago from the debris of a giant impact between the
+          proto-Earth and a Mars-sized planetesimal named Theia, the Moon is
+          tidally locked in synchronous rotation—perpetually presenting the
+          same cratered face toward Earth.
+        </p>
+        <p class="moon-section-description" id="moonSectionDesc2">
+          The lunar surface is an ancient geological record, divided between
+          dark basaltic volcanic plains (<span class="accent-text">Maria</span>) and bright, rugged anorthositic
+          highlands heavily saturated with
+          impact craters. Lacking a substantial atmosphere or liquid water,
+          lunar surface temperatures range dramatically from
+          <span class="highlight-val">+120°C</span> in sunlight down to
+          <span class="highlight-val">-130°C</span> in shadow.
+        </p>
+      </header>
+
+      <!-- Dedicated Interactive 3D Moon Canvas Container -->
+      <div class="moon-canvas-wrapper" id="moonCanvasWrapper">
+        <span class="moon-carousel-indicator" id="moonCarouselCounter" style="display: none">01 / 01 · LUNA</span>
+        <canvas id="MoonCanvas" aria-label="Interactive 3D Moon Model"></canvas>
+        <div class="moon-canvas-hint">
+          <span>Drag to rotate · Auto-revolution active</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Section Divider -->
+    <hr class="section-divider" aria-hidden="true">
+
+    <!-- =============================================
+           [ SECTION 3: PLANETARY DOSSIER · DEEP TOPICS ]
+           ============================================= -->
+    <main class="dossier-narrative-container">
+      <!-- 01. The Subterranean Deep Biosphere -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 01. Subterranean Deep Biosphere & Extremophiles</h2>
+        <p class="topic-paragraph">
+          Far beneath the surface soils and sunlit oceans, Earth harbors a massive hidden ecosystem known as the <span
+            class="accent-text">Intraterrestrial Deep Biosphere</span>. Extending over <span class="highlight-val">5
+            Kilometers</span> deep into continental granites and oceanic basalt crusts, this biome contains up to <span
+            class="highlight-val">70% of Earth's total microbial bacteria and archaea</span>.
+        </p>
+        <p class="topic-paragraph">
+          These subterranean organisms survive in pitch-black, high-pressure environments exceeding <span
+            class="highlight-val">120°C (248°F)</span> without sunlight. They derive metabolic energy through <span
+            class="accent-text">chemolithoautotrophy</span>—consuming hydrogen produced by radioactive water radiolysis
+          and mineral serpentinization—providing key analogs for potential life within the icy ocean shells of Europa
+          and Enceladus.
+        </p>
+      </article>
+
+      <!-- 02. The Supercontinent Cycle: Pangaea to Amasia -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 02. The Supercontinent Cycle: Pangaea to Amasia</h2>
+        <p class="topic-paragraph">
+          Earth's continental crust is locked in an endless <span class="highlight-val">300 to 500 Million Year</span>
+          geodynamic rhythm known as the <span class="accent-text">Wilson Cycle</span>. Driven by deep mantle thermal
+          convection currents, tectonic plates repeatedly coalesce into solitary supercontinents—such as Columbia,
+          Rodinia, and Pangaea—before rifting apart into distributed landmasses.
+        </p>
+        <p class="topic-paragraph">
+          Geodynamic models project that in approximately <span class="highlight-val">250 Million Years</span>, the
+          Atlantic or Pacific ocean basin will completely subduct, fusing the Americas, Eurasia, and Africa into the
+          next planetary supercontinent, tentatively named <span class="accent-text">Amasia (Pangaea Ultima)</span>,
+          dramatically altering global ocean circulation and climatic weather patterns.
+        </p>
+      </article>
+
+      <!-- 03. The Great Oxidation Event & Paleoclimate Resets -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 03. The Great Oxidation Event & Paleoclimate Resets</h2>
+        <p class="topic-paragraph">
+          For its first two billion years, Earth was an anoxic world dominated by anaerobic microbes under a
+          methane-rich orange sky. Around <span class="highlight-val">2.45 Billion Years Ago</span>, the evolutionary
+          emergence of oxygenic photosynthetic <span class="accent-text">Cyanobacteria</span> triggered the <span
+            class="accent-text">Great Oxidation Event (GOE)</span>, fundamentally terraforming the planet's atmospheric
+          chemistry.
+        </p>
+        <p class="topic-paragraph">
+          Nascent oxygen reacted with dissolved ferrous iron in primordial oceans, precipitating billions of tons of
+          iron oxide into global <span class="highlight-val">Banded Iron Formations (BIFs)</span>. As free oxygen
+          oxidized atmospheric methane into weaker carbon dioxide, greenhouse heat collapsed, plunging Earth into the
+          <span class="highlight-val">Huronian Snowball Glaciation</span>—the longest global ice age in geological
+          history.
+        </p>
+      </article>
+
+      <!-- 04. Hydrodynamic Atmospheric Retention & Ocean Preservation -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 04. Atmospheric Retention & Ocean Preservation</h2>
+        <p class="topic-paragraph">
+          Earth maintains liquid hydrosphere stability across cosmic time through a delicate balance of thermal cold
+          traps and magnetospheric shielding. At the <span class="highlight-val">-55°C Tropopause</span>, water vapor
+          freezes and condenses into cirrus ice clouds before reaching the stratosphere, preventing solar UV photolysis
+          from breaking <span class="accent-text">H₂O</span> into lighter hydrogen gas.
+        </p>
+        <p class="topic-paragraph">
+          Consequently, Earth's atmospheric loss is restricted to a minuscule <span class="highlight-val">~3
+            kg/second</span> of thermal Jeans hydrogen escape. Combined with a planetary magnetic dynamo that deflects
+          supersonic solar wind plasma, Earth has successfully retained over <span class="highlight-val">99.9%</span> of
+          its primordial water reservoirs across 4.54 billion years, avoiding the dry desiccation of Venus and Mars.
+        </p>
+      </article>
+    </main>
+
+    <!-- =============================================
+           [ SECTION 4: DEEP ARCHIVE & RESEARCH LINKS ]
+           ============================================= -->
+    <section class="planet-external-archives" aria-label="External Research Archives and References">
+      <div class="external-archives-header">
+        <span class="archives-icon">🌐</span>
+        <span class="archives-title">DEEP ARCHIVE & FURTHER READING</span>
+      </div>
+      <div class="external-links-grid" id="externalLinksGrid">
+        <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: Earth</h4>
+          <p class="archive-desc">Planetary geophysics, historical geology, and biosphere evolution</p>
+        </a>
+        <a href="https://science.nasa.gov/earth/" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">NASA SCIENCE</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">NASA Science: Earth</h4>
+          <p class="archive-desc">Satellite climate telemetry, orbital observations, and Earth fleet</p>
+        </a>
+        <a href="https://en.wikipedia.org/wiki/Moon" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: The Moon</h4>
+          <p class="archive-desc">Orbital mechanics, lunar geology, and Apollo surface exploration</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Minimal Return to Orbit Indicator (No Box Container) -->
+    <div class="guide-return" id="returnOrbitBtn" role="button" tabindex="0" aria-label="Return to 3D Orbit view">
+      <div class="chevron-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </div>
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot dot-up"></div>
+      </div>
+      <span class="guide-text">Scroll to return · Orbit view</span>
+    </div>
+  </section>
+
+  <!-- =============================================
+         [ SECTION 4: MINIMAL FUTURISTIC FOOTER ]
+         ============================================= -->
+  <footer class="planet-footer" id="planetFooter">
+    <div class="footer-container">
+      <!-- 1. Left Branding Cluster -->
+      <div class="footer-branding">
+        <div class="footer-brand-header">
+          <span class="footer-brand-icon">✦</span>
+          <span class="footer-brand-title">SPACE EXPLORATION</span>
+        </div>
+        <p class="footer-brand-subtitle">Planetary Astrophysics & Celestial Ephemeris</p>
+      </div>
+
+      <!-- 2. Center Quick Celestial Route Navigator -->
+      <nav class="footer-nav-cluster" aria-label="Planetary System Navigation">
+        <a href="./index_venus.html" class="footer-nav-pill">
+          <span class="pill-arrow">←</span>
+          <span>02. Venus</span>
+        </a>
+        <div class="footer-current-pill">
+          <span class="current-dot"></span>
+          <span>03. Earth</span>
+        </div>
+        <a href="./index_mars.html" class="footer-nav-pill">
+          <span>04. Mars</span>
+          <span class="pill-arrow">→</span>
+        </a>
+      </nav>
+
+      <!-- 3. Right Meta & Status Cluster -->
+      <div class="footer-meta-cluster">
+        <div class="footer-status-pill">
+          <span class="status-pulse-dot"></span>
+          <span>SYSTEMS NOMINAL</span>
+        </div>
+        <div class="footer-copyright">
+          © 2026 Space Exploration Archive · Sector 03
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!------------
+     [ IMPORTS ] |
+    ------------->
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "../node_modules/three/build/three.module.js",
+          "orbitalControls": "../node_modules/three/examples/jsm/controls/OrbitControls.js",
+          "webgl": "../node_modules/three/examples/jsm/capabilities/WebGL.js"
+        }
+      }
+    </script>
+
+  <script type="module" src="../src/earth.js"></script>
+  <script src="../command.js"></script>
+</body>
+
+</html>

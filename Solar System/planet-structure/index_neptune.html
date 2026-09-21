@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neptune · Space Exploration</title>
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../planet-design/style.css" />
+</head>
+
+<body data-planet="neptune">
+  <!-- Background Ambient Glow Layer -->
+  <div class="space-ambient-glow" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-----------------------
+     [ NAVIGATION SECTION ] |
+    ------------------------>
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='../../index.html'">
+      <img src="../../Assets/Rocket_Icon.png" onerror="this.src='/Space Exploration/Assets/Rocket_Icon.png'"
+        alt="Rocket Icon" />
+      <div class="logo-text">
+        <span class="brand-title">Space Exploration</span>
+      </div>
+    </div>
+
+    <!-- Quick Planet Route Selector Strip -->
+    <div class="nav-planet-strip">
+      <a href="./index_sun.html" class="nav-planet-pill">00 SUN</a>
+      <a href="./index_mercury.html" class="nav-planet-pill">01 MER</a>
+      <a href="./index_venus.html" class="nav-planet-pill">02 VEN</a>
+      <a href="./index_earth.html" class="nav-planet-pill">03 EAR</a>
+      <a href="./index_mars.html" class="nav-planet-pill">04 MAR</a>
+      <a href="./index_jupiter.html" class="nav-planet-pill">05 JUP</a>
+      <a href="./index_saturn.html" class="nav-planet-pill">06 SAT</a>
+      <a href="./index_uranus.html" class="nav-planet-pill">07 URA</a>
+      <a href="./index_neptune.html" class="nav-planet-pill active">08 NEP</a>
+    </div>
+
+    <div class="navmenu">
+      <a class="nav-solar-btn" href="./solar_system.html" title="View Whole Solar System Orrery">
+        <span class="nav-btn-text">Cosmos</span>
+      </a>
+      <a class="Explore_btn nav-btn nav-return-btn" href="../../index.html" title="Return to Space Hub">
+        <span class="nav-btn-text">Return</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-----------------
+     [ HERO SECTION ] |
+    ------------------>
+  <section class="planet-hero-section" id="heroSection">
+    <div class="hud-section">
+      <!-- Toggle Information Button -->
+      <button class="info-btn" aria-label="Toggle Telemetry HUD">
+        <span class="info-dot">↪</span>
+        <span class="info-label">Telemetry HUD</span>
+      </button>
+
+      <!-- Left Detailed Telemetry Panel (Opens when clicking any info card) -->
+      <aside class="detail-panel" id="detailPanel" aria-hidden="true">
+        <div class="detail-header">
+          <div class="detail-badge-group">
+            <span class="detail-badge-tag">Deep-Scan Telemetry</span>
+            <h2 class="detail-title" id="detailTitle">Planetary Dimensions</h2>
+          </div>
+          <button class="close-detail-btn" id="closeDetailBtn" aria-label="Close Detail Panel">✕</button>
+        </div>
+
+        <div class="detail-body-narrative" id="detailBodyNarrative">
+          <!-- Dynamically populated editorial narrative -->
+        </div>
+      </aside>
+
+      <!-- Right-Hand Side Planetary HUD Panel -->
+      <div class="content" id="mainHud">
+        <div class="hud-top-row">
+          <div class="planet-badge">
+            <span class="badge-tag">Planet 08</span>
+            <span class="badge-line"></span>
+          </div>
+
+          <!-- Moon Orbit Toggle Button -->
+          <button class="moon-toggle-pill" id="moonToggleBtn" aria-label="Toggle 3D Neptunian Moons in Hero View">
+            <span class="moon-pill-icon">☾</span>
+            <span class="moon-pill-text">Major Moons</span>
+            <span class="moon-pill-status"></span>
+          </button>
+        </div>
+
+        <!-- Planet Title -->
+        <h1 class="planet-title">NEPTUNE</h1>
+
+        <!-- Planet Subtitle with Underline -->
+        <div class="planet-subtitle-container">
+          <span class="planet-subtitle">The Windswept Azure Giant</span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <!-- Heartfelt Description -->
+        <p class="planet-poetry-description">
+          "Outermost guardian of the celestial realm, born in deepest cobalt blue."<br />
+          Supersonic jet streams herding the captured retrograde icy titan Triton.
+        </p>
+
+        <!-- 2x3 Telemetry Metric Cards Grid -->
+        <div class="earth-info">
+          <!-- 1. Diameter -->
+          <div class="info-card" data-metric="diameter" tabindex="0" role="button" aria-label="View Diameter Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9.5" />
+                <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Diameter</span>
+              <span class="metric-value">49,528 KM</span>
+            </div>
+          </div>
+
+          <!-- 2. Distance from Sun / Moons -->
+          <div class="info-card" data-metric="distance" id="cardDistance" tabindex="0" role="button"
+            aria-label="View Distance Details">
+            <div class="card-icon" id="distanceCardIcon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label" id="distanceMetricLabel">Heliocentric Distance</span>
+              <span class="metric-value" id="distanceMetricValue">4.495B KM (30.07 AU)</span>
+            </div>
+          </div>
+
+          <!-- 3. Surface Area -->
+          <div class="info-card" data-metric="surface" tabindex="0" role="button" aria-label="View Surface Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke-dasharray="2 3" />
+                <path d="M9 3.5v17M15 3.5v17M3.5 9h17M3.5 15h17" stroke-opacity="0.35" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Cross Section</span>
+              <span class="metric-value">7.618B KM²</span>
+            </div>
+          </div>
+
+          <!-- 4. Atmosphere -->
+          <div class="info-card" data-metric="atmosphere" tabindex="0" role="button"
+            aria-label="View Atmosphere Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 12c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 17c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+                <path d="M2.5 7c2.5-3 5.5-3 8 0s5.5 3 8 0 5.5-3 8 0" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Wind Velocity</span>
+              <span class="metric-value">2,160 KM/H (Mach 1.7)</span>
+            </div>
+          </div>
+
+          <!-- 5. Planetary Mass -->
+          <div class="info-card" data-metric="mass" tabindex="0" role="button" aria-label="View Mass Details">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M6 9h12l2 11H4L6 9z" />
+                <path d="M9 9V5.5a3 3 0 0 1 6 0V9" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Planetary Mass</span>
+              <span class="metric-value">1.024 × 10²⁶ KG</span>
+            </div>
+          </div>
+
+          <!-- 6. Orbital Period -->
+          <div class="info-card" data-metric="orbit" tabindex="0" role="button"
+            aria-label="View Orbital Period Details">
+            <div class="card-icon card-icon-radar">
+              <div class="mini-hologram-radar" aria-hidden="true">
+                <div class="radar-ring-1"></div>
+                <div class="radar-ring-2"></div>
+                <div class="radar-pulse"></div>
+              </div>
+            </div>
+            <div class="card-content">
+              <span class="metric-label">Orbital Period</span>
+              <span class="metric-value">164.79 Earth Years</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Destination Button -->
+        <div class="rocket">
+          <button class="next-mission-btn" onclick="window.location.href='./solar_system.html'">
+            <img src="../../Assets/Icon_2.png" onerror="this.src='/Space Exploration/Assets/Icon_2.png'"
+              class="rocket-icon" alt="" />
+            <span>Full Solar System Map</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Minimal Mouse Interaction Indicator -->
+    <div class="guide" id="scrollDataBtn" role="button" tabindex="0" aria-label="Explore Planetary Knowledge">
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot"></div>
+      </div>
+      <div class="chevron-down">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <span class="guide-text">Drag to rotate · Scroll to explore</span>
+    </div>
+  </section>
+
+  <!---------------------------------------------
+     [ SECTION 2: PLANETARY KNOWLEDGE & DATA ]    |
+    ---------------------------------------------->
+  <section class="planet-data-section" id="dataSection">
+    <!-- Data Header -->
+    <header class="data-header-container">
+      <div class="data-header-content">
+        <span>Planet</span>
+        <h1 class="data-planet-title">NEPTUNE</h1>
+        <p class="data-tagline">
+          The eighth and most distant planet from the Sun, Neptune is an ice giant known for its striking blue
+          appearance and supersonic winds exceeding 2,000 km/h. Discovered in 1846 through mathematical prediction,
+          Neptune is orbited by 16 known moons, including its
+          largest, Triton.<br>
+          Hailed as <span class="data-tagline-highlight">"The Deep Azure Voyager"</span>, its methane-rich atmosphere
+          absorbs red light, creating its deep blue hue.
+          Beneath its blue clouds lies an extreme interior of immense pressure and heat, where water, ammonia and
+          methane form a dense fluid—and carbon may be compressed into diamond rain deep within the planet.
+        </p>
+      </div>
+    </header>
+
+    <!-- Global Key Facts Bar -->
+    <section class="data-metric-bar" aria-label="Global Planetary Key Facts">
+      <div class="data-metric-box" data-metric-type="distance" role="button" tabindex="0"
+        aria-label="Learn about Distance to Sun">
+        <div class="d-metric-val">4.495B km</div>
+        <div class="d-metric-lbl">Distance to Sun (30.07 AU)</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="orbit" role="button" tabindex="0"
+        aria-label="Learn about Orbital Year Length">
+        <div class="d-metric-val">164.79 Years</div>
+        <div class="d-metric-lbl">Orbital Year Length</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="diameter" role="button" tabindex="0"
+        aria-label="Learn about Equatorial Diameter">
+        <div class="d-metric-val">49,528 km</div>
+        <div class="d-metric-lbl">Equatorial Diameter</div>
+      </div>
+      <div class="data-metric-box" data-metric-type="gravity" role="button" tabindex="0"
+        aria-label="Learn about Surface Gravity">
+        <div class="d-metric-val">11.15 m/s²</div>
+        <div class="d-metric-lbl">Surface Gravity (1.14 g)</div>
+      </div>
+    </section>
+
+    <!-- Planetary Insight -->
+    <div class="metric-explainer-drawer" id="metricExplainerDrawer" aria-live="polite" style="display: none;">
+      <div class="explainer-card">
+        <div class="explainer-top">
+          <div class="explainer-badge">
+            <span class="explainer-icon"></span>
+            <span class="explainer-tag" id="explainerTag">Planetary Insight</span>
+          </div>
+          <button class="explainer-close-btn" id="explainerCloseBtn" aria-label="Close Explainer">✕</button>
+        </div>
+        <h3 class="explainer-title" id="explainerTitle">Explore Planetary Secrets</h3>
+        <p class="explainer-content" id="explainerContent"></p>
+        <div class="explainer-calc-box" id="explainerCalcBox">
+          <div class="calc-header">
+            <span class="calc-icon"></span>
+            <span class="calc-label">MATHEMATICAL DETERMINATION</span>
+          </div>
+          <div class="calc-formula-tag" id="explainerCalcFormula"></div>
+          <p class="calc-text" id="explainerCalcText"></p>
+        </div>
+        <div class="explainer-funfact-box" id="explainerFunFactBox">
+          <div class="funfact-header">
+            <span class="funfact-icon"></span>
+            <span class="funfact-label">COSMIC FUN FACT</span>
+          </div>
+          <p class="funfact-text" id="explainerFunFactText"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-----------------------------------------------
+     [ SECTION 2: MULTI-MOON 3D CAROUSEL SHOWCASE ] |
+    ----------------------------------------------->
+    <section class="moon-showcase-section" id="moonShowcase" aria-label="Neptunian Moons 3D Showcase">
+      <header class="moon-showcase-header">
+        <div class="data-tag-pill" id="moonSectionTag">Neptune I : Retrograde Frozen Voyager</div>
+        <h2 class="moon-section-title" id="moonSectionTitle">TRITON</h2>
+        <p class="moon-section-description" id="moonSectionDesc">
+          Triton is the only giant moon in Sol that orbits backwards (retrograde) relative to its planet's rotation,
+          confirming it was a captured Kuiper Belt dwarf planet like Pluto. At a frigid -235°C, Triton features active
+          nitrogen geysers that erupt plumes of dark dust 8 km high into its thin nitrogen sky.
+        </p>
+        <p class="moon-section-description" id="moonSectionDesc2">
+          Triton's unique 'cantaloupe terrain' is formed by diapirism in its icy crust. Tidal deceleration is gradually
+          drawing Triton closer to Neptune; in 3.6 billion years, it will pass the Roche limit and shatter into a
+          colossal planetary ring system.
+        </p>
+      </header>
+
+      <div class="moon-canvas-wrapper" id="moonCanvasWrapper">
+        <!-- Multi-Moon Carousel Navigation Arrows -->
+        <button class="moon-nav-btn prev-btn" id="prevMoonBtn" aria-label="Previous Moon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <span class="moon-carousel-indicator" id="moonCarouselCounter">01 / 03 · TRITON</span>
+
+        <canvas id="MoonCanvas" aria-label="Interactive 3D Moon Model"></canvas>
+
+        <button class="moon-nav-btn next-btn" id="nextMoonBtn" aria-label="Next Moon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="moon-canvas-hint">
+          <span>Use arrows to switch Neptunian moons · Drag to rotate</span>
+        </div>
+      </div>
+    </section>
+    <hr class="section-divider" aria-hidden="true">
+
+    <main class="dossier-narrative-container">
+      <!-- 01. Supersonic Mach 1.7 Winds & Azure Methane Sky -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 01. Supersonic Winds & Cobalt Methane Sky</h2>
+        <p class="topic-paragraph">
+          Despite receiving 900 times less sunlight than Earth, Neptune harbors the most ferocious weather in the entire
+          Solar System, with equatorial jet streams reaching supersonic speeds of over <span class="highlight-val">2,160
+            km/h (1,340 mph / Mach 1.7)</span>—faster than the speed of sound on Earth.
+        </p>
+        <p class="topic-paragraph">
+          Composed of <span class="highlight-val">80% Hydrogen</span>, <span class="highlight-val">19% Helium</span>,
+          and <span class="highlight-val">1.5% Methane</span>, atmospheric methane strongly absorbs red light while
+          unknown photochemical compounds give Neptune its deep, vivid azure-cobalt blue appearance, streaked with
+          high-altitude white methane ice clouds called 'Scooter'.
+        </p>
+      </article>
+
+      <!-- 02. The Internal Heat Pump & Great Dark Spot -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 02. Powerful Internal Heat Engine</h2>
+        <p class="topic-paragraph">
+          Unlike its frigid neighbor Uranus, Neptune's deep interior radiates <span class="highlight-val">2.61 times
+            more thermal energy</span> into space than it absorbs from the distant Sun. This intense internal heat
+          convection powers dynamic, short-lived anticyclonic storms like the <span class="accent-text">Great Dark
+            Spot</span>—an Earth-sized storm system first discovered by Voyager 2 in 1989.
+        </p>
+        <p class="topic-paragraph">
+          Neptune is the densest of all giant planets at <span class="highlight-val">1.638 g/cm³</span>, with a rocky
+          silicate and iron core weighing roughly 1.2 Earth masses beneath its hot supercritical ice-fluid mantle.
+        </p>
+      </article>
+
+      <!-- 03. Triton: Captured Retrograde Dwarf Moon -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 03. Triton: Captured Dwarf Moon & Geysers</h2>
+        <p class="topic-paragraph">
+          Neptune's largest moon, <span class="accent-text">Triton (2,707 km)</span>, contains over <span
+            class="highlight-val">99.5% of all mass</span> orbiting the planet. It is the only large moon in the Solar
+          System that orbits backwards (retrograde) relative to its planet's rotation, confirming it was originally an
+          independent Kuiper Belt dwarf planet (like Pluto) gravitationally captured by Neptune billions of years ago.
+        </p>
+        <p class="topic-paragraph">
+          At a frigid surface temperature of <span class="highlight-val">-235°C (38 K)</span>, Triton features active
+          cryovolcanic geysers of liquid nitrogen that blast plumes of dark organic dust up to <span
+            class="highlight-val">8 kilometers high</span> into its thin nitrogen atmosphere.
+        </p>
+      </article>
+
+      <!-- 04. Mathematical Discovery & 165-Year Orbit -->
+      <article class="data-narrative-topic">
+        <h2 class="topic-heading">✦ 04. Mathematical Discovery & 165-Year Year</h2>
+        <p class="topic-paragraph">
+          Neptune was the first planet discovered entirely through mathematical deduction. In the 1840s, French
+          mathematician Urbain Le Verrier and British astronomer John Couch Adams independently calculated that
+          unexpected orbital anomalies in Uranus were caused by the gravitational tug of an undiscovered outer planet.
+          On September 23, 1846, Johann Galle spotted Neptune within 1 degree of Le Verrier's predicted position.
+        </p>
+        <p class="topic-paragraph">
+          Orbiting at an average distance of <span class="highlight-val">4.495 Billion Kilometers (30.07 AU)</span>,
+          Neptune takes <span class="highlight-val">164.79 Earth Years</span> to complete one voyage around the
+          Sun—completing its first full post-discovery orbit only in 2011!
+        </p>
+      </article>
+    </main>
+
+    <!---------------------------------------------
+     [ SECTION 3: DEEP ARCHIVE & RESEARCH LINKS ] |
+    --------------------------------------------->
+    <section class="planet-external-archives" aria-label="External Research Archives and References">
+      <div class="external-archives-header">
+        <span class="archives-icon">🌐</span>
+        <span class="archives-title">DEEP ARCHIVE & FURTHER READING</span>
+      </div>
+      <div class="external-links-grid" id="externalLinksGrid">
+        <a href="https://en.wikipedia.org/wiki/Neptune" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: Neptune</h4>
+          <p class="archive-desc">Supersonic storm dynamics, internal heat engine, and cobalt sky</p>
+        </a>
+        <a href="https://science.nasa.gov/neptune/" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">NASA SCIENCE</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">NASA Science: Neptune</h4>
+          <p class="archive-desc">Voyager 2 discoveries and outer system atmospheric telemetry</p>
+        </a>
+        <a href="https://en.wikipedia.org/wiki/Triton_(moon)" target="_blank" rel="noopener noreferrer"
+          class="external-archive-card">
+          <div class="archive-card-top">
+            <span class="archive-source">WIKIPEDIA</span>
+            <span class="archive-arrow">↗</span>
+          </div>
+          <h4 class="archive-name">Wikipedia: Triton</h4>
+          <p class="archive-desc">Captured retrograde dwarf planet with cryovolcanic geysers</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Chevron-up -->
+    <div class="guide-return" id="returnOrbitBtn" role="button" tabindex="0" aria-label="Return to 3D Orbit view">
+      <div class="chevron-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </div>
+      <div class="mouse-device">
+        <div class="mouse-scroll-dot dot-up"></div>
+      </div>
+      <span class="guide-text">Return to 3D Orbit View</span>
+    </div>
+  </section>
+
+  <!--------------------
+   [ FOOTER SECTION ] |
+  -------------------->
+  <footer class="planet-footer" id="planetFooter">
+    <div class="footer-container">
+
+      <div class="footer-branding">
+        <div class="footer-brand-header">
+          <span class="footer-brand-icon">✦</span>
+          <span class="footer-brand-title">SPACE EXPLORATION</span>
+        </div>
+        <p class="footer-brand-subtitle">Planetary Astrophysics & Celestial Ephemeris</p>
+      </div>
+
+      <nav class="footer-nav-cluster" aria-label="Planetary System Navigation">
+        <a href="./index_uranus.html" class="footer-nav-pill">
+          <span class="pill-arrow">←</span>
+          <span>07. Uranus</span>
+        </a>
+        <div class="footer-current-pill">
+          <span class="current-dot"></span>
+          <span>08. Neptune</span>
+        </div>
+        <a href="./solar_system.html" class="footer-nav-pill">
+          <span>☉ Cosmos</span>
+          <span class="pill-arrow">→</span>
+        </a>
+      </nav>
+
+      <div class="footer-meta-cluster">
+        <div class="footer-status-pill">
+          <span class="status-pulse-dot"></span>
+          <span>SYSTEMS NOMINAL</span>
+        </div>
+        <div class="footer-copyright">
+          © 2026 Space Exploration Archive · Sector 08
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!--Three.js Canvas-->
+  <canvas id="Neptune"></canvas>
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "../node_modules/three/build/three.module.js",
+          "orbitalControls": "../node_modules/three/examples/jsm/controls/OrbitControls.js",
+          "webgl": "../node_modules/three/examples/jsm/capabilities/WebGL.js"
+        }
+      }
+    </script>
+  <script type="module" src="../src/neptune.js"></script>
+  <script src="../command.js"></script>
+</body>
+
+</html>
