@@ -82,15 +82,15 @@ function createMeteors() {
   }));
 }
 
-// Realistic Stratified Atmospheric Palette
+// Atmospheric Palette
 function sampleAtmosphereColor(progress) {
   const palette = [
     [32, 108, 206], // 0.00: Troposphere (sea-level bright blue)
     [22, 72, 165],  // 0.15: Upper Troposphere
     [14, 40, 118],  // 0.30: Stratosphere (deep cobalt azure)
-    [8, 20, 72],    // 0.50: Mesosphere (cold midnight indigo)
-    [4, 10, 32],    // 0.70: Thermosphere (deep space black with plasma hue)
-    [2, 4, 14],     // 0.88: Exosphere (cosmic threshold)
+    [8, 20, 72],    // 0.50: Mesosphere (midnight indigo)
+    [4, 10, 32],    // 0.70: Thermosphere (deep space black)
+    [2, 4, 14],     // 0.88: Exosphere 
     [1, 2, 6]       // 1.00: Deep Space vacuum
   ];
 
