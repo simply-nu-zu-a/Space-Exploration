@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Beyond The Solar System · Mission Epilogue | Space Exploration
+    </title>
+    <meta
+      name="description"
+      content="The grand finale of the Space Exploration mission. Designing next-generation propulsion and spacecraft to journey beyond the boundaries of our solar system."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --color-bg: #000000;
+        --color-text-primary: #ffffff;
+        --color-text-secondary: #94a3b8;
+        --color-text-muted: #525f74;
+        --color-accent: #38bdf8;
+        --color-accent-hover: #7dd3fc;
+        --color-line: rgba(255, 255, 255, 0.08);
+        --color-line-hover: rgba(255, 255, 255, 0.2);
+
+        --font-display: "Orbitron", sans-serif;
+        --font-headline: "Space Grotesk", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --font-mono: "Space Mono", monospace;
+
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        --transition: all 0.35s var(--ease-out-expo);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background-color: var(--color-bg);
+      }
+
+      body {
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--color-bg);
+        color: var(--color-text-primary);
+        font-family: var(--font-body);
+        font-size: 15px;
+        line-height: 1.7;
+        letter-spacing: -0.01em;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* ---------------------
+        [NAVIGATION SECTION] |
+      --------------------- */
+      .header-container {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--color-line);
+        padding: 18px 36px;
+      }
+
+      .navbar {
+        max-width: 1320px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+        color: var(--color-text-primary);
+      }
+
+      .logo-rocket-img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+        opacity: 0.9;
+        transition: var(--transition);
+      }
+
+      .logo:hover .logo-rocket-img {
+        opacity: 1;
+        transform: translateY(-1px) scale(1.05);
+      }
+
+      .logo-title {
+        font-family: var(--font-display);
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #ffffff;
+      }
+
+      .navmenu {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+
+      .nav-link {
+        font-family: var(--font-display);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        transition: var(--transition);
+        position: relative;
+        padding: 4px 0;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 1px;
+        background-color: var(--color-accent);
+        transition: var(--transition);
+      }
+
+      .nav-link:hover {
+        color: #ffffff;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          padding: 16px 20px;
+        }
+
+        .navmenu {
+          gap: 18px;
+        }
+
+        .nav-link {
+          font-size: 10px;
+          letter-spacing: 0.12em;
+        }
+      }
+
+      /* ---------------
+        [HERO SECTION]  |
+      ---------------- */
+      .main-content {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 64px 24px 96px;
+        max-width: 1320px;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-family: var(--font-display);
+        /* font-size: clamp(2rem, 4.4vw, 3.4rem); */
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        line-height: 1.18;
+        text-transform: uppercase;
+        color: #ffffff;
+      }
+
+      .hero-subtitle {
+        font-family: var(--font-display);
+        /* font-size: clamp(0.9rem, 1.4vw, 1.1rem); */
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        color: #38bdf8;
+        text-transform: uppercase;
+        margin: 5px 0;
+      }
+
+      .vector-video {
+        width: 100%;
+        max-width: 760px;
+        height: auto;
+        display: block;
+        margin: 0 auto 52px;
+        background-color: #000000;
+        outline: none;
+        object-fit: contain;
+        border: none;
+        border-radius: 4px;
+        filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.95));
+        transition: var(--transition);
+      }
+
+      .epilogue-statement-container {
+        max-width: 880px;
+        margin: 0 auto 48px;
+        padding: 0 20px;
+      }
+
+      p.epilogue-description {
+        font-family: var(--font-headline);
+        font-size: clamp(1.45rem, 3vw, 2.25rem);
+        font-weight: 500;
+        line-height: 1.38;
+        letter-spacing: 0.03em;
+        color: #ffffff;
+        margin-bottom: 22px;
+      }
+
+      .epilogue-narrative {
+        font-family: "Verdana", sans-serif;
+        font-style: italic;
+        font-size: 0.98rem;
+        color: var(--color-text-secondary);
+        line-height: 1.85;
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+        margin-top: 8px;
+      }
+
+      .btn-primary {
+        font-family: var(--font-display);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #000000;
+        background: #ffffff;
+        padding: 16px 36px;
+        border-radius: 40px;
+        text-decoration: none;
+        border: 1px solid #ffffff;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: var(--transition);
+      }
+
+      .btn-primary:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--color-line-hover);
+        transform: translateY(-2px);
+        color: #ffffff;
+      }
+
+      .btn-secondary {
+        font-family: var(--font-display);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-text-primary);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 16px 36px;
+        border-radius: 40px;
+        text-decoration: none;
+        border: 1px solid var(--color-line);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        backdrop-filter: blur(10px);
+        transition: var(--transition);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--color-line-hover);
+        transform: translateY(-2px);
+        color: #ffffff;
+      }
+
+      /* ------------------
+        [FOOTER SECTION]  |
+      ------------------ */
+      .site-footer {
+        position: relative;
+        width: 100%;
+        background: #000000;
+        border-top: 1px solid var(--color-line);
+        padding: 72px 36px 40px;
+        margin-top: auto;
+      }
+
+      .footer-inner {
+        max-width: 1320px;
+        margin: 0 auto;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+        gap: 48px;
+        margin-bottom: 64px;
+      }
+
+      @media (max-width: 960px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 36px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .site-footer {
+          padding: 56px 20px 32px;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 36px;
+        }
+      }
+
+      .footer-col {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer-brand-title {
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin-bottom: 14px;
+      }
+
+      .footer-brand-desc {
+        font-size: 14px;
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        max-width: 320px;
+      }
+
+      .footer-heading {
+        font-family: var(--font-display);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        color: var(--color-text-muted);
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+
+      .footer-links-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-link-item a {
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        transition: var(--transition);
+        display: inline-block;
+      }
+
+      .footer-link-item a:hover {
+        color: #ffffff;
+        transform: translateX(3px);
+      }
+
+      /* Space for More Links */
+      .more-link-slot {
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--color-text-muted);
+        text-decoration: none;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 4px;
+      }
+
+      .more-link-slot:hover {
+        color: var(--color-text-secondary);
+      }
+
+      /* Contact Column */
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 22px;
+      }
+
+      .contact-entry {
+        font-size: 14px;
+        color: var(--color-text-secondary);
+      }
+
+      /* Social Links in Contact */
+      .contact-social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .social-link-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        font-family: var(--font-headline);
+        font-size: 14px;
+        letter-spacing: 1.25px;
+        transition: var(--transition);
+      }
+
+      .social-link-item .social-icon {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+        flex-shrink: 0;
+      }
+
+      .social-link-item:hover {
+        color: #ffffff;
+      }
+
+      .footer-bottom-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding-top: 24px;
+        border-top: 1px solid var(--color-line);
+        color: var(--color-text-muted);
+        font-family: var(--font-display);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        line-height: 1.6;
+        text-transform: uppercase;
+      }
+
+      .footer-bottom-left,
+      .footer-bottom-right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .footer-bottom-right {
+        justify-content: flex-end;
+        text-align: right;
+      }
+
+      .clock-display {
+        color: var(--color-accent);
+      }
+
+      @media (max-width: 600px) {
+        .footer-bottom-bar {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 14px;
+        }
+
+        .footer-bottom-left,
+        .footer-bottom-right {
+          flex-wrap: wrap;
+          gap: 8px 16px;
+        }
+
+        .footer-bottom-right {
+          justify-content: flex-start;
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!---------------------
+      NAVIGATION SECTION  |
+    ---------------------->
+    <header class="header-container">
+      <nav class="navbar" id="navbar">
+        <a
+          href="index.html"
+          class="logo"
+          id="navLogo"
+          title="Return to Mission Control"
+        >
+          <img
+            src="./Assets/Rocket_Icon.png"
+            alt="Rocket Icon"
+            class="logo-rocket-img"
+          />
+          <span class="logo-title">SPACE EXPLORATION</span>
+        </a>
+
+        <div class="navmenu">
+          <a
+            href="index.html"
+            class="nav-link"
+            id="navHome"
+            title="Return to Space Exploration Mission Control"
+          >
+            MISSION CONTROL
+          </a>
+          <a
+            href="ascent.html"
+            class="nav-link"
+            id="navAscent"
+            title="Atmospheric Ascent Simulation"
+          >
+            ASCENT FLIGHT
+          </a>
+          <a
+            href="./Solar System/planet-structure/solar_system.html"
+            class="nav-link"
+            id="navCosmos"
+            title="Solar System Orrery"
+          >
+            COSMOS
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!---------------
+      HERO SECTION  |
+    ---------------->
+    <main class="main-content" id="mainHero">
+      <h1 class="hero-title">BEYOND THE SOLAR SYSTEM</h1>
+      <h2 class="hero-subtitle">THE NEXT FRONTIER OF DEEP SPACE PROPULSION</h2>
+      <video
+        id="vectorRocketVideo"
+        class="vector-video"
+        autoplay
+        loop
+        muted
+        playsinline
+        aria-label="2D Vector Rocket Animation"
+      >
+        <source
+          src="./Assets/2d Vector Loading Animation.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
+      <div class="epilogue-statement-container">
+        <p class="epilogue-description" id="epilogueText">
+          Designing a better Rocket model for Exploration beyond Solar System
+        </p>
+        <p class="epilogue-narrative">
+          " Humanity’s voyage has only just begun. " <br />New propulsion
+          technologies may one day carry us beyond the Solar System.
+        </p>
+      </div>
+
+      <div class="hero-actions">
+        <a href="ascent.html" class="btn-primary" id="btnReplayAscent">
+          REPLAY ASCENT FLIGHT
+        </a>
+        <a href="index.html" class="btn-secondary" id="btnReturnControl">
+          MISSION CONTROL
+        </a>
+        <a
+          href="./Solar System/planet-structure/solar_system.html"
+          class="btn-secondary"
+          id="btnSolarOrrery"
+        >
+          SOLAR ORRERY
+        </a>
+      </div>
+    </main>
+
+    <!-----------------
+      FOOTER SECTION  |
+    ------------------>
+    <footer class="site-footer" id="mainFooter">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <!-- Column 1: Brand & Mission Summary -->
+          <div class="footer-col">
+            <div class="footer-brand-title">SPACE EXPLORATION</div>
+            <p class="footer-brand-desc">
+              Pioneering humanity's reach beyond Earth's atmosphere, through the
+              solar system, and onward to the stars.
+            </p>
+          </div>
+
+          <!-- Column 2: Navigation Links -->
+          <div class="footer-col">
+            <h3 class="footer-heading">NAVIGATION</h3>
+            <ul class="footer-links-list">
+              <li class="footer-link-item">
+                <a href="index.html" id="footerLinkHome"
+                  >Mission Control Center</a
+                >
+              </li>
+              <li class="footer-link-item">
+                <a href="ascent.html" id="footerLinkAscent"
+                  >Atmospheric Ascent Simulator</a
+                >
+              </li>
+              <li class="footer-link-item">
+                <a
+                  href="./Solar System/planet-structure/solar_system.html"
+                  id="footerLinkOrrery"
+                  >Solar System 3D Orrery</a
+                >
+              </li>
+              <li class="footer-link-item">
+                <a
+                  href="./Solar System/planet-structure/index_earth.html"
+                  id="footerLinkEarth"
+                  >Earth Dossier &amp; Data</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3 class="footer-heading">ASSETS</h3>
+            <ul class="footer-links-list">
+              <li class="footer-link-item">
+                <a
+                  href="https://skfb.ly/pNV6v"
+                  id="footerLinkLaunchPlatformModel"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  3D Space Shuttle Launch Platform
+                </a>
+              </li>
+              <li class="footer-link-item">
+                <a
+                  href="https://www.solarsystemscope.com/textures"
+                  id="footerLinkSolarTextures"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Solar System Textures
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3 class="footer-heading">CONTACT &amp; COMMS</h3>
+            <div class="contact-details">
+              <div class="contact-entry">comms@space-exploration.org</div>
+              <div class="contact-entry">
+                Mission Control · India, New Delhi
+              </div>
+            </div>
+
+            <!-- Social & Community Links -->
+            <div class="contact-social-links">
+              <a
+                href="https://discord.gg"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link-item"
+                id="linkDiscord"
+                title="Join our Discord community"
+                aria-label="Discord Community"
+              >
+                <svg
+                  class="social-icon"
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"
+                  />
+                </svg>
+                <span>Discord</span>
+              </a>
+
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link-item"
+                id="linkGithub"
+                title="View our GitHub repositories"
+                aria-label="GitHub Repository"
+              >
+                <svg
+                  class="social-icon"
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+                  />
+                </svg>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Bottom Bar -->
+        <div class="footer-bottom-bar">
+          <div class="footer-bottom-left">
+            <span>&copy; 2026 SPACE EXPLORATION PROJECT</span>
+          </div>
+          <div class="footer-bottom-right">
+            <span
+              >MISSION CLOCK:
+              <span class="clock-display" id="missionLiveClock"
+                >00:00:00 UTC</span
+              ></span
+            >
+            <span>28.5721&deg; N, 80.6480&deg; W</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      function updateClock() {
+        const now = new Date();
+        const hrs = String(now.getUTCHours()).padStart(2, "0");
+        const mins = String(now.getUTCMinutes()).padStart(2, "0");
+        const secs = String(now.getUTCSeconds()).padStart(2, "0");
+        const clockEl = document.getElementById("missionLiveClock");
+        if (clockEl) {
+          clockEl.textContent = `${hrs}:${mins}:${secs} UTC`;
+        }
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+    </script>
+  </body>
+</html>

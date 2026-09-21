@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Exploration · Mission Control</title>
+    <meta
+      name="description"
+      content="Embark on humanity's greatest adventure. From Earth's fragile atmosphere to the infinite expanse of space — witness the universe as never before."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Rajdhani:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <canvas id="Earth"></canvas>
+    <div class="cosmic-vignette" aria-hidden="true"></div>
+
+    <!---------------------
+      NAVIGATION SECTION  |
+    ---------------------->
+
+    <header class="header-container">
+      <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo" id="navLogo">
+          <img
+            src="./Assets/Rocket_Icon.png"
+            alt="Rocket Icon"
+            class="logo-rocket-img"
+          />
+          <div class="logo_content">
+            <span class="title">SPACE EXPLORATION</span>
+            <span class="sub-title">MISSION CONTROL . EST . 2026</span>
+          </div>
+        </a>
+
+        <div class="nav-right-cluster">
+          <div class="navmenu">
+            <a href="ascent.html" class="nav-link" id="navMission">
+              <span>MISSION</span>
+              <span class="active-indicator"></span>
+            </a>
+            <a
+              href="./Solar System/planet-structure/solar_system.html"
+              class="nav-link"
+              id="navCosmos"
+            >
+              <span>COSMOS</span>
+            </a>
+            <a href="#data" class="nav-link" id="navData">
+              <span>DATA</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!---------------
+      HERO SECTION  |
+    ---------------->
+    <main class="hero_section">
+      <div class="hero-content-wrapper">
+        <div class="hero-title-group">
+          <h1 class="hero-title-main">BEYOND</h1>
+          <h1 class="hero-title-sub">
+            <span class="word-the">THE</span>
+            <span class="word-horizon">HORIZON</span>
+          </h1>
+          <div class="headline-accent-bar">
+            <div class="accent-line" style="width: 250px"></div>
+            <div class="accent-line" style="width: 70px"></div>
+          </div>
+        </div>
+
+        <p class="hero-description">
+          Embark on humanity's greatest adventure. <br />
+          "From Earth's fragile atmosphere to the infinite expanse of space —
+          witness the universe as never before."
+        </p>
+
+        <div class="stat-metrics-row">
+          <div
+            class="stat-metric-item"
+            id="cardAtmosphere"
+            role="button"
+            tabindex="0"
+            title="Click to open Atmospheric Strata in Data Repository"
+          >
+            <div class="stat-num">5</div>
+            <div class="stat-label">ATMOSPHERIC LAYERS</div>
+          </div>
+
+          <div class="stat-metric-divider"></div>
+
+          <div class="stat-metric-item" id="cardAscent">
+            <div class="stat-num">10,000<span class="stat-unit">km</span></div>
+            <div class="stat-label">TOTAL ASCENT</div>
+          </div>
+
+          <div class="stat-metric-divider"></div>
+
+          <div class="stat-metric-item" id="cardInfinity">
+            <div class="stat-num symbol-infinity">∞</div>
+            <div class="stat-label">SPACE AWAITS</div>
+          </div>
+        </div>
+
+        <a href="ascent.html" class="hero-explore-btn">
+          <span>LET'S EXPLORE</span>
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+    </main>
+
+    <!----------------
+      FOOTER SECTION  |
+    ------------------>
+    <footer class="footer-container" id="mainFooter">
+      <div class="footer-card">
+        <!-- Telemetry Items Cluster -->
+        <div class="telemetry-group">
+          <!-- Item 1: Systems Nominal -->
+          <div class="telemetry-item item-systems">
+            <span class="status-pulse-dot"></span>
+            <span class="telem-label">SYSTEMS</span>
+            <span class="telem-value status-nominal">NOMINAL</span>
+          </div>
+
+          <div class="telem-divider"></div>
+
+          <!-- Item 2: Lat -->
+          <div class="telemetry-item item-lat">
+            <span class="telem-label">LAT</span>
+            <span class="telem-value" id="telemLat">28.8° N</span>
+          </div>
+
+          <div class="telem-item-gap"></div>
+
+          <!-- Item 3: Lon -->
+          <div class="telemetry-item item-lon">
+            <span class="telem-label">LON</span>
+            <span class="telem-value" id="telemLon">88.8° W</span>
+          </div>
+
+          <div class="telem-divider"></div>
+
+          <!-- Item 4: Live UTC Telemetry Clock -->
+          <div class="telemetry-item item-tminus">
+            <span class="telem-label">MISSION UTC</span>
+            <span class="telem-value status-standby" id="liveUtcClock"
+              >00:00:00 UTC</span
+            >
+          </div>
+        </div>
+
+        <!-- Right Side: Copyright -->
+        <div class="footer-meta-group">
+          <span class="copyright-text"
+            >© 2026 SPACE EXPLORATION &nbsp;•&nbsp; ALL RIGHTS RESERVED</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!------------
+      DATA PANEL |
+    ------------->
+    <div class="dossier-modal" id="atmosphereModal" aria-hidden="true">
+      <div class="dossier-backdrop" id="modalBackdrop"></div>
+
+      <div
+        class="dossier-window"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dossierTitle"
+      >
+        <div class="dossier-header">
+          <div class="dossier-header-left">
+            <div class="dossier-title-stack">
+              <span class="dossier-tag">Data Panel</span>
+              <h2 class="dossier-title" id="dossierTitle">
+                EARTH'S ATMOSPHERIC LAYERS &amp; VEHICLE REPOSITORY
+              </h2>
+            </div>
+          </div>
+          <button
+            class="dossier-close-btn"
+            id="closeModalBtn"
+            aria-label="Close Repository Modal"
+            title="Close (Esc)"
+          >
+            <span>✕</span>
+          </button>
+        </div>
+
+        <div class="dossier-body">
+          <div class="shuttle-column">
+            <div class="column-header">
+              <span>SPACECRAFT ARCHIVE</span>
+            </div>
+
+            <!-- 3D Model Viewport Box -->
+            <div class="shuttle-3d-box" id="shuttle3dContainer">
+              <canvas id="shuttleCanvas"></canvas>
+              <div class="shuttle-loader" id="shuttleLoader">
+                <div class="shuttle-spinner"></div>
+                <span>INITIALIZING 3D ORBITER...</span>
+              </div>
+              <div class="shuttle-badge">
+                <span class="shuttle-chip">GLTF 2.0</span>
+                <span class="shuttle-chip">INTERACTIVE VIEW</span>
+              </div>
+              <button
+                class="btn-reset-shuttle-cam"
+                id="resetShuttleView"
+                type="button"
+                aria-label="Reset rocket position"
+                title="Reset rocket position"
+              >
+                RESET
+              </button>
+            </div>
+
+            <!-- Space Shuttle Technical Description -->
+            <div class="shuttle-info-box">
+              <div class="shuttle-title-row">
+                <h3>SPACE SHUTTLE ORBITER</h3>
+                <!-- <span class="shuttle-status">ACTIVE SPEC</span> -->
+              </div>
+              <p class="shuttle-text">
+                The NASA Space Transportation System (STS) Orbiter is a reusable
+                winged spaceplane engineered to transition through all five
+                atmospheric strata into Low Earth Orbit and return as a
+                hypersonic glider. Protected by over 24,000 High-Temperature
+                Reusable Surface Insulation (HRSI) silica tiles withstanding
+                atmospheric reentry temperatures exceeding 1,650°C.
+              </p>
+
+              <div class="shuttle-specs-grid">
+                <div class="spec-cell">
+                  <span class="spec-k">Orbital Velocity</span>
+                  <span class="spec-v">7.8 km/s</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="spec-k">Launch Thrust</span>
+                  <span class="spec-v">34.8 MN</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="spec-k">Max Cargo Payload</span>
+                  <span class="spec-v">24,400 kg</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="spec-k">Ascent Corridor</span>
+                  <span class="spec-v">0 to 400+ km</span>
+                </div>
+              </div>
+
+              <a href="ascent.html" class="shuttle-launch-link">
+                <span>INITIATE LAUNCH</span>
+                <span class="arrow">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Atmospheric Strata Navigator & Dossier -->
+          <div class="strata-column">
+            <div class="column-header">
+              <!-- <span class="col-dot">✦</span> -->
+              <span>ATMOSPHERIC STRATA</span>
+            </div>
+
+            <!-- Strata Selection Strip -->
+            <div class="strata-tabs" id="strataTabs" role="tablist">
+              <button
+                class="strata-tab active"
+                data-layer="troposphere"
+                role="tab"
+                aria-selected="true"
+              >
+                <span class="tab-idx">01</span>
+                <span>TROPOSPHERE</span>
+              </button>
+              <button
+                class="strata-tab"
+                data-layer="stratosphere"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="tab-idx">02</span>
+                <span>STRATOSPHERE</span>
+              </button>
+              <button
+                class="strata-tab"
+                data-layer="mesosphere"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="tab-idx">03</span>
+                <span>MESOSPHERE</span>
+              </button>
+              <button
+                class="strata-tab"
+                data-layer="thermosphere"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="tab-idx">04</span>
+                <span>THERMOSPHERE</span>
+              </button>
+              <button
+                class="strata-tab"
+                data-layer="exosphere"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="tab-idx">05</span>
+                <span>EXOSPHERE</span>
+              </button>
+            </div>
+
+            <div class="stratum-content-card" id="stratumCard">
+              <!-- Left Side: Atmospheric Layer Image -->
+              <div class="stratum-visual-side">
+                <div class="stratum-image-frame">
+                  <img
+                    src="./Assets/layer_troposphere.jpg"
+                    alt="Earth's Troposphere"
+                    id="stratumImage"
+                    class="stratum-img"
+                  />
+                  <div class="stratum-img-gradient"></div>
+                  <div class="stratum-img-badge" id="stratumAltBadge">
+                    0 – 12 KM
+                  </div>
+                </div>
+                <div class="stratum-img-caption" id="stratumImageCaption">
+                  Tropospheric convective clouds &amp; dense planetary boundary.
+                </div>
+              </div>
+
+              <!-- Right Side: Info & Telemetry of Atmospheric Layer -->
+              <div class="stratum-info-side">
+                <div class="stratum-tag-row">
+                  <span class="layer-pill" id="stratumLayerPill"
+                    >STRATUM 01 - SURFACE BOUNDARY</span
+                  >
+                </div>
+                <h3 class="stratum-title" id="stratumTitle">TROPOSPHERE</h3>
+                <h4 class="stratum-subtitle" id="stratumSub">
+                  THE WEATHER ENGINE &amp; BIOSPHERE BLANKET
+                </h4>
+
+                <!-- Telemetry Stats Grid -->
+                <div class="stratum-telemetry-grid">
+                  <div class="telem-box">
+                    <span class="t-label">ALTITUDE</span>
+                    <span class="t-value" id="stratumAlt">0 – 12 km</span>
+                  </div>
+                  <div class="telem-box">
+                    <span class="t-label">TEMPERATURE</span>
+                    <span class="t-value" id="stratumTemp">+15°C to -56°C</span>
+                  </div>
+                  <div class="telem-box">
+                    <span class="t-label">MASS FRACTION</span>
+                    <span class="t-value" id="stratumMass">~75% of Total</span>
+                  </div>
+                  <div class="telem-box">
+                    <span class="t-label">PRESSURE</span>
+                    <span class="t-value" id="stratumPressure">101.3 kPa</span>
+                  </div>
+                </div>
+
+                <p class="stratum-narrative" id="stratumNarrative">
+                  The troposphere is the lowest and densest atmospheric layer
+                  where virtually all weather originates. Heated from below by
+                  solar radiation absorbed by Earth's continental crust and
+                  oceans, temperature decreases steadily with elevation at an
+                  average lapse rate of 6.5°C per kilometer until reaching the
+                  tropopause boundary.
+                </p>
+
+                <div class="stratum-phenomena-wrap">
+                  <span class="phenom-label"
+                    >KEY PHENOMENA &amp; BENCHMARKS:-</span
+                  >
+                  <div class="phenom-badges" id="stratumPhenomena">
+                    <span class="p-chip"
+                      >Cloud Formations : Cumulonimbus &amp; Cirrus</span
+                    >
+                    <span class="p-chip">Commercial Aviation : 10–12 km</span>
+                    <span class="p-chip">Mount Everest Peak : 8,848 m</span>
+                    <span class="p-chip">Convective Jet Streams</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!---------------------------------
+      THREE.JS ENGINE & SCRIPT IMPORTS |
+    ---------------------------------->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./Solar System/node_modules/three/build/three.module.js",
+          "orbitalControls": "./Solar System/node_modules/three/examples/jsm/controls/OrbitControls.js",
+          "webgl": "./Solar System/node_modules/three/examples/jsm/capabilities/WebGL.js",
+          "gltfLoader": "./Solar System/node_modules/three/examples/jsm/loaders/GLTFLoader.js"
+        }
+      }
+    </script>
+
+    <script type="module" src="./homepage.js"></script>
+  </body>
+</html>
