@@ -302,9 +302,9 @@
     </div>
   </section>
 
-  <!---------------------------
-     [ PLANETARY DATA SECTION ] |
-    ---------------------------->
+     <!----------------------------
+     | [ PLANETARY DATA SECTION ] |
+     ----------------------------->
   <section class="planet-data-section" id="dataSection">
     <header class="data-header-container">
       <div class="data-header-content">
@@ -324,7 +324,7 @@
       </div>
     </header>
 
-    <!-- Global Key Facts Bar (Interactive Explainer) -->
+    <!-- Global Key Facts Bar -->
     <section class="data-metric-bar" aria-label="Global Planetary Key Facts">
       <div class="data-metric-box" data-metric-type="distance" role="button" tabindex="0"
         aria-label="Learn about Distance to Sun">
@@ -378,9 +378,7 @@
       </div>
     </div>
 
-    <!-----------------------------------------
-     [ SECTION 2: MOON 3D CAROUSEL SHOWCASE ] |
-    ----------------------------------------->
+    <!-- 3d Moon Showcase -->
     <section class="moon-showcase-section" id="moonShowcase" aria-label="Earth's Natural Satellite Moon Showcase">
       <header class="moon-showcase-header">
         <div class="data-tag-pill" id="moonSectionTag">Earth's Natural Satellite</div>
@@ -418,11 +416,8 @@
     <!-- Visual Section Divider -->
     <hr class="section-divider" aria-hidden="true">
 
-    <!-- =============================================
-           [ SECTION 3: PLANETARY DOSSIER · DEEP TOPICS ]
-           ============================================= -->
+    <!-- Planetary Information -->
     <main class="dossier-narrative-container">
-      <!-- 01. The Subterranean Deep Biosphere -->
       <article class="data-narrative-topic">
         <h2 class="topic-heading">✦ 01. Subterranean Deep Biosphere & Extremophiles</h2>
         <p class="topic-paragraph">
@@ -440,7 +435,6 @@
         </p>
       </article>
 
-      <!-- 02. The Supercontinent Cycle: Pangaea to Amasia -->
       <article class="data-narrative-topic">
         <h2 class="topic-heading">✦ 02. The Supercontinent Cycle: Pangaea to Amasia</h2>
         <p class="topic-paragraph">
@@ -457,7 +451,6 @@
         </p>
       </article>
 
-      <!-- 03. The Great Oxidation Event & Paleoclimate Resets -->
       <article class="data-narrative-topic">
         <h2 class="topic-heading">✦ 03. The Great Oxidation Event & Paleoclimate Resets</h2>
         <p class="topic-paragraph">
@@ -476,7 +469,6 @@
         </p>
       </article>
 
-      <!-- 04. Hydrodynamic Atmospheric Retention & Ocean Preservation -->
       <article class="data-narrative-topic">
         <h2 class="topic-heading">✦ 04. Atmospheric Retention & Ocean Preservation</h2>
         <p class="topic-paragraph">
@@ -494,9 +486,7 @@
       </article>
     </main>
 
-    <!-- =============================================
-           [ SECTION 4: DEEP ARCHIVE & RESEARCH LINKS ]
-           ============================================= -->
+    <!-- Research Links -->
     <section class="planet-external-archives" aria-label="External Research Archives and References">
       <div class="external-archives-header">
         <span class="archives-icon">🌐</span>
@@ -533,7 +523,6 @@
       </div>
     </section>
 
-    <!-- Minimal Return to Orbit Indicator (No Box Container) -->
     <div class="guide-return" id="returnOrbitBtn" role="button" tabindex="0" aria-label="Return to 3D Orbit view">
       <div class="chevron-up">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
@@ -548,12 +537,12 @@
     </div>
   </section>
 
-  <!-- =============================================
-         [ SECTION 4: MINIMAL FUTURISTIC FOOTER ]
-         ============================================= -->
+   <!--------------------
+   | [ FOOTER SECTION ] |
+   --------------------->
   <footer class="planet-footer" id="planetFooter">
     <div class="footer-container">
-      <!-- 1. Left Branding Cluster -->
+      
       <div class="footer-branding">
         <div class="footer-brand-header">
           <span class="footer-brand-icon">✦</span>
@@ -562,7 +551,6 @@
         <p class="footer-brand-subtitle">Planetary Astrophysics & Celestial Ephemeris</p>
       </div>
 
-      <!-- 2. Center Quick Celestial Route Navigator -->
       <nav class="footer-nav-cluster" aria-label="Planetary System Navigation">
         <a href="./index_venus.html" class="footer-nav-pill">
           <span class="pill-arrow">←</span>
@@ -577,8 +565,7 @@
           <span class="pill-arrow">→</span>
         </a>
       </nav>
-
-      <!-- 3. Right Meta & Status Cluster -->
+      
       <div class="footer-meta-cluster">
         <div class="footer-status-pill">
           <span class="status-pulse-dot"></span>
@@ -591,15 +578,15 @@
     </div>
   </footer>
 
-  <!------------
-     [ IMPORTS ] |
-    ------------->
+   <!----------------
+   | [ IMPORT MAP ] |
+   ----------------->
   <script type="importmap">
       {
         "imports": {
-          "three": "../node_modules/three/build/three.module.js",
-          "orbitalControls": "../node_modules/three/examples/jsm/controls/OrbitControls.js",
-          "webgl": "../node_modules/three/examples/jsm/capabilities/WebGL.js"
+          "three": "../node_modules/three/three.module.js",
+          "orbitalControls": "../node_modules/three/examples/OrbitControls.js",
+          "webgl": "../node_modules/three/examples/WebGL.js"
         }
       }
     </script>
