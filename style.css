@@ -593,7 +593,6 @@ body {
 /* ----------------
  [RESPONSIVENESS] |
 ---------------- */
-
 @media (max-width: 1280px) {
   .navbar {
     padding: 0 2rem;
@@ -787,10 +786,260 @@ body {
   }
 }
 
-/* ---------------
-  [DATA SECTION] |
---------------- */
+/* [MOBILE RESPONSIVENESS: 320px – 390px RANGE] */
+@media (max-width: 390px) {
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100%;
+  }
 
+  /* Header & Navigation Bar */
+  .header-container {
+    padding: 0;
+    width: 100%;
+  }
+
+  .navbar {
+    height: 52px;
+    padding: 0 8px;
+    background: rgba(2, 6, 20, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+  }
+
+  .logo {
+    gap: 6px;
+  }
+
+  .logo-rocket-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .logo_content .title {
+    font-size: 0.68rem;
+    letter-spacing: 0.8px;
+    line-height: 1.1;
+  }
+
+  .logo_content .sub-title {
+    display: none !important;
+  }
+
+  .nav-right-cluster {
+    gap: 4px;
+  }
+
+  .navmenu {
+    gap: 6px;
+  }
+
+  .nav-link {
+    font-size: 0.58rem;
+    letter-spacing: 0.6px;
+    padding: 4px 2px;
+  }
+
+  /* Main Hero Section */
+  .hero_section {
+    min-height: 100dvh;
+    min-height: 100vh;
+    height: auto;
+    padding: 62px 10px 58px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: visible;
+    pointer-events: auto;
+  }
+
+  .hero-content-wrapper {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .hero-title-group {
+    width: 100%;
+    margin-bottom: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-title-main {
+    font-size: clamp(1.9rem, 8.8vw, 2.35rem);
+    letter-spacing: 1.5px;
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .hero-title-sub {
+    font-size: clamp(1.6rem, 7.5vw, 2.05rem);
+    letter-spacing: 1.5px;
+    line-height: 1.05;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .word-horizon {
+    font-size: clamp(1.75rem, 8.2vw, 2.25rem);
+  }
+
+  /* Centered Accent Bar overrides inline widths */
+  .headline-accent-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin: 6px auto 0.4rem auto;
+    width: auto;
+  }
+
+  .headline-accent-bar .accent-line:first-child {
+    width: clamp(105px, 34vw, 135px) !important;
+    height: 2px;
+  }
+
+  .headline-accent-bar .accent-line:last-child {
+    width: clamp(30px, 10vw, 42px) !important;
+    height: 2px;
+  }
+
+  .hero-description {
+    font-size: 0.76rem;
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+    margin: 0.35rem auto 0.85rem auto;
+    max-width: 310px;
+    text-align: center;
+    padding: 0 4px;
+  }
+
+  /* Telemetry HUD Metrics Card */
+ .stat-metrics-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 1rem auto;
+    padding: 7px 5px;
+  }
+
+  .stat-metric-item {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    padding: 2px 2px;
+  }
+
+  .stat-num {
+    font-size: 14px;
+    letter-spacing: 0.4px;
+  }
+
+  .stat-unit {
+    font-size: 8px;
+    margin-left: 1px;
+  }
+
+  .stat-num.symbol-infinity {
+    font-size: 16px;
+    line-height: 0.9;
+  }
+
+  .stat-label {
+    font-size: 6.8px;
+    letter-spacing: 0.3px;
+    line-height: 1.15;
+    margin-top: 2px;
+    white-space: normal;
+  }
+
+  .stat-metric-divider {
+    display: block !important;
+    width: 1px;
+    height: 20px;
+    background: rgba(56, 189, 248, 0.2);
+    flex-shrink: 0;
+  }
+
+  .hero-explore-btn {
+    display: inline-flex;
+    margin: 0 auto;
+    padding: 10px 22px;
+    font-size: 0.72rem;
+    letter-spacing: 1.8px;
+    min-width: 200px;
+    max-width: 240px;
+    justify-content: center;
+  }
+
+  /* Fixed Footer Telemetry Bar */
+  .footer-container {
+    padding: 0 6px 6px 6px;
+    width: 100%;
+  }
+
+  .footer-card {
+    height: 38px;
+    padding: 0 8px;
+    border-radius: 9px;
+    justify-content: center;
+    background: rgba(2, 6, 20, 0.85);
+  }
+
+  .telemetry-group {
+    width: 100%;
+    justify-content: space-around;
+    gap: 3px;
+  }
+
+  .telemetry-item {
+    gap: 4px;
+  }
+
+  .item-systems .telem-label {
+    display: none;
+  }
+
+  .item-lon {
+    display: none !important;
+  }
+
+  .status-pulse-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .telem-label {
+    font-size: 7.5px;
+    letter-spacing: 0.5px;
+  }
+
+  .telem-value {
+    font-size: 8.5px;
+    letter-spacing: 0.5px;
+  }
+
+  .telem-divider {
+    height: 12px;
+    margin: 0 1px;
+  }
+}
+
+/* --------------
+| [DATA-SECTION] |
+--------------- */
 .dossier-modal {
   position: fixed;
   inset: 0;
@@ -993,21 +1242,6 @@ body {
   pointer-events: none;
 }
 
-/* .shuttle-spinner {
-  width: 32px;
-  height: 32px;
-  border: 2px solid rgba(56, 189, 248, 0.2);
-  border-top-color: #00d5ff;
-  border-radius: 50%;
-  animation: spin 0.9s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
 .shuttle-badge {
   position: absolute;
   top: 10px;
@@ -1072,18 +1306,6 @@ body {
   letter-spacing: 1.8px;
   color: #ffffff;
 }
-
-/* .shuttle-status {
-  font-family: var(--font-tech);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 4px;
-  padding: 2px 6px;
-} */
 
 .shuttle-text {
   font-family: 'Verdana', sans-serif;
