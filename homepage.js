@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "orbitalControls";
 import { GLTFLoader } from "gltfLoader";
-alert(window.innerWidth + " x " + window.innerHeight);
+
 // Earth's Atmospheric shaders in GLSL
 const vertexShader = `
 varying vec3 vNormalWorld;
