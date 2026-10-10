@@ -9,7 +9,6 @@ const launchpadRocket = document.getElementById('launchpadRocket');
 const canvas = document.getElementById('atmosphereCanvas');
 const ctx = canvas?.getContext('2d');
 
-alert(window.innerWidth, window.innerHeight);
 let isLaunching = false;
 let isFlew = false;
 let scrollProgress = 0;
