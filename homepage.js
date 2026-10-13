@@ -66,21 +66,27 @@ earthGroup.rotation.x = THREE.MathUtils.degToRad(4.0);
 
 let targetGroupX = -1.25;
 let targetGroupY = 0.0;
+let targetScale = 1.0;
 
 function updateTargetPosition() {
   const aspect = window.innerWidth / window.innerHeight;
-  if (aspect > 1.35) {
-    targetGroupX = -1.25;
-    targetGroupY = 0.0;
-    earthGroup.scale.setScalar(1.0);
-  } else if (aspect > 0.95) {
-    targetGroupX = -0.80;
-    targetGroupY = 0.0;
-    earthGroup.scale.setScalar(0.92);
-  } else {
+  const width = window.innerWidth;
+
+  if (width <= 675 || aspect < 0.82) {
+    // Mobile view
     targetGroupX = 0.0;
     targetGroupY = 0.42;
-    earthGroup.scale.setScalar(0.78);
+    targetScale = width <= 450 ? 0.78 : 0.82;
+  } else if (width <= 960 || aspect < 1.35) {
+    // Tablets & Split Windows view
+    targetGroupX = -1.25;
+    targetGroupY = 0.0;
+    targetScale = 0.92;
+  } else {
+    // Desktop view
+    targetGroupX = -1.25;
+    targetGroupY = 0.0;
+    targetScale = 1.0;
   }
 }
 updateTargetPosition();
