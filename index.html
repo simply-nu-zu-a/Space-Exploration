@@ -25,34 +25,31 @@
     <div class="cosmic-vignette" aria-hidden="true"></div>
 
     <!---------------------
-      NAVIGATION SECTION  |
+    | NAVIGATION SECTION  |
     ---------------------->
 
-    <header class="header-container">
+   <header class="header-container">
       <nav class="navbar" id="navbar">
         <a href="index.html" class="logo" id="navLogo">
-          <img
-            src="./Assets/Rocket_Icon.png"
-            alt="Rocket Icon"
-            class="logo-rocket-img"
-          />
+          <img src="./Assets/Rocket_Icon.png" alt="Rocket Icon" class="logo-rocket-img" />
           <div class="logo_content">
             <span class="title">SPACE EXPLORATION</span>
             <span class="sub-title">MISSION CONTROL . EST . 2026</span>
           </div>
         </a>
-
+  
         <div class="nav-right-cluster">
-          <div class="navmenu">
+          <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+          <div class="navmenu" id="navMenu">
             <a href="ascent.html" class="nav-link" id="navMission">
               <span>MISSION</span>
               <span class="active-indicator"></span>
             </a>
-            <a
-              href="./Solar System/planet-structure/solar_system.html"
-              class="nav-link"
-              id="navCosmos"
-            >
+            <a href="./Solar System/planet-structure/solar_system.html" class="nav-link" id="navCosmos">
               <span>COSMOS</span>
             </a>
             <a href="#data" class="nav-link" id="navData">
@@ -61,11 +58,11 @@
           </div>
         </div>
       </nav>
-    </header>
+   </header>
 
-    <!---------------
-      HERO SECTION  |
-    ---------------->
+    <!----------------
+    |  HERO SECTION  |
+    ----------------->
     <main class="hero_section">
       <div class="hero-content-wrapper">
         <div class="hero-title-group">
@@ -120,9 +117,9 @@
       </div>
     </main>
 
-    <!----------------
-      FOOTER SECTION  |
-    ------------------>
+    <!------------------
+    |  FOOTER SECTION  |
+    ------------------->
     <footer class="footer-container" id="mainFooter">
       <div class="footer-card">
         <!-- Telemetry Items Cluster -->
@@ -170,9 +167,9 @@
       </div>
     </footer>
 
-    <!------------
-      DATA PANEL |
-    ------------->
+    <!--------------
+    |  DATA PANEL  |
+    --------------->
     <div class="dossier-modal" id="atmosphereModal" aria-hidden="true">
       <div class="dossier-backdrop" id="modalBackdrop"></div>
 
@@ -407,9 +404,9 @@
       </div>
     </div>
 
-    <!---------------------------------
-      THREE.JS ENGINE & SCRIPT IMPORTS |
-    ---------------------------------->
+    <!------------------------------------
+    |  THREE.JS ENGINE & SCRIPT IMPORTS  |
+    ------------------------------------->
     <script type="importmap">
       {
         "imports": {
