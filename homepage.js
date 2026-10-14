@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "orbitalControls";
 import { GLTFLoader } from "gltfLoader";
-
 // Earth's Atmospheric shaders in GLSL
 const vertexShader = `
 varying vec3 vNormalWorld;
@@ -403,8 +402,11 @@ function animate() {
 
   earthGroup.position.x += (targetGroupX - earthGroup.position.x) * 0.05;
   earthGroup.position.y += (targetGroupY - earthGroup.position.y) * 0.08;
+  const currentScale = earthGroup.scale.x;
+  const nextScale = currentScale + (targetScale - currentScale) * 0.06;
+  earthGroup.scale.setScalar(nextScale);
 
- // Earth's Rotation
+  // Earth's Rotation
   globe.rotation.y += spinVelocityY + 0.0006;
   clouds.rotation.y += spinVelocityY * 1.1 + 0.0009;
 
@@ -428,6 +430,47 @@ function initUIControls() {
       this.classList.add('active');
     });
   });
+
+  // Mobile Hamburger Navigation Toggle
+  const navbarToggle = document.getElementById('navbarToggle');
+  const navMenu = document.getElementById('navMenu');
+
+  if (navbarToggle && navMenu) {
+    navbarToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isActive = navbarToggle.classList.toggle('active');
+      navMenu.classList.toggle('active', isActive);
+      navbarToggle.setAttribute('aria-expanded', String(isActive));
+    });
+
+    // Close dropdown when a nav-link is selected
+    navMenu.querySelectorAll('.nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        navbarToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        navbarToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close dropdown on outside click
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !navbarToggle.contains(e.target)) {
+        navbarToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        navbarToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close dropdown on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        navbarToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        navbarToggle.setAttribute('aria-expanded', 'false');
+        navbarToggle.focus();
+      }
+    });
+  }
 
   const utcClockEl = document.getElementById('liveUtcClock');
   function updateUtcClock() {
